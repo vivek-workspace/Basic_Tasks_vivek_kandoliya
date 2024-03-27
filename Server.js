@@ -9,8 +9,12 @@ require('dotenv').config();
 
 //--------------- Importing local modules
 
-const router = require('./Routes/home');
-const dbconnection = require('./db');
+const home = require('./Routes/home');
+const on_events = require('./Routes/on_events');
+const dynamic_table = require('./Routes/dynamic_table');
+const kuku_cube = require('./Routes/kuku_cube');
+const tic_tac_toe = require('./Routes/tic_tac_toe');
+require('./db');
 
 //-------------------Configs and Middlewares
 
@@ -26,17 +30,20 @@ app.set('view engine','ejs');
 //----------------Listening Server
 
 const port = process.env.port;
-let con;
+
 app.listen(port, (err) => {
     if(err) throw err;
-    con = dbconnection();
     console.log('Server is Listening on Port: '+ port);
 })
 
 
 //--------------- Distributing Routes
 
-app.use('/', router);
+app.use('/', home);
+app.use('/tasks/on_events', on_events);
+app.use('/tasks/dynamic_table', dynamic_table);
+app.use('/tasks/kuku_cube', kuku_cube);
+app.use('/tasks/tic_tac_toe', tic_tac_toe);
 
 
 

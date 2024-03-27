@@ -7,7 +7,7 @@ require('dotenv').config();
 
 //----------- db connection function 
 
-const dbconnection = () => {
+// const dbconnection = () => {
    
     const con = mysql.createConnection({
         host: process.env.dbhost,
@@ -24,7 +24,7 @@ const dbconnection = () => {
         }
     })
   
-    return con;
-}
+    // return con;
+// }
 
-module.exports = dbconnection;
+module.exports = con;
