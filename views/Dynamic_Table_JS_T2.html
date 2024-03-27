@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body{
+            background-color: rgb(100, 78, 3);
+        }
+        table,
+        th,
+        td {
+            border: 3px solid rgb(255, 255, 255);
+            border-collapse: collapse;
+
+        }
+
+        td {
+            width: 20px;
+            height: 20px;
+        }
+
+        .meta{
+            width: 200px;
+            color: white;
+        }
+        .one {
+            background-color: rgb(255, 241, 40);
+        }
+
+        .two {
+            background-color: rgb(132, 255, 245);
+        }
+        button{
+            height: 30px;
+            background-color: greenyellow;
+            border: 1px solid blue;
+            border-radius: 5px;
+            margin: 10px;
+        }
+    </style>
+    <title>Dynamic Table</title>
+</head>
+
+<body>
+
+    <div align="center">
+        <Fieldset style="width: 40%">
+            <legend style="color: white">Employee Details</legend>
+            <table>
+                <tr>
+                    <td class="meta">Employee Id</td>
+                    <td class="meta">: 24DEV062</td>
+                </tr>
+                <tr>
+                    <td class="meta">Name</td>
+                    <td class="meta">: Vivek Kandoliya</td>
+                </tr>
+                <tr>
+                    <td class="meta">Task</td>
+                    <td class="meta">: Dynamic Table</td>
+                </tr>
+                <tr>
+                    <td class="meta">Date</td>
+                    <td class="meta">: 1 February 2024</td>
+                </tr>
+            </table>
+        </Fieldset>
+        <br><br><br>
+        <h3 style="color: white">Dynamic Table</h3>
+
+        <button onclick="addRow()">Add Row</button>
+        <button onclick="deleteRow()">Delete Row</button>
+        <button onclick="addColumn()">Add Column</button>
+        <button onclick="deleteColumn()">Delete Column</button>
+
+        <table align="center" id="dy_table" border="1">
+            <tr>
+                <td class="one"> </td>
+                <td class="two"> </td>
+            </tr>
+            <tr>
+                <td class="two"> </td>
+                <td class="one"> </td>
+            </tr>
+        </table>
+
+
+    </div>
+
+    <script>
+        let row = 2;
+        let column = 2;
+        let flagR = true;
+        let flagC = true;
+        const d_table = document.getElementById("dy_table");
+
+        function addRow() {
+            const r = document.createElement("tr");
+            let flagS = flagR;
+
+            for (let i = 1; i <= column; i++) {
+                const x = document.createElement("td");
+                if (flagR == true) {
+                    x.setAttribute("class", "one");
+                    flagR = false;
+                }
+                else if (flagR == false) {
+                    x.setAttribute("class", "two");
+                    flagR = true;
+                }
+
+                r.appendChild(x);
+            }
+            if (flagS == false)
+                flagR = true;
+            else
+                flagR = false;
+            console.log(flagR);
+            d_table.appendChild(r);
+            row++;
+        }
+
+
+        function deleteRow() {
+            if (row > 2) {
+                let rows = d_table.getElementsByTagName("tr");
+                rows[row - 1].remove();
+                row--;
+                if (flagR == true)
+                    flagR = false;
+                else
+                    flagR = true;
+            }
+        }
+
+        function addColumn() {
+
+
+            let rows = d_table.getElementsByTagName("tr");
+            let flagS = flagC;
+
+            for (let i = 0; i < row; i++) {
+                const x = document.createElement("td");
+                if (flagC == true) {
+                    x.setAttribute("class", "one");
+                    flagC = false;
+                }
+                else if (flagC == false) {
+                    x.setAttribute("class", "two");
+                    flagC = true;
+                }
+                rows[i].appendChild(x);
+
+            }
+            column++;
+            if (flagS == false)
+                flagC = true;
+            else
+                flagC = false;
+
+            console.log(flagR);
+        }
+
+        function deleteColumn() {
+            if (column > 2) {
+                let rows = d_table.getElementsByTagName("tr");
+                for (let i = 0; i < row; i++) {
+                    let columns = rows[i].getElementsByTagName("td");
+                    columns[column - 1].remove();
+
+                }
+                column--;
+                if (flagC == true)
+                    flagC = false;
+                else
+                    flagC = true;
+            }
+        }
+    </script>
+</body>
+
+</html>

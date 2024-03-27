@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon"type="image/gif" href="/image/favicon.ico"/>
+    <style>
+        body {
+            color: rgb(0, 0, 0);
+            background-color: rgb(255, 119, 119);
+        }
+
+        table,
+        tr,
+        td {
+            border: 3px solid rgb(255, 255, 255);
+            border-collapse: collapse;
+        }
+
+        #game_table {
+            border: 1px solid black;
+            width: 500px;
+            height: 500px;
+        }
+
+        .btn {
+            height: 40px;
+            width: 100px;
+            background-color: rgb(155, 255, 155);
+            border: 2px solid green;
+            border-radius: 5px;
+        }
+    </style>
+
+    <title>Cube Game</title>
+</head>
+
+<body>
+
+    <h2 align=" center">Vivek Kandoliya | 24DEV062 | 2nd Feb 2024</h2>
+    <hr>
+    <h1 align="center">Cube Color Game</h1>
+    <div>
+        <div></div>
+    </div>
+    <div align="center">
+        <button class="btn" id="start_game" onclick="startGame()">Start game</button>
+        <p id="score">Score = 0</p>
+        <label for="timer">Time Left</label>
+        <p id="timer">10</p>
+    </div>
+
+    <table align="center" id="game_table">
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <script>
+
+        function startGame() {
+            let time = 10
+
+            let settime = setInterval(() => {
+                if (time > 0) {
+                    time--;
+                    document.getElementById("timer").innerHTML = time.toString();
+                }
+                else {
+                    clearInterval(settime);
+                    gameOver();
+                }
+
+            }, 1000);
+
+        }
+
+        function gameOver() {
+            alert("your score is " + score + "\n game Over...");
+            location.reload();
+        }
+
+        let score_display = document.getElementById("score")
+        let score = 0;
+        let row = 2;
+        let col = 2;
+        const cube = document.getElementById("game_table");
+
+        let all_cells = document.getElementsByTagName("td");
+
+        let r = Math.floor(Math.random() * 1000) % 256;
+        let g = Math.floor(Math.random() * 1000) % 256;
+        let b = Math.floor(Math.random() * 1000) % 256;
+
+        for (let i = 0; i < all_cells.length; i++) {
+            all_cells[i].style.background = "rgba(" + r + "," + g + "," + b + ",1.0)";
+        }
+
+        let random_cell = all_cells[Math.floor(Math.random() * 1000) % (all_cells.length - 1)];
+        random_cell.style.opacity = "0.8";
+
+        random_cell.addEventListener("click", addMoreCells, { once: true });
+
+        function addMoreCells() {
+            score++;
+            score_display.innerHTML = "Score = " + score;
+            let new_row = cube.insertRow(row);
+            for (let i = 0; i < col; i++) {
+                new_row.insertCell(i);
+            }
+            row++;
+
+            all_rows = cube.getElementsByTagName("tr");
+            //inserting column=========
+            for (let i = 0; i < row; i++) {
+                all_rows[i].insertCell(col);
+            }
+            col++;
+
+            r = Math.floor(Math.random() * 1000) % 256;
+            g = Math.floor(Math.random() * 1000) % 256;
+            b = Math.floor(Math.random() * 1000) % 256;
+
+            for (let i = 0; i < all_cells.length; i++) {
+                all_cells[i].style.background = "rgb(" + r + "," + g + "," + b + ")";
+                all_cells[i].style.opacity = "1.0"
+            }
+
+            random_cell = all_cells[Math.floor(Math.random() * 1000) % (all_cells.length - 1)];
+            random_cell.style.opacity = "0.8";
+
+            random_cell.addEventListener("click", addMoreCells, { once: true });
+
+        }
+
+
+    </script>
+</body>
+
+</html>

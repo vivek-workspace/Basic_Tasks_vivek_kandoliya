@@ -1,6 +1,12 @@
+#gitignore
+/.gitignore
+
+#node modules
+/node_modules
 
 # Packages
 /package.json
+/package-lock.json
 
 #environment
 /.env

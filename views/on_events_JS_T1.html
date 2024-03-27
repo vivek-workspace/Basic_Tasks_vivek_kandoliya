@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table,
+        th,
+        td {
+            border: 3px solid rgb(255, 255, 255);
+            border-collapse: collapse;
+            padding: 7px;
+        }
+
+        .one {
+            background-color: rgb(195, 255, 184);
+        }
+
+        .two {
+            background-color: rgb(196, 227, 253);
+        }
+    </style>
+    <title>on Events</title>
+</head>
+
+<body 
+onload="e_on_load()" 
+onunload="e_on_unload()"
+ononline="e_on_online()">
+
+    <form action="#" onsubmit="e_on_submit()">
+    <table border="1">
+        <tr>
+            <td onclick="e_on_click()" class="one">
+                <p>OnClick()</p>
+            </td>
+            <td onmouseover="e_on_mouseover()" class="two">
+                <p>OnMouseOver()</p>
+            </td>
+            <td onmouseout="e_on_mouseout()" class="one">
+                <p>OnMouseOut()</p>
+            </td>
+            <td onmousedown="e_on_mousedown()" class="two"> <p> OnMosueDown() </p></td>
+            <td onmouseup="e_on_mouseup()" class="one"> <p>OnMouseUp()</p></td>
+            <td onmousemove="e_on_mouse_move()" class="two"> <p>OnMouseMove()</p> </td>
+            
+        </tr>
+        <tr>
+            <td onkeydown="e_on_keydown()" class="two"><input type="text" name="inp" placeholder="OnKeyDown()"></td>
+            <td onkeyup="e_on_keyup()" class="one"><input type="text" name="inp" placeholder="OnKeyUp()"></td>
+            <td class="two"><input onfocus="e_on_focus()" type="text" name="inp" id="focus" placeholder="OnFocus()"> </td>
+            <td class="one"><input onblur="e_on_blur()" type="text" placeholder="OnBlur()"></td>
+            <td class="two"><input onchange="e_on_change()" type="text" placeholder="OnChange()"></td>
+            <td class="one" onkeypress="e_on_keypress()"><input type="text" placeholder="OnKeyPress()"></td>
+        </tr>
+        <tr>
+            <td class="one" ondblclick="e_on_dbclick()"><p>OnDbClick()</p></td>
+            <td class="two" ondrag="e_on_drag()"><p draggable="true">OnDrag()</p></td>
+            <td class="one" onwheel="e_on_wheel()"><p>OnWheel()</p></td>
+            <td class="two" ><p onscroll="e_on_scroll()" style="width: 100px; height: 20px; overflow: scroll;">OnScroll() OnScroll() OnScroll() OnScroll() OnScroll() OnScroll()</p></td>
+            <td class="one"><p ondragstart="e_on_dragstart()" draggable="true">OnDragStart()</p></td>
+            <td class="two"><p ondragend="e_on_dragend()" draggable="true">OnDragEnd()</p></td>
+        </tr>
+        <tr>
+            <td class="two"><input oncopy="e_on_copy()" type="text" placeholder="OnCopy()"></td>
+            <td class="one"><input oncut="e_on_cut()" type="text" placeholder="OnCut()"></td>
+            <td class="two"><input onpaste="e_on_paste()" type="text" placeholder="OnPaste()"></td>
+            <td class="one"><input type="submit" name="submit" value="submit"></td>
+            <td class="two"><input type="reset"></td>
+        </tr>
+    </table>
+
+</form>
+
+    <script>
+        function e_on_click() { alert("onclick() event fired."); }
+        function e_on_mouseover() { alert("onmouseover() event fired."); }
+        function e_on_mouseout() { alert("onmouseout() event fired."); }
+        function e_on_mousedown() { alert("onmousedown() event fired."); }
+        function e_on_mouseup() { alert("onmouseup() event fired."); }
+        function e_on_mouse_move() { alert("onmousemove() event fired.")}
+        function e_on_keydown() { alert("onkeydown() event fired."); }
+        function e_on_keyup() { alert("onkeyup() event fired."); }
+        function e_on_focus() { alert("onfocus() event fired."); document.getElementById('focus').style.background='yellow'; }
+        function e_on_submit() { alert("onsubmit() event fired."); }
+        function e_on_blur() { alert("onblur() event fired."); }
+        function e_on_change() { alert("onchange() event fired."); }
+        function e_on_load() { alert("onload() event fired."); }
+        function e_on_unload() { alert("onunload() event fired."); }
+        function e_on_online() { alert("ononline() event fired. \n you are online..."); }
+        function e_on_offline() { alert("onoffline() event fired. \n you are offline..."); }
+        function e_on_keypress() { alert("onkeypress() event fired."); }
+        function e_on_dbclick() { alert("ondbclick() event fired."); }
+        function e_on_drag() { alert("ondrag() event fired."); }
+        function e_on_wheel() { alert("onwheel() event fired."); }
+        function e_on_scroll() { alert("onscroll() event fired."); }
+        function e_on_dragstart() { alert("ondragstart() event fired."); }
+        function e_on_dragend() { alert("ondragend() event fired."); }
+        function e_on_copy() { alert("oncopy() event fired."); }
+        function e_on_cut() { alert("oncut() event fired."); }
+        function e_on_paste() { alert("onpaste() enent fired. ")}
+
+
+    </script>
+</body>
+
+</html>
