@@ -25,7 +25,7 @@ router.get('/', varifyUser, async (req, res) => {
     res.render('job_app_simple/pages/list', {result});
 
 })
-
+    
 router.get('/form',varifyUser, async (req, res) => {
     let promisedQuery = util.promisify(con.query).bind(con);
 

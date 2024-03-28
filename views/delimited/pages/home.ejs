@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../components/head') %>
+</head>
+
+<body>
+    <header>
+        <%- include('../components/header') %>
+    </header>
+    <main>
+
+        <div style="display: flex;">
+            <aside>
+                <table class="symbols">
+                    <tr>
+                        <td>-</td>
+                        <td>Student ID</td>
+                    </tr>
+                    <tr>
+                        <td>_</td>
+                        <td>First Name</td>
+                    </tr>
+                    <tr>
+                        <td>^</td>
+                        <td>Father Name</td>
+                    </tr>
+                    <tr>
+                        <td>$</td>
+                        <td>Last Name</td>
+                    </tr>
+                    <tr>
+                        <td>{</td>
+                        <td>Gender</td>
+                    </tr>
+                    <tr>
+                        <td>}</td>
+                        <td>City</td>
+                    </tr>
+                    <tr>
+                        <td>:</td>
+                        <td>Age</td>
+                    </tr>
+                    <tr>
+                        <td>*</td>
+                        <td>Mobile No</td>
+                    </tr>
+                </table>
+                <!-- <ul>
+                    <li>- : </li>
+                    <li>_ : First Name</li>
+                    <li>^ : Father Name</li>
+                    <li>$ : Last Name</li>
+                    <li>{ : Gender</li>
+                    <li>} : City</li>
+                    <li>: : Age</li>
+                    <li>* : Mobile No</li>
+                </ul> -->
+            </aside>
+            <section>
+                <div class="searchArea">
+                    <form action="/tasks/delimited_search" method="get">
+                        <input type="text" name="searchbox" id="searchbox" autofocus>
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+        
+                <div class="tableArea">
+                    <table>
+                        <tr>
+                            <% for(let i=0; i<columns.length; i++){ %>
+                                <th>
+                                    <%= columns[i].name %>
+                                </th>
+                                <% }%>
+                        </tr>
+                        <% if(data.length == 0){ %>
+                            <tr><td colspan="<%= columns.length %>">No Data Matched &#128528;</td></tr>
+                        <% }else{ %>
+                        <% for(let j=0; j<data.length; j++){ %>
+                            <tr>
+                                <% for(let i=0; i<columns.length; i++){ %>
+                                    <td>
+                                        <%= data[j][columns[i].name] %>
+                                    </td>
+                                <% }%>
+                            </tr>
+                        <% }%>
+                        <% } %>
+
+                    </table>
+                </div>
+            </section>
+        </div>
+
+
+    </main>
+    <footer>
+        <%- include('../components/footer') %>
+    </footer>
+
+    <script>
+
+        let searchbox = document.querySelector('#searchbox');
+        searchbox.value = `<%= searchString%>`
+    </script>
+</body>
+
+</html>

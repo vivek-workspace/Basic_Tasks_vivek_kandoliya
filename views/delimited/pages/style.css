@@ -1,0 +1,44 @@
+
+body{
+    background-color: rgb(206, 255, 255);
+}
+
+header{
+    text-align: center;
+}
+
+table{
+    margin: 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: rgb(245, 255, 207);
+}
+
+aside{
+    border-right: 5px solid orange;
+    border-top: 5px solid orange;
+    border-bottom: 5px solid orange;
+    min-width: 180px;
+}
+
+section{
+    padding: 0px 5px;
+}
+
+.searchArea{
+    display: block;
+    text-align: center;
+
+    #searchbox{
+        width: 400px;
+    }
+
+    input{
+        height: 40px;
+    }
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 6px;
+}

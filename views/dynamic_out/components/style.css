@@ -1,0 +1,54 @@
+
+body{ 
+    background-color: rgb(174, 219, 255);
+}
+
+header{
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif
+}
+
+.queryArea{
+    background-color: rgb(140, 203, 255);
+    text-align: center;
+}
+
+#sqlquery{
+    width: 100%;
+}
+
+#submit{
+    height: 50px;
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: greenyellow;
+   
+}
+
+table{
+    margin: 0px auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+   
+}
+
+tr, td, th{
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.controls, footer{
+    text-align: center;
+
+    input{
+        height: 30px;
+    }
+    
+}
+
+.cntrlbtn{
+    width: 30px ;
+    background-color: rgb(229, 255, 111);
+ }

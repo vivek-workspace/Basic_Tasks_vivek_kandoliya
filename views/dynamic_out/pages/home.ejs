@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../components/head') %>
+</head>
+
+<body>
+    <header>
+        <h3>SQL Tab</h3>
+    </header>
+    <main>
+        <div class="queryArea">
+            <form action="/query" method="post">
+                <textarea name="sqlquery" id="sqlquery" cols="200" rows="10"
+                    placeholder="write your query here..."></textarea> <br>
+                <input id="submit" type="submit" value="Fire Query">
+            </form>
+
+        </div>
+  
+        <div class="responseBody">
+            <% if(result==false) {%>
+                <p>Nothing to Show Here</p>
+                <% } else{ if(err==true){%>
+                    <%- include('../components/colorstyle')%>
+                    <div class="responseArea">
+                        <p>You Got Error with Query</p>
+                        <p><%= query %></p>
+                        <p>
+                            <%= data%>
+                        </p>
+                    </div>
+                    
+                    <% }else{%>
+                        <%- include('../components/colorstyle')%>
+                        <p class="successArea"><%= query %></p>
+                        <div class="controls">
+                            <%- include('../components/controls')%>
+                        </div>
+                        <table>
+                            <tr>
+                                <% for(let j=0; j<columns.length; j++){ %>
+                                    <th>
+                                        <%= columns[j]%>
+                                    </th>
+                                    <% } %>
+                            </tr>
+                            <% for(let i=0; i<data.length; i++){ %>
+                                <tr>
+                                    <% for(let j=0; j<columns.length; j++){ %>
+                                        <td>
+                                            <%= data[i][columns[j]]%>
+                                        </td>
+                                        <% } %>
+                                </tr>
+
+                                <%}%>
+                        </table>
+                        <div class="controls">
+                            <%- include('../components/controls')%>
+                        </div>
+                        <%}%>
+
+                            <% }%>
+        </div>
+    </main>
+    <footer>
+        <%- include('../components/footer') %>
+    </footer>
+
+    <script>
+
+        // function fireQuery(){
+        //     const query = document.querySelector("#sqlquery");
+        //     console.log(query.value);
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open("POST",'/query' ,true);
+        //     xhr.setRequestHeader("Content-Type","application/json; charset=UTF-8");
+        //     xhr.send(JSON.stringify({
+        //         query: query.value
+        //     }));
+        //     console.log('query fired..');
+        // }
+
+    </script>
+</body>
+
+</html>
