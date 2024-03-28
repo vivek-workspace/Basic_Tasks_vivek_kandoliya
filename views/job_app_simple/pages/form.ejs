@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application 2</title>
+    <link rel="stylesheet" href="/job_app_simple/pages/style.css">
+</head>
+
+<body>
+    
+    <h2 align="center">Job Application Form</h2>
+    <br>
+    <hr>
+    <% if(user[0] == false) {%>
+        
+        <h4 align="center">Fresh User</h4>
+        <form id="form" action="/tasks/job_app_simple/submit" onsubmit="return validateForm()" method="POST" name="job_application_form2">
+    <%}else{%>
+       
+        <h4 align="center">Existing User </h4>
+        <form id="form" action="/tasks/job_app_simple/update" onsubmit="return validateForm()" method="POST" name="job_application_form2">
+    <%}%>
+   
+        <table style="width: 100%;">
+            <tr>
+                <td colspan="8">
+                    <table id="basicDetails">
+                        <tr>
+                            <td colspan="8">
+                                <h5 align="center">Basic Details</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">First Name :</td>
+                            <td colspan="2"><input class="inptext inp mendetory" type="text" name="first_name" id="first_name"></td>
+                            <td colspan="2">Last Name :</td>
+                            <td colspan="2"><input class="inptext inp mendetory" type="text" name="last_name" id="last_name"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Designation : </td>
+                            <td colspan="2"><input class="inptext inp" type="text" name="designation" id="designation"></td>
+                            <td colspan="2">Zip Code: </td>
+                            <td colspan="2"><input class="inptext inp mendetory" type="text" name="zip_code" id="zip_code"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Address 1 :</td>
+                            <td colspan="2"><input  class="inptext inp mendetory" type="text" name="address_1" id="address_1"></td>
+                            <td colspan="2">Address 2 :</td>
+                            <td colspan="2"><input  class="inptext inp" type="text" name="address_2" id="address_2"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">City</td>
+                            <td colspan="2"><input  class="inptext inp mendetory"  type="text" name="city" id="city"></td>
+                            <td colspan="2">State</td>
+                            <td colspan="2"><input  class="inptext inp mendetory"  type="text" name="state" id="state"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Email :</td>
+                            <td colspan="2"><input  class="inptext inp mendetory"  type="text" name="email" id="email"></td>
+                            <td colspan="2">Phone No :</td>
+                            <td colspan="2"><input  class="inptext inp mendetory phone"  type="text" name="phone" id="phone"></td>
+                        </tr>
+                        <tr class = 'gtr'>
+                            <td colspan="2">Gender : </td>
+                            <td colspan="3">Male <input   class="inpradio inp mendetory"  type="radio" name="gender" id="male" value="male"></td>
+                            <td colspan="3">Female <input   class="inpradio inp mendetory"  type="radio" name="gender" id="female" value="female"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Relationship Status :</td>
+                            <td colspan="2">
+                                <select   class="inpselect mendetory"  name="relationship" id="relationship">
+                                    <option value="single">Single</option>
+                                    <option value="merried">Merried</option>
+                                    <option value="Wiedow">Wiedow</option>
+                                    <option value="Divorced">Divorced</option>
+                                </select>
+                            </td>
+                            <td colspan="2">Date Of Birth</td>
+                            <td colspan="2"><input class="inptext inp datefield mendetory" type="text" name="dob" id="dob" placeholder="YYYY-MM-DD"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr>
+                <td colspan="8" >
+                    <table id="educationDetails">
+                        <tr>
+                            <td colspan="7"><h5 align="center">Education Details</h5></td>
+                            <td >
+                                <input onclick="addEducationRow('educationDetails')" type="button" name="plus_education" id="plus_education" value="+">
+                                <input onclick="removeEducationRow()" type="button" name="minus_education" id="minus_education" value="-">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>SSC Result</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Name of Board : </td>
+                            <td><input  class="inptext inp mendetory" type="text" name="board_uni[]" id="ssc_board"></td>
+                            <td colspan="2">Passing Year :</td>
+                            <td><input  class="inptext inp mendetory year" type="text" name="passing_year[]" id="ssc_year"></td>
+                            <td>Percentage : </td>
+                            <td><input  class="inptext inp mendetory percent" type="text" name="percentage[]" id="ssc_percent"></td>
+                        </tr>
+                        <tr>
+                            <td>HSC Result</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Name of Board : </td>
+                            <td><input class="inptext inp mendetory" type="text" name="board_uni[]" id="hsc_board"></td>
+                            <td colspan="2">Passing Year : </td>
+                            <td><input class="inptext inp mendetory year" type="text" name="passing_year[]" id="hsc_year"></td>
+                            <td>Percentage : </td>
+                            <td><input class="inptext inp mendetory percent" type="text" name="percentage[]" id="hsc_percent"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="inptext inp mendetory" type="text" name="degree[]" id="degree1" placeholder="bachelor degree"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1">Course : </td>
+                            <td><input class="inptext inp mendetory" type="text" name="course[]" id="bachelor_course"></td>
+                            <td colspan="1">University :</td>
+                            <td><input class="inptext inp mendetory" type="text" name="board_uni[]" id="bachelor_uni"></td>
+                            <td>Passing year :</td>
+                            <td><input class="inptext inp mendetory year" type="text" name="passing_year[]" id="bachelor_year"></td>
+                            <td>Percentage : </td>
+                            <td><input class="inptext inp mendetory percent" type="text" name="percentage[]" id="bachelor_percent"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="inptext inp master" type="text" name="degree[]" id="degree2" placeholder="Master degree"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1">Course : </td>
+                            <td><input class="inptext inp master" type="text" name="course[]" id="master_course"></td>
+                            <td colspan="1">University : </td>
+                            <td><input class="inptext inp master" type="text" name="board_uni[]" id="master_uni"></td>
+                            <td>Passing Year :</td>
+                            <td><input class="inptext inp year master" type="text" name="passing_year[]" id="master_year"></td>
+                            <td>Percentage : </td>
+                            <td><input class="inptext inp percent master" type="text" name="percentage[]"id="master_percent"></td>
+                        </tr>
+                    </table>
+                    
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <td colspan="8"><h5 align="center">Work Experience</h5></td>
+            </tr>
+            <tr>
+                <td>Company Name: </td>
+                <td><input class="inptext inp company1" type="text" name="company[]" id="company1"></td>
+                <td>Designation : </td>
+                <td><input class="inptext inp company1" type="text" name="old_designation[]" id="designation1"></td>
+                <td>From : </td>
+                <td><input class="inptext inp datefield company1" type="text" name="from[]" id="from1"  placeholder="YYYY-MM-DD"></td>
+                <td>To :</td>
+                <td><input class="inptext inp datefield company1" type="text" name="to[]" id="to1"  placeholder="YYYY-MM-DD"></td>
+            </tr>
+            <tr>
+                <td>Company Name: </td>
+                <td><input class="inptext inp company2" type="text" name="company[]" id="company2"></td>
+                <td>Designation : </td>
+                <td><input class="inptext inp company2" type="text" name="old_designation[]" id="designation2"></td>
+                <td>From : </td>
+                <td><input class="inptext inp datefield company2" type="text" name="from[]" id="from2"   placeholder="YYYY-MM-DD"></td>
+                <td>To :</td>
+                <td><input class="inptext inp datefield company2" type="text" name="to[]" id="to2"   placeholder="YYYY-MM-DD"></td>
+            </tr>
+            <tr>
+                <td>Company Name : </td>
+                <td><input class="inptext inp company3" type="text" name="company[]" id="company3"></td>
+                <td>Designation : </td>
+                <td><input class="inptext inp company3" type="text" name="old_designation[]" id="designation3"></td>
+                <td>From : </td>
+                <td><input class="inptext inp datefield company3" type="text" name="from[]" id="from3"   placeholder="YYYY-MM-DD"></td>
+                <td>To : </td>
+                <td><input class="inptext inp datefield company3" type="text" name="to[]" id="to3"   placeholder="YYYY-MM-DD"></td>
+            </tr>
+            <tr>
+                <td colspan="4"><h5 align="center">Language Known</h5></td>
+                <td colspan="4"><h5 align="center">Technologies Known</h5></td>
+            </tr>
+            <tr>
+                <td>Hindi <input onclick="toggleSubButtons('hac')" class="inpcheckbox inp" type="checkbox" name="language[]" id="hindi" value="hindi"></td>
+                <td>Read <input class="inpcheckbox inp abltcheck hac" type="checkbox" name="read[]" id="hindi_read" value="hindi"></td>
+                <td>Write <input class="inpcheckbox inp abltcheck hac" type="checkbox" name="write[]" id="hindi_write" value="hindi"></td>
+                <td>Speak <input class="inpcheckbox inp abltcheck hac" type="checkbox" name="speak[]" id="hindi_speak" value="hindi"></td>
+
+                <td>PHP <input onclick="toggleSubButtons('phpabc')" class="inpcheckbox inp" type="checkbox" name="technology[]" id="php" value="php"></td>
+                <td>Beginer <input class="inpradio inp abltcheck phpabc" type="radio" name="php_radio" id="php_radio" value="beginer"></td>
+                <td>Mideator <input class="inpradio inp abltcheck phpabc" type="radio" name="php_radio" id="php_radio" value="mideator"></td>
+                <td>Expert <input class="inpradio inp abltcheck phpabc" type="radio" name="php_radio" id="php_radio" value="expert"></td>
+            </tr>
+            <tr>
+                <td>English <input onclick="toggleSubButtons('eac')" class="inpcheckbox inp" type="checkbox" name="language[]" id="english" value="english"></td>
+                <td>Read <input class="inpcheckbox inp abltcheck eac" type="checkbox" name="read[]" id="english_read" value="english"></td>
+                <td>Write <input class="inpcheckbox inp abltcheck eac" type="checkbox" name="write[]" id="english_write" value="english"></td>
+                <td>Speak <input class="inpcheckbox inp abltcheck eac" type="checkbox" name="speak[]" id="english_speak" value="english"></td>
+                
+                <td>MySQL <input onclick="toggleSubButtons('sqlabc')" class="inpcheckbox inp" type="checkbox" name="technology[]" id="mysql" value="mysql"></td>
+                <td>Beginer <input class="inpradio inp abltcheck sqlabc" type="radio" name="mysql_radio" id="mysql_radio" value="beginer"></td>
+                <td>Mideator <input class="inpradio inp abltcheck sqlabc" type="radio" name="mysql_radio" id="mysql_radio" value="mideator"></td>
+                <td>Expert <input class="inpradio inp abltcheck sqlabc" type="radio" name="mysql_radio" id="mysql_radio" value="expert"></td>
+            </tr>
+            <tr>
+                <td>Gujarati <input onclick="toggleSubButtons('gabc')" class="inpcheckbox inp" type="checkbox" name="language[]" id="gujarati" value="gujarati"></td>
+                <td>Read <input  class="inpcheckbox inp abltcheck gabc" type="checkbox" name="read[]" id="gujarati_read" value="gujarati"></td>
+                <td>Write <input  class="inpcheckbox inp abltcheck gabc" type="checkbox" name="write[]" id="gujarati_write" value="gujarati"></td>
+                <td>Speak <input  class="inpcheckbox inp abltcheck gabc" type="checkbox" name="speak[]" id="gujarati_speak" value="gujarati"></td>
+                
+                <td>Laravel <input onclick="toggleSubButtons('labc')" class="inpcheckbox inp" type="checkbox" name="technology[]" id="laravel" value="laravel"></td>
+                <td>Beginer <input class="inpradio inp abltcheck labc" type="radio" name="laravel_radio" id="laravel_radio" value="beginer"></td>
+                <td>Mideator <input class="inpradio inp abltcheck labc" type="radio" name="laravel_radio" id="laravel_radio" value="mideator"></td>
+                <td>Expert <input class="inpradio inp abltcheck labc" type="radio" name="laravel_radio" id="laravel_radio" value="expert"></td>
+            </tr>
+            <tr>
+                <td colspan="8"><h5 align="center">Referance Contact</h5></td>
+            </tr>
+            <tr>
+                <td>Name : </td>
+                <td><input class="inptext inp reference1" type="text" name="ref_names[]" id="ref_name1"></td>
+                <td>Contact : </td>
+                <td><input class="inptext inp reference1 phone" type="text" name="ref_con[]" id="ref_con1"></td>
+                <td>Relation : </td>
+                <td><input class="inptext inp reference1" type="text" name="ref_relation[]" id="ref_relation_1"></td>
+            </tr>
+            <tr>
+                <td>Name : </td>
+                <td><input  class="inptext inp reference2" type="text" name="ref_names[]" id="ref_name2"></td>
+                <td>Contact : </td>
+                <td><input  class="inptext inp reference2 phone" type="text" name="ref_con[]" id="ref_con2"></td>
+                <td>Relation : </td>
+                <td><input  class="inptext inp reference2" type="text" name="ref_relation[]" id="ref_relation_2"></td>
+            </tr>
+            <tr>
+                <td colspan="8"><h5 align="center">Prefrences</h5></td>
+            </tr>
+            <tr>
+                <td rowspan="3">prefered_location: </td>
+                <td rowspan="3">
+                    <select  class="inpselect inp mendetory" name="prefered_location" id="prefered_location">
+                        <option value="rajkot">Rajkot</option>
+                        <option value="ahmedabad">Ahmedabad</option>
+                        <option value="banglore">Banglore</option>
+                    </select>
+                </td>
+                <td>Notice Period</td>
+                <td><input  class="inptext inp mendetory number" type="text" name="notice_period" id="notice_period"></td>
+                <td rowspan="3">Department</td>
+                <td rowspan="3">
+                    <select  class="inpselect inp mendetory" name="department" id="department">
+                        <option value="development">Development</option>
+                        <option value="hr">Human Resourse</option>
+                        <option value="design">Designing</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Expacted CTC :</td>
+                <td><input class="inptext inp mendetory number" type="text" name="expacted_ctc" id="expacted_ctc"></td>
+            </tr>
+            <tr>
+                <td>Currunt CTC</td>
+                <td><input class="inptext inp number" type="text" name="currunt_ctc" id="currunt_ctc"></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <% if(user[0] == false) {%>
+                        <input class="inptext inp" type="submit" value="Submit" name="submit" id="submit" >
+                    <%}else{%>
+                        <input class="inptext inp" type="submit" value="Update" name="Update" id="submit" >
+                    <%}%>
+                    </td>
+                <td colspan="4"><input class="inptext inp" type="reset" name="reset" id="reset" value="Reset" onclick="location.reload()"></td>
+            </tr>
+        </table>
+    </form>
+   <%
+   
+   const temp = JSON.stringify(user[0])
+    if(temp != 'false'){
+        const education = JSON.stringify(education_data);
+        const language = JSON.stringify(language_data);
+        const technology = JSON.stringify(technology_data);
+        const work_experience = JSON.stringify(work_exp);
+        const contact_list = JSON.stringify(con_list);
+        console.log(work_experience);
+        console.log(contact_list);
+        %>
+        <input type="text" name="dataTxt" id="dataTxt" value="<%= temp%>" style="display: none;">
+        <input type="text" name="eduText" id="eduText" value="<%= education%>" style="display: none;">
+        <input type="text" name="lanText" id="lanText" value="<%= language%>" style="display: none;">
+        <input type="text" name="techText" id="techText" value="<%= technology %>" style="display: none;">
+        <input type="text" name="weText" id="weText" value="<%= work_experience %>" style="display: none;">
+        <input type="text" name="clText" id="clText" value="<%= contact_list %>" style="display: none;">
+    <%}else {%><input type="text" name="dataTxt" id="dataTxt" value="false" style="display: none;">
+           <%}%>
+        
+  
+    <script src="/job_app_simple/pages/script.js"></script>
+</body>
+
+</html>

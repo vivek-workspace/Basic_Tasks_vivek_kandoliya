@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('../components/head')%>
+</head>
+<body>
+    <header>
+        <%- include('../components/header')%>
+    </header>
+    <main>
+     
+
+        <%
+        switch(result[0].combo_type){
+            case 'select':
+                createSelect();
+                break;
+            case 'radio':
+                createRadio();
+                break;
+            case 'checkbox':
+                createCheckbox();
+                break;
+            default:
+                console.log('invalid type');
+        }
+        %>
+        <%
+        function createSelect(){ %>
+            <select name="<%= result[0].select_key %>" id="<%= result[0].select_key %>">
+           <% for(let i=0; i<result.length; i++){ %>
+                <option value="<%= result[i].option_key %>"><%= result[i].option_value %></option>
+            <%} %>
+        </select> 
+       <% }
+       %>
+
+       <%
+       function createRadio(){ %>
+           <label for="<%= result[0].select_value %>"><%= result[0].select_key %></label>
+          <% for(let i=0; i<result.length; i++){ %>
+                <input type="radio" name="<%= result[0].select_value %>"  value="<%= result[i].option_key %>">
+                <label for="<%= result[i].option_key %>"><%= result[i].option_value %></label>
+           <%}
+       }
+      %>
+
+      <%
+       function createCheckbox(){ %>
+           <label for="<%= result[0].select_key %>"><%= result[0].select_key %></label>
+          <% for(let i=0; i<result.length; i++){ %>
+                <input type="checkbox" name="<%= result[i].option_key %>" id="<%= result[i].option_key %>" value="<%= result[i].option_key %>">
+                <label for="<%= result[i].option_key %>"><%= result[i].option_value %></label>
+           <%}
+       }
+      %>
+
+
+    </main>
+    <footer>
+        <%- include('../components/footer')%>
+    </footer>
+</body>
+</html>
