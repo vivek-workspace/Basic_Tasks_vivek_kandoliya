@@ -14,6 +14,8 @@ const on_events = require('./Routes/on_events');
 const dynamic_table = require('./Routes/dynamic_table');
 const kuku_cube = require('./Routes/kuku_cube');
 const tic_tac_toe = require('./Routes/tic_tac_toe');
+const job_app_ajax = require('./Routes/job_app_ajax');
+// const job_app_simple = require('./Routes')
 require('./db');
 
 //-------------------Configs and Middlewares
@@ -44,6 +46,8 @@ app.use('/tasks/on_events', on_events);
 app.use('/tasks/dynamic_table', dynamic_table);
 app.use('/tasks/kuku_cube', kuku_cube);
 app.use('/tasks/tic_tac_toe', tic_tac_toe);
+app.use('/tasks/job_app_ajax', job_app_ajax);
+// app.use('/tasks/job_app_simple', job_app_simple);
 
 
 

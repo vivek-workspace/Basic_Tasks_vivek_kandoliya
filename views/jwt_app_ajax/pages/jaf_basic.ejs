@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../components/head')%>
+</head>
+
+<body>
+    <header>
+        <%- include('../components/header')%>
+    </header>
+
+    <div id="prenext">
+        <input type="button" onclick="Previous()" class="previous btn" name="previous" id="previous" disabled
+        value=" <- Previous ">
+    <input type="button" onclick="Next()" class="next_btn btn" name="next" id="next" value="Next ->">
+    </div>
+    
+    <% if(user[0]==false) {%>
+        <h4 align="center">Fresh User</h4>
+        <form id="form" name="job_application_form2">
+            <%}else{%>
+                <h4 align="center">Existing User</h4>
+                <form id="form" name="job_application_form2">
+            <%}%>
+
+
+                    <table id="basicDetails">
+                        <tr>
+                            <td colspan="8">
+                                <h5 align="center">Basic Details</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">First Name :</td>
+                            <td colspan="2"><input class="inptext inp mendetory" type="text" name="first_name"
+                                    id="first_name"></td>
+                            <td colspan="2">Last Name :</td>
+                            <td colspan="2"><input class="inptext inp mendetory" type="text" name="last_name"
+                                    id="last_name"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Designation : </td>
+                            <td colspan="2"><input class="inptext inp" type="text" name="designation" id="designation">
+                            </td>
+                            <td colspan="2">Zip Code: </td>
+                            <td colspan="2"><input class="inptext inp mendetory" type="text" name="zip_code"
+                                    id="zip_code"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Address 1 :</td>
+                            <td colspan="2"><input class="inptext inp mendetory" type="text" name="address_1"
+                                    id="address_1"></td>
+                            <td colspan="2">Address 2 :</td>
+                            <td colspan="2"><input class="inptext inp" type="text" name="address_2" id="address_2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">City</td>
+                            <td colspan="2"><input class="inptext inp mendetory" type="text" name="city" id="city">
+                            </td>
+                            <td colspan="2">State</td>
+                            <td colspan="2"><input class="inptext inp mendetory" type="text" name="state" id="state">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Email :</td>
+                            <td colspan="2"><input class="inptext inp mendetory" type="text" name="email" id="email">
+                            </td>
+                            <td colspan="2">Phone No :</td>
+                            <td colspan="2"><input class="inptext inp mendetory phone" type="text" name="phone"
+                                    id="phone"></td>
+                        </tr>
+                        <tr class='gtr'>
+                            <td colspan="2">Gender : </td>
+                            <td colspan="3">Male <input class="inpradio inp mendetory" type="radio" name="gender"
+                                    id="male" value="male"></td>
+                            <td colspan="3">Female <input class="inpradio inp mendetory" type="radio" name="gender"
+                                    id="female" value="female"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Relationship Status :</td>
+                            <td colspan="2">
+                                <select class="inpselect inp mendetory" name="relationship" id="relationship">
+                                    <option value="single">Single</option>
+                                    <option value="merried">Merried</option>
+                                    <option value="Wiedow">Wiedow</option>
+                                    <option value="Divorced">Divorced</option>
+                                </select>
+                            </td>
+                            <td colspan="2">Date Of Birth</td>
+                            <td colspan="2"><input class="inptext inp datefield mendetory" type="text" name="dob"
+                                    id="dob" placeholder="YYYY-MM-DD"></td>
+                        </tr>
+
+                    </table>
+
+                    <table id="educationDetails">
+                        <tr>
+                            <td colspan="8">
+                                <h5 align="center">Education Details</h5>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>SSC Result</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Name of Board : </td>
+                            <td><input class="inptext inp mendetory" type="text" name="board_uni[]" id="ssc_board">
+                            </td>
+                            <td colspan="2">Passing Year :</td>
+                            <td><input class="inptext inp mendetory year" type="text" name="passing_year[]"
+                                    id="ssc_year"></td>
+                            <td>Percentage : </td>
+                            <td><input class="inptext inp mendetory percent" type="text" name="percentage[]"
+                                    id="ssc_percent"></td>
+                        </tr>
+                        <tr>
+                            <td>HSC Result</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Name of Board : </td>
+                            <td><input class="inptext inp mendetory" type="text" name="board_uni[]" id="hsc_board">
+                            </td>
+                            <td colspan="2">Passing Year : </td>
+                            <td><input class="inptext inp mendetory year" type="text" name="passing_year[]"
+                                    id="hsc_year"></td>
+                            <td>Percentage : </td>
+                            <td><input class="inptext inp mendetory percent" type="text" name="percentage[]"
+                                    id="hsc_percent"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="inptext inp mendetory" type="text" name="degree[]" id="degree1"
+                                    placeholder="bachelor degree"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1">Course : </td>
+                            <td><input class="inptext inp mendetory" type="text" name="course[]" id="bachelor_course">
+                            </td>
+                            <td colspan="1">University :</td>
+                            <td><input class="inptext inp mendetory" type="text" name="board_uni[]" id="bachelor_uni">
+                            </td>
+                            <td>Passing year :</td>
+                            <td><input class="inptext inp mendetory year" type="text" name="passing_year[]"
+                                    id="bachelor_year"></td>
+                            <td>Percentage : </td>
+                            <td><input class="inptext inp mendetory percent" type="text" name="percentage[]"
+                                    id="bachelor_percent">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="inptext inp master" type="text" name="degree[]" id="degree2"
+                                    placeholder="Master degree"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1">Course : </td>
+                            <td><input class="inptext inp master" type="text" name="course[]" id="master_course">
+                            </td>
+                            <td colspan="1">University : </td>
+                            <td><input class="inptext inp master" type="text" name="board_uni[]" id="master_uni">
+                            </td>
+                            <td>Passing Year :</td>
+                            <td><input class="inptext inp year master" type="text" name="passing_year[]"
+                                    id="master_year"></td>
+                            <td>Percentage : </td>
+                            <td><input class="inptext inp percent master" type="text" name="percentage[]"
+                                    id="master_percent"></td>
+                        </tr>
+                    </table>
+
+                    <table id="workExperience">
+                        <tr>
+                            <td colspan="8">
+                                <h5 align="center">Work Experience</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Company Name: </td>
+                            <td><input class="inptext inp company1" type="text" name="company[]" id="company1"></td>
+                            <td>Designation : </td>
+                            <td><input class="inptext inp company1" type="text" name="old_designation[]"
+                                    id="designation1"></td>
+                            <td>From : </td>
+                            <td><input class="inptext inp datefield company1" type="text" name="from[]" id="from1"
+                                    placeholder="YYYY-MM-DD"></td>
+                            <td>To :</td>
+                            <td><input class="inptext inp datefield company1" type="text" name="to[]" id="to1"
+                                    placeholder="YYYY-MM-DD"></td>
+                        </tr>
+                        <tr>
+                            <td>Company Name: </td>
+                            <td><input class="inptext inp company2" type="text" name="company[]" id="company2"></td>
+                            <td>Designation : </td>
+                            <td><input class="inptext inp company2" type="text" name="old_designation[]"
+                                    id="designation2"></td>
+                            <td>From : </td>
+                            <td><input class="inptext inp datefield company2" type="text" name="from[]" id="from2"
+                                    placeholder="YYYY-MM-DD"></td>
+                            <td>To :</td>
+                            <td><input class="inptext inp datefield company2" type="text" name="to[]" id="to2"
+                                    placeholder="YYYY-MM-DD"></td>
+                        </tr>
+                        <tr>
+                            <td>Company Name : </td>
+                            <td><input class="inptext inp company3" type="text" name="company[]" id="company3"></td>
+                            <td>Designation : </td>
+                            <td><input class="inptext inp company3" type="text" name="old_designation[]"
+                                    id="designation3"></td>
+                            <td>From : </td>
+                            <td><input class="inptext inp datefield company3" type="text" name="from[]" id="from3"
+                                    placeholder="YYYY-MM-DD"></td>
+                            <td>To : </td>
+                            <td><input class="inptext inp datefield company3" type="text" name="to[]" id="to3"
+                                    placeholder="YYYY-MM-DD"></td>
+                        </tr>
+                    </table>
+                    <table id="languages">
+                        <tr>
+                            <td colspan="4">
+                                <h5 align="center">Language Known</h5>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Hindi <input onclick="toggleSubButtons('hac')" class="inpcheckbox lanbox inp"
+                                    type="checkbox" name="language[]" id="hindi" value="hindi"></td>
+                            <td>Read <input class="inpcheckbox inp hindi_cbox abltcheck hac" type="checkbox"
+                                    name="read[]" id="hindi_read" value="hindi"></td>
+                            <td>Write <input class="inpcheckbox inp hindi_cbox abltcheck hac" type="checkbox"
+                                    name="write[]" id="hindi_write" value="hindi"></td>
+                            <td>Speak <input class="inpcheckbox inp hindi_cbox abltcheck hac" type="checkbox"
+                                    name="speak[]" id="hindi_speak" value="hindi"></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>English <input onclick="toggleSubButtons('eac')" class="inpcheckbox lanbox inp"
+                                    type="checkbox" name="language[]" id="english" value="english"></td>
+                            <td>Read <input class="inpcheckbox inp english_cbox abltcheck eac" type="checkbox"
+                                    name="read[]" id="english_read" value="english"></td>
+                            <td>Write <input class="inpcheckbox inp english_cbox abltcheck eac" type="checkbox"
+                                    name="write[]" id="english_write" value="english"></td>
+                            <td>Speak <input class="inpcheckbox inp english_cbox abltcheck eac" type="checkbox"
+                                    name="speak[]" id="english_speak" value="english"></td>
+
+                        </tr>
+                        <tr>
+                            <td>Gujarati <input onclick="toggleSubButtons('gabc')" class="inpcheckbox lanbox inp"
+                                    type="checkbox" name="language[]" id="gujarati" value="gujarati"></td>
+                            <td>Read <input class="inpcheckbox inp gujarati_cbox abltcheck gabc" type="checkbox"
+                                    name="read[]" id="gujarati_read" value="gujarati"></td>
+                            <td>Write <input class="inpcheckbox inp gujarati_cbox abltcheck gabc" type="checkbox"
+                                    name="write[]" id="gujarati_write" value="gujarati"></td>
+                            <td>Speak <input class="inpcheckbox inp gujarati_cbox abltcheck gabc" type="checkbox"
+                                    name="speak[]" id="gujarati_speak" value="gujarati"></td>
+
+                        </tr>
+                    </table>
+                    <table id="technologies">
+                        <tr>
+                            <td colspan="4">
+                                <h5 align="center">Technologies Known</h5>
+                            </td>
+                        </tr>
+                        <tr>
+
+
+                            <td>PHP <input onclick="toggleSubButtons('phpabc')" class="inpcheckbox techbox inp"
+                                    type="checkbox" name="technology[]" id="php" value="php"></td>
+                            <td>Beginer <input class="inpradio inp abltcheck php_cbox phpabc" type="radio"
+                                    name="php_radio" id="php_radio" value="beginer"></td>
+                            <td>Mideator <input class="inpradio inp abltcheck php_cbox phpabc" type="radio"
+                                    name="php_radio" id="php_radio" value="mideator"></td>
+                            <td>Expert <input class="inpradio inp abltcheck php_cbox phpabc" type="radio"
+                                    name="php_radio" id="php_radio" value="expert"></td>
+                        </tr>
+                        <tr>
+
+
+                            <td>MySQL <input onclick="toggleSubButtons('sqlabc')" class="inpcheckbox techbox inp"
+                                    type="checkbox" name="technology[]" id="mysql" value="mysql"></td>
+                            <td>Beginer <input class="inpradio inp abltcheck mysql_cbox sqlabc" type="radio"
+                                    name="mysql_radio" id="mysql_radio" value="beginer"></td>
+                            <td>Mideator <input class="inpradio inp abltcheck mysql_cbox sqlabc" type="radio"
+                                    name="mysql_radio" id="mysql_radio" value="mideator"></td>
+                            <td>Expert <input class="inpradio inp abltcheck mysql_cbox sqlabc" type="radio"
+                                    name="mysql_radio" id="mysql_radio" value="expert"></td>
+                        </tr>
+                        <tr>
+
+                            <td>Laravel <input onclick="toggleSubButtons('labc')" class="inpcheckbox techbox inp"
+                                    type="checkbox" name="technology[]" id="laravel" value="laravel"></td>
+                            <td>Beginer <input class="inpradio inp abltcheck laravel_cbox labc" type="radio"
+                                    name="laravel_radio" id="laravel_radio" value="beginer"></td>
+                            <td>Mideator <input class="inpradio inp abltcheck laravel_cbox labc" type="radio"
+                                    name="laravel_radio" id="laravel_radio" value="mideator"></td>
+                            <td>Expert <input class="inpradio inp abltcheck laravel_cbox labc" type="radio"
+                                    name="laravel_radio" id="laravel_radio" value="expert"></td>
+                        </tr>
+                    </table>
+                    <table id="references">
+                        <tr>
+                            <td colspan="8">
+                                <h5 align="center">Referance Contact</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Name : </td>
+                            <td><input class="inptext inp reference1" type="text" name="ref_names[]" id="ref_name1">
+                            </td>
+                            <td>Contact : </td>
+                            <td><input class="inptext inp reference1 phone" type="text" name="ref_con[]" id="ref_con1">
+                            </td>
+                            <td>Relation : </td>
+                            <td><input class="inptext inp reference1" type="text" name="ref_relation[]"
+                                    id="ref_relation_1"></td>
+                        </tr>
+                        <tr>
+                            <td>Name : </td>
+                            <td><input class="inptext inp reference2" type="text" name="ref_names[]" id="ref_name2">
+                            </td>
+                            <td>Contact : </td>
+                            <td><input class="inptext inp reference2 phone" type="text" name="ref_con[]" id="ref_con2">
+                            </td>
+                            <td>Relation : </td>
+                            <td><input class="inptext inp reference2" type="text" name="ref_relation[]"
+                                    id="ref_relation_2"></td>
+                        </tr>
+                    </table>
+
+                    <table id="prefrences">
+                        <tr>
+                            <td colspan="8">
+                                <h5 align="center">Prefrences</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">prefered_location: </td>
+                            <td rowspan="3">
+                                <select class="inpselect inp mendetory" name="prefered_location" id="prefered_location">
+                                    <option value="rajkot">Rajkot</option>
+                                    <option value="ahmedabad">Ahmedabad</option>
+                                    <option value="banglore">Banglore</option>
+                                </select>
+                            </td>
+                            <td>Notice Period</td>
+                            <td><input class="inptext inp mendetory number" type="text" name="notice_period"
+                                    id="notice_period">
+                            </td>
+                            <td rowspan="3">Department</td>
+                            <td rowspan="3">
+                                <select class="inpselect inp mendetory" name="department" id="department">
+                                    <option value="development">Development</option>
+                                    <option value="hr">Human Resourse</option>
+                                    <option value="design">Designing</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Expacted CTC :</td>
+                            <td><input class="inptext inp mendetory number" type="text" name="expacted_ctc"
+                                    id="expacted_ctc"></td>
+                        </tr>
+                        <tr>
+                            <td>Currunt CTC</td>
+                            <td><input class="inptext inp number" type="text" name="currunt_ctc" id="currunt_ctc">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="8" id='sumbitarea'>
+
+                                <table id="submit_btns">
+                                    <tr>
+                                        <td colspan="4">
+                                            <% if(user[0]==false) {%>
+                                                <input class="inptext inp" type="button" value="Submit" name="submit" id="submit"
+                                                    onclick="submitFunction()">
+                                                <%}else{%>
+                                                    <input class="inptext inp" type="button" value="Update" name="update" id="submit"
+                                                    onclick="submitFunction()">
+                                                    <%}%>
+                                        </td>
+                                        <td colspan="4"><input class="inptext inp" type="reset" name="reset" id="reset"
+                                                value="Reset" onclick="location.reload()"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    
+
+        </form>
+        <footer>
+            <%- include('../components/footer')%>
+        </footer>
+
+
+        <script>
+
+            let current_page = 1;
+
+            document.getElementById('educationDetails').style.display = 'none';
+            document.getElementById('workExperience').style.display = 'none';
+            document.getElementById('languages').style.display = 'none';
+            document.getElementById('technologies').style.display = 'none';
+            document.getElementById('references').style.display = 'none';
+            document.getElementById('prefrences').style.display = 'none';
+            document.getElementById('submit_btns').style.display = 'none';
+
+            function Next() {
+
+                // let basicDetails = {}
+                // alert('called');
+                // const all_fields = document.querySelectorAll('.inp');
+
+                // all_fields.forEach(element => {
+                //     if (element.value == '') {
+                //         basicDetails[(element.name)] = '';
+                //     }
+                //     else {
+                //         basicDetails[(element.name)] = element.value;
+                //     }
+                // });
+
+                // const endPoint = '/savebasic';
+                // fetchEndPoint(endPoint, basicDetails);
+
+                switch (current_page) {
+                    case 1:
+                        if (validateBasicDetails()) {
+                            current_page++;
+                            document.getElementById('basicDetails').style.display = 'none';
+                            document.getElementById('educationDetails').style.display = 'block';
+                            document.getElementById('previous').disabled = false;
+                        }
+                        break;
+                    case 2:
+                        if (validateEducationDetails()) {
+                            current_page++;
+                            document.getElementById('educationDetails').style.display = 'none';
+                            document.getElementById('workExperience').style.display = 'block';
+                        }
+                        break;
+                    case 3:
+                        if (validateWorkExperience()) {
+                            current_page++;
+                            document.getElementById('workExperience').style.display = 'none';
+                            document.getElementById('languages').style.display = 'block';
+                        }
+                        break;
+                    case 4:
+                        if (validateLanguages()) {
+                            current_page++;
+                            document.getElementById('languages').style.display = 'none';
+                            document.getElementById('technologies').style.display = 'block';
+                        }
+
+                        break;
+                    case 5:
+                        if (validateTechnologies()) {
+                            current_page++;
+                            document.getElementById('technologies').style.display = 'none';
+                            document.getElementById('references').style.display = 'block';
+                        }
+
+                        break;
+                    case 6:
+                        if (validateReferenceDetails()) {
+                            current_page++;
+                            document.getElementById('references').style.display = 'none';
+                            document.getElementById('prefrences').style.display = 'block';
+                            document.getElementById('submit_btns').style.display = 'block';
+                            document.getElementById('next').disabled = true;
+                        }
+                        break;
+
+                }
+
+            }
+
+
+            function Previous() {
+
+                switch (current_page) {
+                    case 2:
+                        current_page--;
+                        document.getElementById('educationDetails').style.display = 'none';
+                        document.getElementById('basicDetails').style.display = 'block';
+                        document.getElementById('previous').disabled = true;
+                        break;
+                    case 3:
+                        current_page--;
+                        document.getElementById('workExperience').style.display = 'none';
+                        document.getElementById('educationDetails').style.display = 'block';
+                        break;
+                    case 4:
+                        current_page--;
+                        document.getElementById('languages').style.display = 'none';
+                        document.getElementById('workExperience').style.display = 'block';
+                        break;
+                    case 5:
+                        current_page--;
+                        document.getElementById('technologies').style.display = 'none';
+                        document.getElementById('languages').style.display = 'block';
+                        break;
+                    case 6:
+                        current_page--;
+                        document.getElementById('references').style.display = 'none';
+                        document.getElementById('technologies').style.display = 'block';
+                        break;
+                    case 7:
+                        current_page--;
+                        document.getElementById('prefrences').style.display = 'none';
+                        document.getElementById('references').style.display = 'block';
+                        document.getElementById('submit_btns').style.display = 'none';
+                        document.getElementById('next').disabled = false;
+                        break;
+                }
+
+            }
+
+            // ============= Fetch Function ========================//
+
+
+            async function submitFunction() {
+
+                if (validatePrefrences()) {
+                    const form = document.getElementById('form');
+                    // console.log('form  : ', form);
+
+
+                    
+                    const formdata = new URLSearchParams(new FormData(form));
+                    const go_button = document.getElementById('submit');
+                    if(go_button.name == 'submit'){
+                        fetchEndPoint('/tasks/job_app_ajax/submit');
+                    }
+                    else if(go_button.name == 'update'){
+                        fetchEndPoint('/tasks/job_app_ajax/update');
+                    }
+                    
+                    // const data = new FormData(form);
+                    // console.log(data)
+                    // console.log(Object.fromEntries(formdata))
+                    // let formObject = {}
+                    // formdata.forEach((value, key) => {
+                    //     if(!key in formObject){
+                    //         console.log('console ',formObject)
+                    //         formObject[key] = value;                                }
+                    //     else{              
+                    //         console.log('console else ',formObject.key);
+                    //         if(typeof formObject[key] === 'string'){
+                    //             const old = formObject[key];
+                    //             formObject.key = [old];
+                    //             formObject[key].push(value);
+                    //         }
+                    //         else{
+                    //             formObject[key].push(value);
+                    //         }
+                                          
+                    //     }
+                    // })
+                    // console.log(formObject);
+                }
+
+                return false;
+            }
+            async function fetchEndPoint(url) {
+
+                const option = {
+                    method: 'POST',
+                    body: new URLSearchParams(new FormData(document.getElementById('form')))
+                }
+                const fetch_response = await fetch(url, option);
+                if(fetch_response.status === 200){
+                    alert("Data Saved")
+                    window.location.href= '/tasks/job_app_ajax/'
+                }
+                else{
+
+                }
+    
+                // const last_id = await fetch_response.json();
+                // console.log('Fetch Response : ', last_id);
+                // localStorage.setItem("last_id", last_id);
+                // console.log(localStorage.getItem("last_id"));
+
+            }
+
+
+            const inpText = document.getElementsByClassName('inptext');
+            const inpSelect = document.getElementsByClassName('inpselect');
+            const inpRadio = document.getElementsByClassName('inpradio');
+            const inpCheckbox = document.getElementsByClassName('inpcheckbox');
+
+
+            function disableCheckBox() {
+
+                const abilityCheck = document.querySelectorAll('.abltcheck');
+                abilityCheck.forEach(item => {
+                    item.disabled = true;
+                })
+            }
+
+            disableCheckBox();
+
+
+            function toggleSubButtons(subgroupName) {
+                const Subgroup = document.querySelectorAll(`.${subgroupName}`);
+
+                Subgroup.forEach(item => {
+                    if (item.disabled) {
+
+                        item.disabled = false;
+                    }
+                    else {
+                        item.checked = false;
+                        item.disabled = true;
+                    }
+                })
+
+            }
+            ///=============================  Vlidating Basic Details ============================//
+
+            function validateBasicDetails() {
+
+                const basic_details_table = document.getElementById('basicDetails');
+
+                const basic_inp = basic_details_table.getElementsByClassName('inp');
+                const phonenoFields = basic_details_table.querySelectorAll('.phone');
+                const dateFields = basic_details_table.querySelectorAll('.datefield');
+                const g_boxes = document.getElementsByName('gender');
+
+                flag = true;
+                let alertContent = [];
+
+                setMendetory();
+
+                const allFilled = checkAllFields(alertContent, basic_inp);
+                if (!allFilled) flag = false;
+
+                const isValidZip = valdiateZipcode(alertContent);
+                if (!isValidZip) flag = false;
+
+                const isValidEmail = valdiateEmail(alertContent);
+                if (!isValidEmail) flag = false;
+
+                const isValidPhoneNo = valdiatePhoneNo(alertContent, phonenoFields);
+                if (!isValidPhoneNo) flag = false;
+
+                const isGenderChecked = validateRadioGroup(alertContent, g_boxes, 'Gender');
+                if (!isGenderChecked) flag = false;
+
+                const isValidDate = valdiateDate(alertContent, dateFields);
+                if (!isValidDate) flag = false;
+
+                if (!flag) {
+                    alert(alertContent);
+                }
+
+                return flag;  //ok tested
+            }
+
+
+            ///=============================  Vlidating Education Details ============================//
+
+            function validateEducationDetails() {
+
+                const education_details_table = document.getElementById('educationDetails');
+
+                const education_inp = education_details_table.getElementsByClassName('inp');
+                const yearFields = education_details_table.querySelectorAll('.year');
+                const percentageFields = education_details_table.querySelectorAll('.percent');
+
+                flag = true;
+                let alertContent = [];
+
+                setMendetory();
+
+                const allFilled = checkAllFields(alertContent, education_inp);
+                if (!allFilled) flag = false;
+
+                const isValidYear = validateYear(alertContent, yearFields);
+                if (!isValidYear) flag = false;
+
+                const isValidPercentage = validatePercentage(alertContent, percentageFields);
+                if (!isValidPercentage) flag = false;
+
+                if (!flag) {
+                    alert(alertContent);
+                }
+
+                return flag; //ok tested
+            }
+
+
+            ///=============================  Vlidating Work Experience Details ============================//
+
+            function validateWorkExperience() {
+
+                const Work_Experience_table = document.getElementById('workExperience');
+
+                const Work_Experience_inp = Work_Experience_table.getElementsByClassName('inp');
+                const WEdateFields = Work_Experience_table.querySelectorAll('.datefield');
+
+
+                flag = true;
+                let alertContent = [];
+
+                setMendetory();
+
+                const allFilled = checkAllFields(alertContent, Work_Experience_inp);
+                if (!allFilled) flag = false;
+
+                const isValidDate = valdiateDate(alertContent, WEdateFields);
+                if (!isValidDate) flag = false;
+
+                if (!flag) {
+                    alert(alertContent);
+                }
+
+                return flag;  //ok tested
+            }
+
+            ///=============================  Vlidating Language Details ============================//
+
+            function validateLanguages() {
+
+                const Languages_table = document.getElementById('languages');
+                const cbox_group = Languages_table.querySelectorAll('.lanbox');
+
+                flag = true;
+                let alertContent = [];
+
+                setMendetory();
+
+                const isOneChecked = validateCheckBoxGroup(alertContent, cbox_group);
+                if (!isOneChecked) flag = false;
+
+
+                if (!flag) {
+                    alert(alertContent);
+                }
+
+                return flag; //ok tested
+            }
+
+            ///=============================  Vlidating Technology Details ============================//
+
+            function validateTechnologies() {
+
+                const Technology_table = document.getElementById('technologies');
+                const cbox_group = Technology_table.querySelectorAll('.techbox');
+
+                flag = true;
+                let alertContent = [];
+
+                setMendetory();
+
+                const isOneChecked = validateCheckBoxGroup(alertContent, cbox_group);
+                if (!isOneChecked) flag = false;
+
+
+                if (!flag) {
+                    alert(alertContent);
+                }
+
+                return flag; //ok tested
+            }
+
+            ///=============================  Vlidating Reference Details ============================//
+
+            function validateReferenceDetails() {
+
+                const reference_details_table = document.getElementById('references');
+
+                const references_inp = reference_details_table.getElementsByClassName('inp');
+                const phonenoFields = reference_details_table.querySelectorAll('.phone');
+
+                flag = true;
+                let alertContent = [];
+
+                setMendetory();
+
+                const allFilled = checkAllFields(alertContent, references_inp);
+                if (!allFilled) flag = false;
+
+                const isValidPhoneNo = valdiatePhoneNo(alertContent, phonenoFields);
+                if (!isValidPhoneNo) flag = false;
+
+                if (!flag) {
+                    alert(alertContent);
+                }
+
+                return flag; //ok tested
+            }
+
+            ///=============================  Vlidating Prefrences ============================//
+
+            function validatePrefrences() {
+
+                const prefrences_table = document.getElementById('prefrences');
+
+                const prefrences_inp = prefrences_table.getElementsByClassName('inp');
+                const prefrences_nums = prefrences_table.querySelectorAll('.number');
+
+                flag = true;
+                let alertContent = [];
+
+                setMendetory();
+
+                const allFilled = checkAllFields(alertContent, prefrences_inp);
+                if (!allFilled) flag = false;
+
+                const isValidNumber = validateNumber(alertContent, prefrences_nums);
+                if (!isValidNumber) flag = false;
+
+                if (!flag) {
+                    alert(alertContent);
+                }
+
+                return flag;
+            }
+
+
+            function validateForm() {
+
+                flag = true;
+                let alertContent = [];
+
+                setMendetory();
+
+                const allFilled = checkAllFields(alertContent, inpText);
+                if (!allFilled) flag = false;
+
+                const isValidZip = valdiateZipcode(alertContent);
+                if (!isValidZip) flag = false;
+
+                const isValidEmail = valdiateEmail(alertContent);
+                if (!isValidEmail) flag = false;
+
+                const isValidPhoneNo = valdiatePhoneNo(alertContent);
+                if (!isValidPhoneNo) flag = false;
+
+                const isGenderChecked = validateRadioGroup(alertContent);
+                if (!isGenderChecked) flag = false;
+
+                const isValidDate = valdiateDate(alertContent);
+                if (!isValidDate) flag = false;
+
+                const isValidYear = validateYear(alertContent);
+                if (!isValidYear) flag = false;
+
+                const isValidPercentage = validatePercentage(alertContent);
+                if (!isValidPercentage) flag = false;
+
+                const isValidNumber = validateNumber(alertContent);
+                if (!isValidNumber) flag = false;
+
+                if (!flag) {
+                    alert(alertContent);
+                }
+
+                return flag;
+            }
+
+            function isMendetory(array) {
+                let flag = false;
+                array.classList.forEach(element => {
+                    if (element == 'mendetory') {
+                        flag = true;
+                    }
+                });
+                return flag;
+            }
+
+            const masterElements = document.querySelectorAll('.master');
+            const compny1Elements = document.querySelectorAll('.company1');
+            const compny2Elements = document.querySelectorAll('.company2');
+            const compny3Elements = document.querySelectorAll('.company3');
+            const reference1Elements = document.querySelectorAll('.reference1');
+            const reference2Elements = document.querySelectorAll('.reference2');
+            let fieldGroups = [masterElements, compny1Elements, compny2Elements, compny3Elements, reference1Elements, reference2Elements];
+
+            function setMendetory() {
+
+                fieldGroups.forEach(item => {
+                    checkIfAnyAndSet(item);
+                })
+
+            }
+
+            function checkIfAnyAndSet(item) {
+                let mendetory = false;
+                item.forEach(field => {
+                    if (field.value != '') {
+                        mendetory = true;
+                    }
+                })
+
+                if (mendetory) {
+                    item.forEach(field => {
+                        field.classList.add('mendetory')
+                    })
+                }
+                else {
+                    item.forEach(field => {
+                        field.classList.remove('mendetory');
+                    })
+                }
+            }
+
+            function checkAllFields(alertContent, inpText) {
+
+                let flag = true;
+                for (let i = 0; i < inpText.length; i++) {
+                    if (inpText[i].value.trim() == '' && isMendetory(inpText[i])) {
+                        flag = false;
+                        inpText[i].style.border = '2px solid red'
+                    }
+                    else {
+                        inpText[i].style.border = 'none'
+                    }
+                }
+                if (!flag) {
+                    alertContent.push(' Hilighted Fields can not be Empty ');
+                }
+                return flag;
+            }
+
+            function valdiateZipcode(alertContent) {
+                let flag = true;
+
+                const zip_code = document.getElementById('zip_code');
+                if (zip_code.value != '' && (zip_code.value.length != 6 || isNaN(zip_code.value))) {
+                    flag = false;
+                    zip_code.style.border = '2px solid red'
+                    alertContent.push(' Invalid Zip Code ');
+                }
+                else if (zip_code.value != '') {
+                    zip_code.style.border = 'none'
+                }
+
+                return flag;
+            }
+
+            function valdiateEmail(alertContent) {
+                let flag = true;
+
+                const emailField = document.getElementById('email');
+                const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                if (emailField.value != '' && !emailRegex.test(emailField.value)) {
+                    flag = false;
+                    emailField.style.border = '2px solid red'
+                    alertContent.push(' Invalid Email ');
+                }
+                else if (email.value != '') {
+                    emailField.style.border = 'none'
+                }
+
+                return flag;
+            }
+
+            function valdiatePhoneNo(alertContent, phonenoFields) {
+                let flag = true;
+
+                // const phonenoFields = document.querySelectorAll('.phone');
+                phonenoFields.forEach(item => {
+                    if (item.value != '' && (item.value.length != 10 || isNaN(item.value))) {
+                        flag = false;
+                        alertContent.push(` Invalid Phone No at ${item.name}`);
+                        item.style.border = '2px solid red'
+                    }
+                    else if (item.value != '') {
+                        item.style.border = 'none'
+                    }
+                })
+
+                return flag;
+            }
+
+
+            function validateRadioGroup(alertContent, radio_grp, field_name) {
+
+                let flag = false;
+
+                // const radio_grp = document.getElementsByName('gender');
+
+                radio_grp.forEach(item => {
+                    if (item.checked) {
+                        flag = true;
+                    }
+                })
+
+                if (!flag) {
+                    alertContent.push(`Please Check anyone from ${field_name}`);
+                    radio_grp.forEach(item => { item.parentNode.style.border = '2px solid red' })
+                }
+                else {
+                    radio_grp.forEach(item => { item.parentNode.style.border = 'none' })
+                }
+                return flag;
+            }
+            ///======   Validate Checkbox
+            function validateCheckBoxGroup(alertContent, cbox_group) {
+
+                let flag = false;
+                // const cbox_group = document.querySelectorAll('.inpcheckbox');
+                // const ability_boxes =  document.querySelectorAll('hac');
+
+                let subflag = true;
+
+                cbox_group.forEach(item => {
+                    if (item.checked) {
+                        flag = true;
+
+                        const ability_boxes = document.querySelectorAll(`.${item.value}_cbox`);
+                        if (!validateRadioGroup(alertContent, ability_boxes, item.value)) {
+                            subflag = false;
+                        }
+                    }
+                })
+
+                if (!subflag) {
+                    flag = false;
+                }
+
+                if (!flag) {
+                    alertContent.push(' Select Checkbox Field ');
+                    cbox_group.forEach(item => { item.parentNode.style.border = '2px solid red' })
+                }
+                else {
+                    cbox_group.forEach(item => { item.parentNode.style.border = 'none' })
+                }
+                return flag;
+            }
+
+            function valdiateDate(alertContent, dateFields) {
+                let flag = true;
+                // const dateFields = document.querySelectorAll('.datefield');
+
+                const dateRegExp = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+                dateFields.forEach(item => {
+                    if (item.value != '' && !dateRegExp.test(item.value)) {
+                        flag = false;
+                        alertContent.push(' Invalid Date ');
+                        item.style.border = '2px solid red';
+                    }
+                    else if (!isMendetory(item)) {
+                        item.style.border = 'none';
+                    }
+                })
+
+                return flag;
+            }
+
+            function validateYear(alertContent) {
+                let flag = true;
+
+                const yearFields = document.querySelectorAll('.year');
+
+                yearFields.forEach(item => {
+                    if (item.value != '' && isNaN(item)) {
+                        flag = false;
+                        alertContent.push(' Invalid Year ');
+                        item.style.border = '2px solid red';
+                    }
+                    else if (!isMendetory(item)) {
+                        item.style.border = 'none';
+                    }
+                })
+
+                return flag;
+            }
+
+            function validateYear(alertContent, yearFields) {
+                let flag = true;
+
+                // const yearFields = document.querySelectorAll('.year');
+
+                yearFields.forEach(item => {
+                    if (item.value != '' && isNaN(item.value)) {
+                        flag = false;
+                        alertContent.push(' Invalid Year ');
+                        item.style.border = '2px solid red';
+                    }
+                    else if (!isMendetory(item)) {
+                        item.style.border = 'none';
+                    }
+                })
+
+                return flag;
+            }
+
+            function validatePercentage(alertContent, percentageFields) {
+                let flag = true;
+
+                // const percentageFields = document.querySelectorAll('.percent');
+
+                percentageFields.forEach(item => {
+
+                    if ((item.value != '' && isNaN(item.value)) || item.value > 100 || item.value < 0) {
+                        flag = false;
+                        alertContent.push(' Invalid Percentage ');
+                        item.style.border = '2px solid red';
+                    }
+                    else if (!isMendetory(item)) {
+                        item.style.border = 'none';
+                    }
+                })
+
+                return flag;
+            }
+
+            function validateNumber(alertContent, prefrences_nums) {
+                let flag = true;
+
+                // const NumberFields = document.querySelectorAll('.number');
+
+                prefrences_nums.forEach(item => {
+                    if (item.value != '' && isNaN(item.value)) {
+                        flag = false;
+                        alertContent.push(`${item.name} must be a Number`);
+                        item.style.border = '2px solid red';
+                    }
+                    else if (!isMendetory(item)) {
+                        item.style.border = 'none';
+                    }
+                })
+
+                return flag;
+            }
+
+
+
+            // ================================= update form script =======================================//
+
+            const temp = `<%- JSON.stringify(user[0]) %>`
+
+            if (temp === 'false') {
+                console.log('fresh');
+            }
+            else {
+                fetchUser()
+            }
+
+            async function fetchUser(){
+                const abc = location.href.split('=');
+                console.log(abc)
+                const fetchres =  await fetch(`/tasks/job_app_ajax/getusr?id=${parseInt(abc[1])}`);
+                // console.log(await fetchres.json());
+
+                setUsers(await fetchres.json());
+            }
+
+            function setUsers(data){
+                console.log(data);
+
+                const user = data.basic["0"];
+                const basic_keys = Object.keys(user);
+                const education_data = data.edication;
+                const language_data = data.language
+                const technology_data = data.technology;
+                const work_experience = data.workexperience;
+                const reference_contact = data.referencecontact;
+
+                // console.log(user, education_data);
+
+                const user_id = document.createElement('input');
+                user_id.style.display = 'none';
+                user_id.name = 'update_applicant_id';
+                user_id.value = user['applicant_id'];
+                document.getElementById('form').appendChild(user_id);
+
+                let basic_fields = [];
+
+                basic_fields.push(document.getElementById('first_name'));
+                basic_fields.push(document.getElementById('last_name'));
+                basic_fields.push(document.getElementById('designation'));
+                basic_fields.push(document.getElementById('email'));
+                basic_fields.push(document.getElementById('phone'));
+                basic_fields.push(document.getElementById('male'));
+                basic_fields.push(document.getElementById('female'));
+                basic_fields.push(document.getElementById('address_1'));
+                basic_fields.push(document.getElementById('address_2'));
+                basic_fields.push(document.getElementById('city'));
+                basic_fields.push(document.getElementById('state'));
+                basic_fields.push(document.getElementById('zip_code'));
+                basic_fields.push(document.getElementById('dob'));
+                basic_fields.push(document.getElementById('relationship'));
+                basic_fields.push(document.getElementById('prefered_location'));
+                basic_fields.push(document.getElementById('notice_period'));
+                basic_fields.push(document.getElementById('expacted_ctc'));
+                basic_fields.push(document.getElementById('currunt_ctc'));
+                basic_fields.push(document.getElementById('department'));
+
+                let edu_fields = [];
+
+                edu_fields.push(document.getElementById('ssc_board'));
+                edu_fields.push(document.getElementById('ssc_year'));
+                edu_fields.push(document.getElementById('ssc_percent'));
+                edu_fields.push(document.getElementById('hsc_board'));
+                edu_fields.push(document.getElementById('hsc_year'));
+                edu_fields.push(document.getElementById('hsc_percent'));
+                edu_fields.push(document.getElementById('degree1'));
+                edu_fields.push(document.getElementById('bachelor_course'));
+                edu_fields.push(document.getElementById('bachelor_uni'));
+                edu_fields.push(document.getElementById('bachelor_year'));
+                edu_fields.push(document.getElementById('bachelor_percent'));
+                edu_fields.push(document.getElementById('degree2'));
+                edu_fields.push(document.getElementById('master_course'));
+                edu_fields.push(document.getElementById('master_uni'));
+                edu_fields.push(document.getElementById('master_year'));
+                edu_fields.push(document.getElementById('master_percent'));
+
+
+                let wefields = [];
+
+                wefields.push(document.getElementById('company1'));
+                wefields.push(document.getElementById('designation1'));
+                wefields.push(document.getElementById('from1'));
+                wefields.push(document.getElementById('to1'));
+                wefields.push(document.getElementById('company2'));
+                wefields.push(document.getElementById('designation2'));
+                wefields.push(document.getElementById('from2'));
+                wefields.push(document.getElementById('to2'));
+                wefields.push(document.getElementById('company3'));
+                wefields.push(document.getElementById('designation3'));
+                wefields.push(document.getElementById('from3'));
+                wefields.push(document.getElementById('to3'));
+
+                let ref_fields = [];
+
+                ref_fields.push(document.getElementById('ref_name1'));
+                ref_fields.push(document.getElementById('ref_con1'));
+                ref_fields.push(document.getElementById('ref_relation_1'));
+                ref_fields.push(document.getElementById('ref_name2'));
+                ref_fields.push(document.getElementById('ref_con2'));
+                ref_fields.push(document.getElementById('ref_relation_2'));
+
+
+                // lan_fields.push(document.getElementById('hindi'));
+                // lan_fields.push(document.getElementById('h_read'));
+                // lan_fields.push(document.getElementById('h_write'));
+                // lan_fields.push(document.getElementById('h_speak'));
+                // lan_fields.push(document.getElementById('english'));
+                // lan_fields.push(document.getElementById('e_read'));
+                // lan_fields.push(document.getElementById('e_write'));
+                // lan_fields.push(document.getElementById('e_speak'));
+                // lan_fields.push(document.getElementById('gujarati'));
+                // lan_fields.push(document.getElementById('g_read'));
+                // lan_fields.push(document.getElementById('g_write'));
+                // lan_fields.push(document.getElementById('g_speak'));
+
+
+
+
+                mapFieldValues(basic_fields, user, basic_keys);
+
+
+                let i = 0
+                education_data.forEach(degree => {
+
+                    const edu_keys = Object.keys(degree);
+                    edu_keys.forEach(item => {
+                        if (edu_keys.indexOf(item) == 0) {
+                            const id = document.createElement('input');
+                            id.name = 'eduIds[]';
+                            id.value = degree[item];
+                            id.hidden = true;
+                            document.getElementById('educationDetails').appendChild(id);
+                        }
+                        else {
+                            if (i < 6) {
+                                if (item == 'degree' || item == 'course') { }
+                                else {
+                                    edu_fields[i].value = degree[item];
+                                    i++;
+                                }
+                            }
+                            else {
+                                edu_fields[i].value = degree[item];
+                                i++;
+                            }
+                        }
+                    })
+                })
+
+                const hindicheck = document.getElementById('hindi');
+                const englishcheck = document.getElementById('english');
+                const gujaraticheck = document.getElementById('gujarati');
+                setCheckFor(hindicheck, language_data);
+                setCheckFor(englishcheck, language_data);
+                setCheckFor(gujaraticheck, language_data);
+
+                const phpradios = document.getElementById('php');
+                const mysqlradios = document.getElementById('mysql');
+                const laravelradios = document.getElementById('laravel');
+                setRadioFor(phpradios, technology_data);
+                setRadioFor(mysqlradios, technology_data);
+                setRadioFor(laravelradios, technology_data);
+
+                let k = 0;
+                // console.log(work_experience)
+                work_experience.forEach(item => {
+                    console.log(Object.keys(item));
+                    mapFieldValues(wefields.slice(k, k + 4), item, Object.keys(item));
+                    k += 5;
+                })
+
+                k = 0;
+                console.log(reference_contact)
+                reference_contact.forEach(item => {
+                    console.log(Object.keys(item));
+                    console.log(ref_fields)
+                    mapFieldValues(ref_fields.slice(k, k + 3), item, Object.keys(item));
+                    k += 4;
+                })
+
+                // i = 0;
+
+                // language_data.forEach(language => {
+                //     const lan_keys = Object.keys(language);
+                //     console.log(language)
+                //     let active = false;
+                //     lan_keys.forEach(item => {
+                //         console.log('key:',item)
+                //        if(lan_keys.indexOf(item) == 0){
+                //         console.log(lan_keys.indexOf(item))
+                //         console.log(lan_fields[i].id,language[item])
+                //         if(lan_fields[i].value == language[item]){
+                //             lan_fields[i].checked = true;
+                //             active= true;
+                //         }
+                //         i++;
+                //        }
+                //        else if(active){
+                //         lan_fields[i].disabled = false;
+                //          if(language[item] == 1){
+                //             lan_fields[i].checked = true;
+                //          }
+                //          i++;
+                //        }
+
+                //     })
+                // })
+            }
+
+            // 
+            function setCheckFor(ele, language_data) {
+                let value = ele.value;
+
+                for (let i = 0; i < language_data.length; i++) {
+                    if (language_data[i].language == value) {
+                        ele.disabled = false;
+                        ele.checked = true;
+
+                        const ele_read = document.getElementById(`${ele.value}_read`);
+                        const ele_write = document.getElementById(`${ele.value}_write`);
+                        const ele_speak = document.getElementById(`${ele.value}_speak`);
+
+                        ele_read.disabled = false;
+                        ele_write.disabled = false;
+                        ele_speak.disabled = false;
+
+                        if (language_data[i].lread == 1)
+                            ele_read.checked = true;
+
+                        if (language_data[i].lwrite == 1)
+                            ele_write.checked = true;
+
+                        if (language_data[i].speak == 1)
+                            ele_speak.checked = true;
+                    }
+                }
+            }
+
+            function setRadioFor(ele, technology_data) {
+
+                let value = ele.value;
+                for (let i = 0; i < technology_data.length; i++) {
+
+                    if (technology_data[i].technology == value) {
+                        ele.disabled = false;
+                        ele.checked = true;
+
+                        const radios = document.getElementsByName(`${value}_radio`);
+
+                        radios.forEach(item => {
+                            item.disabled = false;
+                            if (item.value == technology_data[i].expertise)
+                                item.checked = true;
+                        })
+                    }
+                }
+
+            }
+
+            function mapFieldValues(fields, data, keys) {
+                console.log('basic fielkds : ',data);
+                console.log('basic adfasf : ',keys);
+                console.log('basic fields : ',fields);
+                let i = 1;
+                fields.forEach(item => {
+                    if ((item.type == 'text' || item.tagName == 'SELECT') && data[keys[i]] !== null) {
+                        //console.log('main',item.id, data[keys[i]])
+                        item.value = data[keys[i]];
+                        console.log('abc', item.value);
+                    }
+                    else if (item.type === 'radio' && data[keys[i]] !== null) {
+                        //console.log('entered',item.type, data[keys[i]])
+                        if (data[keys[i]] == item.value)
+                            item.checked = true;
+                        else
+                            i--;
+                    }
+                    else if (item.type != 'radio') {
+                        //console.log('not radio',item.tagName, data[keys[i]])
+                        item.value = '';
+                    }
+
+                    i++;
+                })
+         
+            }
+
+            
+            // if (temp === 'false') {
+            //     console.log('fresh');
+            // }
+            // else {
+
+      
+
+              
+                
+              
+            // }
+
+
+
+
+        </script>
+</body>
+
+</html>

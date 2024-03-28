@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <head>
+        <%- include('../components/head')%>
+    </head>
+</head>
+
+<body>
+
+    <header>
+        <%- include('../components/header')%>
+        <div  class="list_header">
+            <h4> Applicants List </h4>
+            <a href="job_app_ajax/form"><input type="button" name="addnew" id="addnew" value="New Form"></a>
+        </div>
+    </header>
+   
+    <div class="responseBody">
+
+        <%
+
+        const columns = Object.keys(result[0]);
+        %>
+
+        <table id="list_table">
+            <tr>
+                <% for(let j=0; j<columns.length; j++){ %>
+                    <th>
+                        <%= columns[j]%>
+                    </th>
+                    <% } %>
+            </tr>
+            <% for(let i=0; i<result.length; i++){ %>
+                <tr>
+                    <% for(let j=0; j<columns.length + 1; j++){ %>
+                        <td>
+                            <%if(j==columns.length){%>
+                                <input type="button" class="update_btn" value="Update" onclick="updateusr('<%= result[i][columns[0]]%>')" >
+                            <%}else{%>
+                                <%= result[i][columns[j]]%>
+                            <%}%>
+                        </td>
+                        <% } %>
+                </tr>
+
+                <%}%>
+        </table>
+
+    </div>
+
+    <script>
+
+        function updateusr(id){
+            window.location.href = `/tasks/job_app_ajax/form?id=${id}`
+        }
+
+       
+    </script>
+</body>
+
+</html>
