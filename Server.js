@@ -18,6 +18,7 @@ const job_app_ajax = require('./Routes/job_app_ajax');
 const job_app_simple = require('./Routes/job_app_simple');
 const component_generator = require('./Routes/component_generator');
 const delimited_search = require('./Routes/delimited');
+const dynamic_output = require('./Routes/dynamic_output');
 require('./db');
 
 //-------------------Configs and Middlewares
@@ -52,5 +53,7 @@ app.use('/tasks/job_app_ajax', job_app_ajax);
 app.use('/tasks/job_app_simple', job_app_simple);
 app.use('/tasks/component_generator', component_generator);
 app.use('/tasks/delimited_search', delimited_search);
+app.use('/tasks/dynamic_output', dynamic_output);
+
 
 

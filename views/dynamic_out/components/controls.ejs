@@ -1,19 +1,19 @@
 
-<a href="/query?page=1" <% if(page==1){ %> style="pointer-events: none" <% } %>><input class="cntlbtn" type="button" value="&larrb;" <% if(page==1){ %> disabled= 'true' <% } %>></a>
-<a href="/query?page=<%=page-1%>" <% if(page==1){ %> style="pointer-events: none" <% } %> ><input class="cntlbtn" type="button" value="&larr;" <% if(page==1){ %> disabled= 'true' <% } %>></a>
+<a href="/tasks/dynamic_output/query?page=1" <% if(page==1){ %> style="pointer-events: none" <% } %>><input class="cntlbtn" type="button" value="&larrb;" <% if(page==1){ %> disabled= 'true' <% } %>></a>
+<a href="/tasks/dynamic_output/query?page=<%=page-1%>" <% if(page==1){ %> style="pointer-events: none" <% } %> ><input class="cntlbtn" type="button" value="&larr;" <% if(page==1){ %> disabled= 'true' <% } %>></a>
 <input class="pageinput" type="text" value="<%= page%>" onchange="changePage(value)">
-<a href="/query?&page=<%= no_of_records-(no_of_records-page-1)%>" <% if(page>=total_data/no_of_records){ %> style="pointer-events: none" <% } %> ><input class="cntlbtn" type="button" value="&rarr;" <% if(page>=total_data/no_of_records){ %> disabled= 'true' <% } %>></a>
-<a href="/query?&page=<%= Math.ceil(total_data/no_of_records)%>" <% if(page>=total_data/no_of_records){ %> style="pointer-events: none" <% } %>><input class="cntlbtn" type="button" value="&rarrb;" <% if(page>=total_data/no_of_records){ %> disabled= 'true' <% } %>></a>
+<a href="/tasks/dynamic_output/query?&page=<%= no_of_records-(no_of_records-page-1)%>" <% if(page>=total_data/no_of_records){ %> style="pointer-events: none" <% } %> ><input class="cntlbtn" type="button" value="&rarr;" <% if(page>=total_data/no_of_records){ %> disabled= 'true' <% } %>></a>
+<a href="/tasks/dynamic_output/query?&page=<%= Math.ceil(total_data/no_of_records)%>" <% if(page>=total_data/no_of_records){ %> style="pointer-events: none" <% } %>><input class="cntlbtn" type="button" value="&rarrb;" <% if(page>=total_data/no_of_records){ %> disabled= 'true' <% } %>></a>
 
 <script>
     function changePage(value1){
      const value =  parseInt(value1)
     //  alert(typeof value)
-        if(value <= <%=parseFloat(total_data/no_of_records)%>){
-            window.location.href = `/query?page=${value}`;
+        if(value <= `<%=parseFloat(total_data/no_of_records)%>`){
+            window.location.href = `/tasks/dynamic_output/query?page=${value}`;
         }
         else{
-            window.location.href = `/query?page=${<%=parseInt(total_data/no_of_records)%>}`;
+            window.location.href = `/tasks/dynamic_output/query?page=${'<%=parseInt(total_data/no_of_records)%>'}`;
         }
     }
 </script>

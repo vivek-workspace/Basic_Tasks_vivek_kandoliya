@@ -8,6 +8,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const varifyUser = require('../middlewares/varifyUser');
+const con = require('../db');
 
 
 
@@ -15,14 +16,15 @@ const varifyUser = require('../middlewares/varifyUser');
 ////////////////////////////////////////////////////
 
 const { LocalStorage } = require("node-localstorage");
+const { CLIENT_RENEG_LIMIT } = require('tls');
 
 let localstorage = new LocalStorage('./abc');
 
-app.get('/', (req, res) => {
-    res.render('pages/home', { result: false });
+router.get('/',varifyUser, (req, res) => {
+    res.render('dynamic_out/pages/home', { result: false });
 })
 
-app.post('/query', (req, res) => {  
+router.post('/query', varifyUser, (req, res) => {  
 
     let sqlquery = req.body.sqlquery;
     sqlquery = sqlquery.replace(";", "");
@@ -47,27 +49,32 @@ app.post('/query', (req, res) => {
         
     }
 
+    
+
     con.query(`${finalsqlquery}; ${sqlquery}`, function (err, result) {
+        console.log(result)
         if (err) {
-            res.render('pages/home', { result: true, err: true, data: err , query: finalsqlquery });
+            console.log(err);
+            
+            res.render('dynamic_out/pages/home', { result: true, err: true, data: err , query: finalsqlquery });
         } else {
            
-            res.render('pages/home', { result: true, err: false,query: finalsqlquery, data: result[0], columns: Object.keys(result[0][0]), page: 1, no_of_records: 20, total_data: result[1].length });
+            res.render('dynamic_out/pages/home', { result: true, err: false,query: finalsqlquery, data: result[0], columns: Object.keys(result[0][0]), page: 1, no_of_records: 20, total_data: result[1].length });
         }
     })
     
 
     // con.query(finalsqlquery, function (err, result) {
     //     if (err) {
-    //         res.render('pages/home', { result: true, err: true,query: finalsqlquery, data: err });
+    //         res.render('dynamic_out/pages/home', { result: true, err: true,query: finalsqlquery, data: err });
     //     } else {
     //         console.log(result[0]);
-    //         res.render('pages/home', { result: true, err: false,query: finalsqlquery, data: result, columns: Object.keys(result[0]), page: 1, no_of_records: 20, total_data: 50000});
+    //         res.render('dynamic_out/pages/home', { result: true, err: false,query: finalsqlquery, data: result, columns: Object.keys(result[0]), page: 1, no_of_records: 20, total_data: 50000});
     //     }
     // })
 })
 
-app.get('/query', (req, res) => {
+router.get('/query', varifyUser, (req, res) => {
     let page = req.query.page;
     if (page == undefined || isNaN(page)) page = 1;
     let sqlquery = localstorage.getItem('sqlquery');
@@ -96,14 +103,15 @@ app.get('/query', (req, res) => {
     
     con.query(`${finalsqlquery}; ${sqlquery}`, function (err, result) {
         if (err) {
-            res.render('pages/home', { result: true, err: true, data: err , query: finalsqlquery });
+            res.render('dynamic_out/pages/home', { result: true, err: true, data: err , query: finalsqlquery });
         } else {
            
-            res.render('pages/home', { result: true, err: false,query: finalsqlquery, data: result[0], columns: Object.keys(result[0][0]), page: page, no_of_records: 20, total_data: result[1].length });
+            res.render('dynamic_out/pages/home', { result: true, err: false,query: finalsqlquery, data: result[0], columns: Object.keys(result[0][0]), page: page, no_of_records: 20, total_data: result[1].length });
         }
     })
 
 
 })
 
-////////////////////////////////////////////////////module.exports = router;
+////////////////////////////////////////////////////
+module.exports = router;

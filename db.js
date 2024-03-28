@@ -13,7 +13,8 @@ require('dotenv').config();
         host: process.env.dbhost,
         user: process.env.dbuser,
         password: process.env.dbpassword,
-        database: process.env.dbdatabase
+        database: process.env.dbdatabase,
+        multipleStatements: true
     })
 
     con.connect((err)=>{
