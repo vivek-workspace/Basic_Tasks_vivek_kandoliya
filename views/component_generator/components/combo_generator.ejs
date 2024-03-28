@@ -1,0 +1,63 @@
+
+<% function comboGenerator(field, selectmul){ %>
+
+    <%var FieldArray = []%>
+    <%
+    result.forEach(item => { 
+        if(item[`select_key`] == field){
+            FieldArray.push(item);
+        }
+    })
+    let combo_type = FieldArray[0].combo_type;
+    %>
+
+    <%
+    let switch_case 
+    switch(combo_type){
+        case 'select':
+            createSelect(field,FieldArray);
+            break;
+        case 'radio':
+            createRadio(field,FieldArray);
+            break;
+        case 'checkbox':
+            createCheckbox(field,FieldArray);
+            break;
+        default:
+            console.log('invalid type');
+    }
+    %>
+<% } %>
+
+
+<%
+function createSelect(field, FieldArray){ %>
+    <select name="<%= field %>" id="<%= field %>">
+   <% for(let i=0; i<FieldArray.length; i++){ %>
+        <option value="<%= FieldArray[i].option_key %>"><%= FieldArray[i].option_value %></option>
+    <%} %>
+</select> 
+<% }
+%>
+
+<%
+function createRadio(field, FieldArray){ %>
+   <label for="<%= FieldArray[0].select_value %>"><%= FieldArray[0].select_key %></label>
+  <% for(let i=0; i<FieldArray.length; i++){ %>
+        <input type="radio" name="<%= FieldArray[0].select_value %>"  value="<%= FieldArray[i].option_key %>">
+        <label for="<%= FieldArray[i].option_key %>"><%= FieldArray[i].option_value %></label>
+   <%}
+}
+%>
+
+<%
+function createCheckbox(field, FieldArray){ %>
+   <label for="<%= FieldArray[0].select_key %>"><%= FieldArray[0].select_key %></label>
+  <% for(let i=0; i<result.length; i++){ %>
+        <input type="checkbox" name="<%= FieldArray[i].option_key %>" id="<%= FieldArray[i].option_key %>" value="<%= result[i].option_key %>">
+        <label for="<%= FieldArray[i].option_key %>"><%= FieldArray[i].option_value %></label>
+   <%}
+}
+%>
+
+<%comboGenerator(field, select_mul)  %>
