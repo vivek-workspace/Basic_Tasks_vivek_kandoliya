@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <%- include('../partials/head') %>
+    </head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+    <main>
+        <h1>people </h1>
+        <div>
+            <table border="1" style="width: 90%;">
+                <tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Mobile No</th><th>More Details</th></tr>
+                <% list.people.forEach((item)=> {%>
+                    <tr>
+                        <td><%= item.first_name%></td><td><%= item.last_name%></td><td><%= item.email%></td><td><%= item.number%></td><td><button><a href="/tasks/student_registration_file/person-details?id=<%=item.sid %>">Show Details</a></button>
+                        
+                    </tr>
+                    <%}); %>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <%- include('../partials/footer') %>
+    </footer>
+</body>
+
+</html>

@@ -20,6 +20,7 @@ const component_generator = require('./Routes/component_generator');
 const delimited_search = require('./Routes/delimited');
 const dynamic_output = require('./Routes/dynamic_output');
 const fetch_json_placeholder = require('./Routes/fetch_json_placeholder');
+const student_registration_file = require('./Routes/create_read_on_file/form_server');
 require('./db');
 
 //-------------------Configs and Middlewares
@@ -56,6 +57,7 @@ app.use('/tasks/component_generator', component_generator);
 app.use('/tasks/delimited_search', delimited_search);
 app.use('/tasks/dynamic_output', dynamic_output);
 app.use('/tasks/fetch_json_placeholder', fetch_json_placeholder);
+app.use('/tasks/student_registration_file', student_registration_file);
 
 
 

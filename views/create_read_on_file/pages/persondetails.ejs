@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <%- include('../partials/head') %>
+    </head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+    <main>
+        <h1><%= person.first_name%> &nbsp; <%= person.last_name %> </h1>
+        <table>
+            <tr>
+                <td>First Name :</td><td><%= person.first_name %></td>
+            </tr>
+            <tr>
+                <td>Last Name :</td><td><%= person.last_name %></td>
+            </tr>
+            <tr>
+                <td>Age :</td><td><%= person.age %></td>
+            </tr>
+            <tr>
+                <td>Mobile Number :</td><td><%= person.number %></td>
+            </tr>
+            <tr>
+                <td>Email :</td><td><%= person.email %></td>
+            </tr>
+            <tr>
+                <td>Gender :</td><td><%= person.gender %></td>
+            </tr>
+            <tr>
+                <td>Hobbies :</td><td><%= person.hobbies%></td>
+            </tr>
+            <tr>
+                <td>Address :</td><td><%= person.address %></td>
+            </tr>
+        </table>
+    </main>
+    <footer>
+        <%- include('../partials/footer') %>
+    </footer>
+
+    <script>
+        function showdetails(id){
+            let url = `/person-details?id=${id}`;
+            window.location.href = url;
+        }
+    </script>
+</body>
+
+</html>
