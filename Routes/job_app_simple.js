@@ -22,7 +22,7 @@ router.get('/', varifyUser, async (req, res) => {
 
     const result= await promisedQuery(sqlquery);
     console.log(result);
-    res.render('job_app_simple/pages/list', {result});
+    res.render('job_app_simple/pages/list', {result, length: result.length});
 
 })
     

@@ -19,8 +19,9 @@
    
     <div class="responseBody">
 
-        <%
-
+        <%if(length == 0){%>
+            <p>No Job Application Yet..&#128528; </p>
+        <%}else{
         const columns = Object.keys(result[0]);
         %>
 
@@ -47,7 +48,7 @@
 
                 <%}%>
         </table>
-
+        <%}%>
     </div>
 
     <script>

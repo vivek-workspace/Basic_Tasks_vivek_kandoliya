@@ -28,7 +28,7 @@ router.get('/', varifyUser, async (req, res) => {
 
     const result= await promisedQuery(sqlquery);
     console.log(result);
-    res.render('jwt_app_ajax/pages/list', {result});
+    res.render('jwt_app_ajax/pages/list', {result, length: result.length});
 
 })
 
@@ -519,7 +519,7 @@ function filterRows(data) {
     for (let i = 0; i < length; i++) {
         let flag = true;
         for (let j = 0; j < data.length; j++) {
-            if (data[j][i] == '') {
+            if (data[j][i] === '') {
                 flag = false;          
             }
         }

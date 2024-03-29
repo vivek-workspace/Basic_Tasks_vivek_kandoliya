@@ -242,7 +242,7 @@ function generateToken() {
 
 async function getUser(email) {
     const promisedQuery = util.promisify(con.query).bind(con);
-    const sqlquery = `select * from user_db.users where email = ?;`
+    const sqlquery = `select * from users where email = ?;`
     const result = await promisedQuery(sqlquery,[email]);
 
     return result;
@@ -251,7 +251,7 @@ async function getUser(email) {
 async function checkExistance(email) {
 
     const promisedQuery = util.promisify(con.query).bind(con);
-    const sqlquery = `select count(email) as count from user_db.users where email = ?; `
+    const sqlquery = `select count(email) as count from users where email = ?; `
     let flag = true;
 
     const result = await promisedQuery(sqlquery, [email]);
