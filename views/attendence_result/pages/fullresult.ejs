@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../components/head');%>
+</head>
+<body>
+    <header>
+        <%- include('../components/header');%>
+    </header>
+    <main>
+        <div class="pageheader">
+            <h3><%= result[0].Student_Name %>Annual Result</h3>
+        </div>
+        <div>
+            <a href="/tasks/attendence_result/exam"><input type="button" value="&larr;"></a>
+        </div>
+        <div class="resulttable table">
+            <table>
+                <tr>
+                    <th>Student ID :</th>
+                    <td colspan="7"><%= result[0].Student_ID %></td>
+                </tr>
+                <tr>
+                    <th>Student Name : </th>
+                    <td colspan="7"> <%= result[0].Student_Name %></td>
+                </tr>
+                <tr>
+                    <th>Student Attendence :</th>
+                    <td colspan="2"><%= parseFloat(attendence[0].Attendence_Count*100/101).toFixed(2) %>%</td>
+                    <td colspan="5"><%= attendence[0].Attendence_Count %>days (out of 101 days)</td>
+                </tr>
+                <tr>
+                    <th rowspan="2">Subject</th>
+                    <th colspan="2">Terminal</th>
+                    <th colspan="2">Prelims</th>
+                    <th colspan="2">Final</th>
+                    <th rowspan="2">Total (180)</th>
+                </tr>
+                <tr>
+                    <th>Practical (20)</th>
+                    <th>Theory (30)</th>
+                    <th>Practical (10)</th>
+                    <th>Theory (20)</th>
+                    <th>Practical (30)</th>
+                    <th>Theory (70)</th>
+                </tr>
+               
+                <% let totalsum = 0 %>
+                <% for(let i=0; i<6; i++){%>
+                    <tr>
+                        <td><%= result[i].Subject_ID %></td>
+                        <td><%= result[i+6].Practicle %></td>
+                        <td><%= result[i+6].Theory %></td>
+                        <td><%= result[i].Practicle  %></td>
+                        <td><%= result[i].Theory  %></td>
+                        <td><%= result[i+12].Practicle  %></td>
+                        <td><%= result[i+12].Theory  %></td>
+                        <td><%= result[i].Practicle + result[i].Theory + result[i+6].Practicle + result[i+6].Theory + result[i+12].Practicle + result[i+12].Theory %></td>
+                        <% totalsum += result[i].Practicle + result[i].Theory + result[i+6].Practicle + result[i+6].Theory + result[i+12].Practicle + result[i+12].Theory %>
+                    </tr>
+                <% } %>
+                <tr>
+                    <td colspan="6">Total (1080)</td>
+                    <td><%= parseFloat(totalsum*100/1080).toFixed(2) %> %</td>
+                    <td><%= totalsum %></td>
+                </tr>
+
+            </table>
+        </div>
+            
+    <footer>
+        <%- include('../components/footer'); %>
+    </footer>
+</body>
+</html>

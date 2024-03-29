@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../components/head');%>
+</head>
+<body>
+    <header>
+        <%- include('../components/header');%>
+    </header>
+    <main> 
+        <div class="pageheader">
+            <h3>Student Attendence</h3>
+        </div>
+        <div align='center' class="controls">
+            <%- include('../components/controls');%>
+        </div>
+        <div align='center' class="table">
+            <table>
+                <tr>
+                    <!-- <th>Sr No</th> -->
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Present Count</th>
+                    <th>Percentage Count</th>
+                </tr>
+
+                <% data.forEach((item) => { %>
+                    <tr>
+                        <!-- <td><%= item.sr_no %></td> -->
+                        <td><%= item.Student_ID %></td>
+                        <td><%= item.First_Name %></td>
+                        <td><%= item.Attendence_Count %></td>
+                        <td><%= parseFloat((item.Attendence_Count*100)/30 ).toFixed(2) %> %</td>
+                    </tr>
+                   <%}); %>
+
+            </table>
+        </div>
+    <footer>
+        <%- include('../components/footer'); %>
+    </footer>
+</body>
+</html>

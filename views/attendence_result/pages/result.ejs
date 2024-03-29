@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../components/head');%>
+</head>
+<body>
+    <header>
+        <%- include('../components/header');%>
+    </header>
+    <main>
+        <div class="pageheader">
+            <h3>Student Results</h3>
+        </div>
+        <div class="controls">
+            <%- include('../components/controls_result');%>
+        </div>
+        <div class="table">
+            <table>
+                <tr>
+                    <!-- <th>Sr No</th> -->
+                    <th rowspan="2">Student Name</th>
+                    <th colspan="2">Terminal</th>
+                    <th colspan="2">Prelims</th>
+                    <th colspan="2">Final</th>
+                    <th rowspan="2">Total</th>
+                    <th rowspan="2">Details</th>
+                </tr>
+                <tr>
+                    <th>Practical</th>
+                    <th>Theory</th>
+                    <th>Practical</th>
+                    <th>Theory</th>
+                    <th>Practical</th>
+                    <th>Theory</th>
+                </tr>
+               <% 
+                const terminal = result[0];
+                const prelims = result[1];
+                const final = result[2];
+                %>
+                <% for(let i=0; i< terminal.length; i++){ %>
+                    <tr>
+                        
+                        <td><%=terminal[i].First_Name%></td>
+                        <td><%=terminal[i].terminal_practical%></td>
+                        <td><%=terminal[i].terminal_final%></td>
+                        <td><%=prelims[i].prelims_practical%></td>
+                        <td><%=prelims[i].prelims_final%></td>
+                        <td><%=final[i].final_practical%></td>
+                        <td><%=final[i].final_final%></td>
+                        <td><%= terminal[i].terminal_practical + terminal[i].terminal_final + prelims[i].prelims_practical + prelims[i].prelims_final + final[i].final_practical + final[i].final_final %></td>
+                        <td><a href="/tasks/attendence_result/result/?param1=<%= terminal[i].Student_ID %> "><input type="button" value="Full Result"></a></td>
+                    </tr>
+                <%}%>
+
+            </table>
+        </div>
+    <footer>
+        <%- include('../components/footer'); %>
+    </footer>
+</body>
+</html>

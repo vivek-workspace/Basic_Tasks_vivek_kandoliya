@@ -1,0 +1,12 @@
+<a href="/tasks/attendence_result/exam?page=1" <% if(page==1){ %> style="pointer-events: none" <% } %>><input type="button" value="&larrb;" <% if(page==1){ %> disabled= 'true' <% } %>></a>
+<a href="/tasks/attendence_result/exam?page=<%=page-1%>" <% if(page==1){ %> style="pointer-events: none" <% } %> ><input type="button" value="&larr;" <% if(page==1){ %> disabled= 'true' <% } %>></a>
+<input type="text" value="<%= page%>" onchange="changePage(value)">
+<a href="/tasks/attendence_result/exam?page=<%= no_of_records-(no_of_records-page-1)%>" <% if(page==250){ %> style="pointer-events: none" <% } %> ><input type="button" value="&rarr;" <% if(page==parseInt(total_data/no_of_records)){ %> disabled= 'true' <% } %>></a>
+<a href="/tasks/attendence_result/exam?page=<%= parseInt(total_data/no_of_records)%>" <% if(page==250){ %> style="pointer-events: none" <% } %>><input type="button" value="&rarrb;" <% if(page==parseInt(total_data/no_of_records)){ %> disabled= 'true' <% } %>></a>
+
+<script>
+
+    function changePage(value){
+        window.location.href = "/tasks/attendence_result/exam?page="+value;
+    }
+</script>
