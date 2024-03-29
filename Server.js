@@ -23,6 +23,7 @@ const fetch_json_placeholder = require('./Routes/fetch_json_placeholder');
 const student_registration_file = require('./Routes/create_read_on_file/form_server');
 const pagi_sort_students = require('./Routes/pagi_sort_students');
 const attendence_result = require('./Routes/attendence_result');
+const simple_search = require('./Routes/simple_search');
 require('./db');
 
 //-------------------Configs and Middlewares
@@ -56,12 +57,14 @@ app.use('/tasks/tic_tac_toe', tic_tac_toe);
 app.use('/tasks/job_app_ajax', job_app_ajax);
 app.use('/tasks/job_app_simple', job_app_simple);
 app.use('/tasks/component_generator', component_generator);
+app.use('/tasks/simple_search',simple_search);
 app.use('/tasks/delimited_search', delimited_search);
 app.use('/tasks/dynamic_output', dynamic_output);
 app.use('/tasks/fetch_json_placeholder', fetch_json_placeholder);
 app.use('/tasks/student_registration_file', student_registration_file);
 app.use('/tasks/pagi_sort_students', pagi_sort_students);
 app.use('/tasks/attendence_result',attendence_result);
+
 
 
 

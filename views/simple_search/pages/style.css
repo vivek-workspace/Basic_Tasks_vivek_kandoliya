@@ -1,0 +1,26 @@
+
+body{
+    background-color: rgb(191, 255, 255);
+}
+
+table{
+    margin: 30px auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td{
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.searchArea{
+    padding: 30px;
+    background-color: rgb(182, 255, 182);
+    text-align: center;
+
+    input{
+        display: block;
+        margin: 5px auto;
+    }
+}

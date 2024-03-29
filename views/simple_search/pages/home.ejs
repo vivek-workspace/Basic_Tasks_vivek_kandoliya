@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../components/head') %>
+</head>
+
+<body>
+    <header>
+        <%- include('../components/header') %>
+    </header>
+    <main>
+        <div class="searchArea">
+            <form action="/tasks/simple_search/" method="get">
+                <input type="text" name="search_sid" id="search_sid" autofocus placeholder="search by student id">
+                <input type="button" name="Show_more" id="Show_more" value="Show More" onclick="showMore()">
+                <div id="hidden" style="display: none;">
+                    <input type="text" name="s_fsn" id="s_fsn" placeholder="search by student First name">
+                    <input type="text" name="s_lsn" id="s_lsn" placeholder="search by student Last name">
+                    <input type="text" name="s_gender" id="s_gender" placeholder="search by gender">
+                    <input type="text" name="s_city" id="s_city" placeholder="search by city">
+                    <input type="text" name="s_mno" id="s_mno" placeholder="search by mobile no">
+                    <select name="percentage" id="percentage">
+                        <option value="">Select Percentage Range</option>
+                        <option value="0_33">0 to 33</option>
+                        <option value="34_50">34 to 50</option>
+                        <option value="51_70">51 to 70</option>
+                        <option value="71_95">71 to 95</option>
+                        <option value="96_100">96 to 100</option>
+                    </select>
+                    <select name="andor" id="andor">
+                        <option value="and">And</option>
+                        <option value="or">Or</option>
+                    </select>
+
+                </div>
+                <input type="text" style="display: none" id="showmore" name="showmore">
+                <input type="submit" name="submit" id="submit" value="Submit">
+            </form>
+
+        </div>
+
+
+        <div class="responseBody">
+
+
+          
+            <div class="controls">
+
+            </div>
+            <table>
+                <% if(!err){%>
+                    <tr>
+                        <% for(let j=0; j<columns.length; j++){ %>
+                            <th>
+                                <%= columns[j].name%>
+                            </th>
+                            <% } %>
+                    </tr>
+                    <% if(data.length===0){ %>
+                        <tr><td colspan="<%= columns.length %>"><p align="center">Nothing to Show Here</p></td></tr>
+                                <%} else{ %>
+                                  
+    
+                                    <% for(let i=0; i<data.length; i++){ %>
+                                        <tr>
+                                            <% for(let j=0; j<columns.length; j++){ %>
+                                                <td>
+                                                    <%= data[i][columns[j].name]%>
+                                                </td>
+                                                <% } %>
+                                        </tr>
+                
+                                        <%}%>
+                                    <% }%>
+                <% }else{ %>
+                    <p>Error : <%= data%></p>
+                <% }%>
+                
+            </table>
+
+
+
+        </div>
+    </main>
+    <footer>
+        <%- include('../components/footer') %>
+    </footer>
+
+    <script>
+        settingDefaultFilters();
+
+        function showMore() {
+            console.log('entered');
+            
+            let hiddenStatus = document.getElementById('showmore').value;
+            if(hiddenStatus == 'true'){
+                document.getElementById('hidden').style.display = 'none';
+                document.getElementById('showmore').value = `false`;
+            }
+            else if(hiddenStatus == 'false'){
+                document.getElementById('hidden').style.display = '';
+                document.getElementById('showmore').value = `true`;
+            }
+        }
+
+        function settingDefaultFilters() {
+            if(`<%= params.showmore%>` == 'true'){
+                document.getElementById('hidden').style.display = '';
+                document.querySelector('#showmore').value = `<%= params.showmore %>`;
+            }
+            else if(`<%= params.showmore%>` == 'false'){
+                document.getElementById('hidden').style.display = 'none';
+                document.querySelector('#showmore').value = `<%= params.showmore %>`;
+
+            }
+            document.querySelector('#search_sid').value = `<%= params.search_sid %>`;
+            document.querySelector('#s_fsn').value = `<%= params.s_fsn %>`;
+            document.querySelector('#s_lsn').value = `<%= params.s_lsn %>`;
+            document.querySelector('#s_gender').value = `<%= params.s_gender %>`;
+            document.querySelector('#s_city').value = `<%= params.s_city %>`;
+            document.querySelector('#s_mno').value = `<%= params.s_mno %>`;
+            document.querySelector('#percentage').value = `<%= params.percentage %>`;
+            document.querySelector('#andor').value = `<%= params.andor %>`;
+        }
+
+        function searchIt(value) {
+            window.location.href = `/?id=${value}`;
+        }
+    </script>
+</body>
+
+</html>
