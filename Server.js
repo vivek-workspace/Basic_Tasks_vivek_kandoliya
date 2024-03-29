@@ -24,6 +24,7 @@ const student_registration_file = require('./Routes/create_read_on_file/form_ser
 const pagi_sort_students = require('./Routes/pagi_sort_students');
 const attendence_result = require('./Routes/attendence_result');
 const simple_search = require('./Routes/simple_search');
+const city_state  = require('./Routes/city_state');
 require('./db');
 
 //-------------------Configs and Middlewares
@@ -64,6 +65,7 @@ app.use('/tasks/fetch_json_placeholder', fetch_json_placeholder);
 app.use('/tasks/student_registration_file', student_registration_file);
 app.use('/tasks/pagi_sort_students', pagi_sort_students);
 app.use('/tasks/attendence_result',attendence_result);
+app.use('/tasks/city_state',city_state);
 
 
 

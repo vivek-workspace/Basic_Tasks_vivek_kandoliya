@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../components/head') %>
+</head>
+
+<body>
+
+   
+
+    <%- include('../components/header') %>
+
+
+    <main style="width:800px; margin:  0px auto; display: flex; justify-content: center;">
+        <select onchange="fetchCities()" name="states" id="states">
+            <option value="">-- Select State --</option>
+            <%states.forEach(item=> {%>
+                <option value="<%= item.id %>">
+                    <%= item.name%>
+                </option>
+                <%}) %>
+        </select>
+    
+        <select name="cities" id="cities">
+        <option value="">--select city--</option>
+        </select>
+    </main>
+
+    
+
+    <script>
+
+        function fetchCities() {
+
+            const selectState = document.getElementById('states');
+            const state = selectState.value;
+
+            fetchData('/tasks/city_state/cities', { state })
+        }
+
+
+        async function fetchData(endpoint, data) {
+
+            const option = {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+
+           await fetch(endpoint,option).then(async result =>{
+                    const cities = document.getElementById('cities');
+                    cities.innerHTML = ' <option value = undefined> --select cities-- </option>'
+                    const response = await result.json();
+                    console.log(response)
+                    response.forEach(element => {
+                        const opt = document.createElement('option');
+                        opt.value = element.id;
+                        opt.innerText = element.city;
+                        cities.appendChild(opt);
+                    });
+                    // document.body.appendChild(cities);
+                }
+            )
+            // console.log(await result.json());
+        }
+
+    </script>
+</body>
+
+</html>
