@@ -1,0 +1,135 @@
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../components/head') %>
+</head>
+
+<body>
+    <header>
+        <%- include('../components/header') %>
+    </header>
+
+    <main>
+        <div class="container1">
+            <form action="" id="form">
+                <div class="row">
+                    <label for="date">Date</label>
+                    <input type="text" name="date" id="date" class="inp">
+                </div>
+                <div class="row">
+                    <label for="month">Month</label>
+                    <input type="text" name="month" id="month" class="inp">
+                </div>
+                <div class="row">
+                    <label for="year">Year</label>
+                    <input type="text" name="year" id="year" class="inp">
+                </div>
+                <div class="row">
+                    <label for="hour">Hour</label>
+                    <input type="text" name="hour" id="hour" class="inp">
+                </div>
+                <div class="row">
+                    <label for="minute">Minute</label>
+                    <input type="text" name="minute" id="minute" class="inp">
+                </div>
+                <div class="row">
+                    <label for="second">Second</label>
+                    <input type="text" name="second" id="second" class="inp">
+                </div>
+                <div class="row">
+                    <input type="button" name="go" id="go" value="Go" onclick="setInp()">
+                </div>
+            </form>
+        </div>
+
+        
+        <option value="absdf">asdfas</option>
+        <select name="city" id="city" onchange="setLocalTime(value)">
+            <%result.forEach(item=> { %>
+                <option value='<%= item.zone_name %>' <%if(item.zone_name=='Asia/Kolkata' ){%> selected <%}%> ><%=
+                            item.zone_name %>
+                </option>
+                <% })%>
+        </select>
+
+        <h3 id="city_name" style="font-size: 50px;  margin: 50px 20px;"></h3>
+        <p id="date_name" style="font-size: 30px; margin: 10px 20px;"></p>
+        <p id="time" style="font-size: 200px; margin: 10px auto;"></p>
+    </main>
+
+    <script>
+
+        let pastDate = new Date();
+        let inputed = false;
+        setLocalTime();
+        let interval = setInterval(setLocalTime, 1000);
+
+        function setInp() {
+            inputed = true;
+            const formData = document.querySelectorAll('.inp');
+
+            if (validateForm(formData)) {
+                console.log('sdfsdf',pastDate)
+                pastDate.setFullYear(document.getElementById('year').value);
+                // console.log(document.getElementById('year').value)
+                pastDate.setMonth(document.getElementById('month').value-1);
+                // console.log(document.getElementById('month').value)
+                pastDate.setDate(document.getElementById('date').value);
+                // console.log(pastDate)
+                pastDate.setHours(document.getElementById('hour').value);
+                // console.log(pastDate)
+                pastDate.setMinutes(document.getElementById('minute').value);
+                // console.log(pastDate)
+                pastDate.setSeconds(document.getElementById('second').value);
+                console.log(pastDate)
+            }
+
+        }
+
+        function setLocalTime() {
+            let inpDate;
+            if (inputed) {
+                inpDate = pastDate;
+            } else {
+                inpDate = new Date;
+            }
+
+
+            const abc = document.getElementById('city').value;
+            let selectedTime = inpDate.toLocaleTimeString("en-US", { timeZone: abc, hourCycle: 'h12' });
+            let selectedDate = inpDate.toLocaleDateString("en-US", {
+                timeZone: abc, weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            });
+            let selected24Time = inpDate.toLocaleTimeString("en-US", { timeZone: abc, timestyle: 'full', hourCycle: 'h24' });
+            document.getElementById('city_name').innerHTML = abc;
+            document.getElementById('date_name').innerHTML = selectedDate;
+            document.getElementById('time').innerHTML = selectedTime;
+
+        }
+
+
+        function validateForm(form) {
+
+            let flag = true;
+            form.forEach(element => {
+                if (element.value === '') {
+                    flag = false;
+                    element.style.border = '1px solid red'
+                }
+                else {
+                    element.style.border = ''
+                }
+
+            });
+
+            return flag;
+
+        }
+    </script>
+</body>
+
+</html>
