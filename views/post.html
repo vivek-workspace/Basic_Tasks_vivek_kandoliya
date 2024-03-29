@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/jp_style.css">
+    <style>
+
+        h3{
+            text-align: center;
+            font-size: 30px;
+            color: rgb(78, 78, 78);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+          
+        }
+
+        th,
+        td {
+            border: 1px solid rgb(0, 0, 0);
+            padding: 5px;
+        }
+
+        th{
+            background-color: rgb(255, 144, 40);
+        }
+        tr{
+            background-color: rgb(255, 211, 169);
+        }
+
+        tr:hover{
+            background-color: rgb(255, 193, 134);
+        }
+        input{
+            width: 100px;
+            height: 30px;
+            background-color: yellow;
+            border: 2px solid rgb(255, 166, 0);
+        }
+        input:hover{
+            border: 2px solid green;
+            transition: 500ms;
+        }
+
+    </style>
+    <title>Post</title>
+</head>
+
+<body>
+    <h3>Employee ID: 2024DEV062 | Vivek Kandoliya | 11 March 2024</h3>
+    <h3>Post</h3>
+    <table id="dataTable">
+    </table>
+    <script>
+        async function fetchPost(id) {
+            console.log(id)
+            const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+            return post.json();
+        }
+
+        async function fetchComments(id) {
+            console.log(id)
+            const comments = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`);
+            return comments.json();
+        }
+
+        async function main() {
+            const url = window.location.href;
+            const vivek = url.split('/');
+            const id = vivek[vivek.length - 1]
+            const post = await fetchPost(id)
+            console.log(post)
+            const keys = Object.keys(post);
+            const dataTable = document.getElementById('dataTable');
+            const newRow = document.createElement("tr");
+
+            keys.forEach(key => {
+                const th = document.createElement('th');
+                th.innerText = key;
+                newRow.appendChild(th);
+
+            })
+            th = document.createElement('th');
+            th.innerText = 'Comments'
+            newRow.appendChild(th);
+
+            const newdataRow = document.createElement("tr");
+            keys.forEach(key => {
+                const td = document.createElement('td');
+                td.innerText = post[key];
+                newdataRow.appendChild(td);
+
+            })
+
+            const btn = document.createElement('input');
+            btn.type = 'button';
+            btn.id = 'btn';
+            btn.value = 'Comments';
+            btn.setAttribute('onclick', `showComments(${id})`)
+            const td = document.createElement('td');
+            td.appendChild(btn);
+            newdataRow.appendChild(td);
+            dataTable.appendChild(newRow);
+            dataTable.appendChild(newdataRow);
+
+        }
+        main()
+
+        async function showComments(id,btn) {
+            document.getElementById('btn').disabled = true;
+            const comments = await fetchComments(id);
+            console.log(comments)
+            const keys = Object.keys(comments[0]);
+            const label = document.createElement('h3');
+            label.innerText = 'Comments'
+            document.body.appendChild(label);
+
+            const newTable = document.createElement('table');
+            newTable.id = 'cmttable'
+            const tr = document.createElement('tr');
+            keys.forEach(item => {
+                const th = document.createElement('th');
+                th.innerText = item;
+                tr.appendChild(th);
+            })
+            newTable.appendChild(tr);
+
+            comments.forEach(item => {
+                const tr = document.createElement('tr');
+                keys.forEach(cell => {
+                    const td = document.createElement('td');
+                    td.innerText = item[cell];
+                    tr.appendChild(td);
+                })
+                newTable.appendChild(tr);
+            })
+
+            document.body.appendChild(newTable);
+        }
+
+
+    </script>
+
+</body>
+
+</html>

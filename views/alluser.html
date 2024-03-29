@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/jp_style.css">
+
+    <!-- ///////////////////// ///////////////////////       CSS       ////////////////////////////////////////////////////// -->
+
+
+    <style>
+        h3 {
+            text-align: center;
+            font-size: 30px;
+            color: rgb(78, 78, 78);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0px;
+        }
+
+        th,
+        td {
+            border: 1px solid rgb(0, 0, 0);
+            padding: 5px;
+        }
+
+        #pages {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            input {
+                margin: 0px 10px;
+            }
+        }
+
+        th {
+            background-color: rgb(255, 144, 40);
+        }
+
+        tr {
+            background-color: rgb(255, 211, 169);
+        }
+
+        tr:hover {
+            background-color: rgb(255, 193, 134);
+        }
+
+        input {
+            width: 100px;
+            height: 30px;
+            background-color: yellow;
+            border: 2px solid rgb(255, 166, 0);
+        }
+
+        input:hover {
+            border: 2px solid green;
+            transition: 500ms;
+        }
+    </style>
+    <title>All Posts</title>
+</head>
+
+
+<!-- ///////////////////// ///////////////////////       Body       ////////////////////////////////////////////////////// -->
+
+
+<body>
+
+    <!-- ///////////////////// ///////////////////////       Script       ////////////////////////////////////////////////////// -->
+
+
+    <script>
+        let pagedallusers = [];
+        let current;
+        let allusers = []
+        ///////////////////// ///////////////////////       FetchUsers Function       ////////////////////////////////////////////////////// 
+
+        async function fetchAllUsers() {
+            const users = await fetch('https://jsonplaceholder.typicode.com/posts');
+            return users.json();
+        }
+        ///////////////////// ///////////////////////       Main Function       ////////////////////////////////////////////////////// 
+        async function main() {
+            allusers = await fetchAllUsers();
+            pagedallusers = splitingArray(allusers);
+            console.log(pagedallusers);
+
+            const keys = Object.keys(allusers[0]);
+
+            current = 0;
+            const privious = document.createElement('input');
+            privious.type = 'button';
+            privious.value = `Privious`;
+            privious.onclick = trigerPpage;
+
+            const pageNo = document.createElement('label');
+            pageNo.id = 'pgno'
+            pageNo.innerText = current + 1
+
+
+            const next = document.createElement('input');
+            next.type = 'button';
+            next.value = `Next`;
+            next.onclick = trigerNpage;
+
+            const pages = document.getElementById('pages');
+
+            pages.appendChild(privious);
+            pages.appendChild(pageNo);
+            pages.appendChild(next);
+
+
+            const tr = document.createElement('tr')
+            tr.setAttribute('id', 'tablehead');
+            document.getElementById('dataTable').appendChild(tr);
+
+            keys.forEach(header => {
+                const th = document.createElement('th');
+                th.innerText = header;
+                document.getElementById('tablehead').appendChild(th);
+            })
+            const th = document.createElement('th');
+            th.innerText = 'Details'
+            tr.appendChild(th);
+
+
+            function trigerPpage() {
+                if (current >= 1) {
+                    showPage(pagedallusers[--current], keys);
+                    document.getElementById('pgno').innerText = current + 1;
+                }
+            }
+            function trigerNpage() {
+                if (current < pagedallusers.length - 1) {
+                    showPage(pagedallusers[++current], keys);
+                    document.getElementById('pgno').innerText = current + 1;
+                }
+            }
+
+            showPage(pagedallusers[0], keys);
+
+
+
+
+        }
+        main()
+
+        ///////////////////// ///////////////////////       Show Page Function       ////////////////////////////////////////////////////// 
+        function showPage(pageusers, keys) {
+
+            document.querySelectorAll('tr').forEach(item => {
+                if (item.id == 'tablehead') return
+                item.remove()
+            })
+            pageusers.forEach(element => {
+                const dataTable = document.getElementById('dataTable');
+                const newRow = document.createElement("tr");
+                keys.forEach(key => {
+                    const td = document.createElement('td');
+                    td.innerText = element[key];
+                    newRow.appendChild(td);
+
+                })
+                const td = document.createElement('td');
+                const btn = document.createElement('input');
+                btn.type = 'button'
+                btn.value = 'Details';
+                btn.setAttribute('onclick', `showDetails(${element.id})`)
+                td.appendChild(btn)
+                newRow.appendChild(td);
+                dataTable.appendChild(newRow);
+            });
+        }
+
+        ///////////////////// ///////////////////////       Show Details Function       ////////////////////////////////////////////////////// 
+
+        function showDetails(id) {
+            location.href = `/tasks/fetch_json_placeholder/post/${id}`
+        }
+
+        ///////////////////// ///////////////////////       Spliting Function       ////////////////////////////////////////////////////// 
+        function splitingArray(array) {
+            const length = array.length;
+            let splitedArray = [];
+            let i = 0;
+            let arry = [];
+            array.forEach(item => {
+                i++;
+                if (i % 10 != 0) {
+                    arry.push(item);
+                }
+                else {
+                    arry.push(item);
+                    splitedArray.push(arry);
+                    arry = [];
+                }
+            })
+            if (arry.length > 0) splitedArray.push(arry);
+
+            return splitedArray;
+        }
+
+
+        ///////////////////// ///////////////////////       Search It Function       ////////////////////////////////////////////////////// 
+        async function searchit() {
+            const searchbox = document.getElementById('search');
+            const searchString = searchbox.value;
+
+            const searcharray = [];
+            // const allusers = await fetchAllUsers();
+            const keys = Object.keys(allusers[0]);
+
+            allusers.forEach(item => {
+                keys.every(cell => {
+
+                    if (typeof (item[cell]) === 'string' && item[cell].includes(searchString)) {
+                        searcharray.push(item);
+                        return false
+                    }
+                    else if (typeof parseInt(item[cell]) === 'number' && parseInt(item[cell]) == parseInt(searchString)) {
+                        searcharray.push(item);
+                        return false
+                    }
+                    else {
+                        return true
+                    }
+                })
+            })
+            // console.log(searcharray);
+            document.querySelectorAll('tr').forEach(item => {
+                if (item.id == 'tablehead') return
+                item.remove();
+            })
+            if (searchString.length > 0) {
+                current = 0;
+                document.getElementById('pgno').innerText = current + 1;
+                pagedallusers = splitingArray(searcharray);
+                showPage(pagedallusers[0], keys);
+            }
+            else {
+                current = 0;
+                document.getElementById('pgno').innerText = current + 1;
+                pagedallusers = splitingArray(allusers);
+                showPage(pagedallusers[0], keys);
+            }
+        }
+    </script>
+
+
+    <!-- ///////////////////// ///////////////////////       Script  Over     ////////////////////////////////////////////////////// -->
+
+    <h3>Employee ID: 2024DEV062 | Vivek Kandoliya | 11 March 2024</h3>
+    <h3>All Posts</h3>
+    <div id="pages">
+        <input onchange="searchit()" type="text" id="search" placeholder="Search here"
+            style="border: 1px solid black; background-color: white; border-radius: 10px;">
+    </div>
+    <table id="dataTable"></table>
+
+</body>
+
+</html>
