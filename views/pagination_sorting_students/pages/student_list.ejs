@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('../components/head') %>
+</head>
+<body>
+    <header>
+         <%- include('../components/header') %>
+    </header>
+    <main>
+        <%-  include('../components/paging_controls'); %>
+        <table style="border: 1px solid black">
+            <tr style="border: 1px solid black">
+                <th>Student ID <a href="/?rows=<%= no_of_records %>&obf=Student_ID&order=desc&page=1"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=Student_ID&order=asc&page=1"><input type="button" value="&darr;" ></a></th>
+                <th>First Name <a href="/?rows=<%= no_of_records %>&obf=First_Name&order=desc&page=1"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=First_Name&order=asc&page=1"><input type="button" value="&darr;"></a></th>
+                <th>Father Name <a href="/?rows=<%= no_of_records %>&obf=Father_Name&order=desc&page=1"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=Father_Name&order=asc&page=1"><input type="button" value="&darr;"></a></th>
+                <th>Last Name <a href="/?rows=<%= no_of_records %>&obf=Last_Name&order=desc&page=1"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=Last_Name&order=asc&page=1"><input type="button" value="&darr;"></a></th>
+                <th>Gender <a href="/?rows=<%= no_of_records %>&obf=Gender&order=desc&page=1"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=Gender&order=asc&page=1"><input type="button" value="&darr;"></a></th>
+                <th>City <a href="/?rows=<%= no_of_records %>&obf=City&order=desc&page=1`"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=City&order=asc&page=1"><input type="button" value="&darr;"></a></th>
+                <th>State <a href="/?rows=<%= no_of_records %>&obf=State&order=desc&page=1"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=State&order=asc&page=1"><input type="button" value="&darr;"></a></th>
+                <th>Country <a href="/?rows=<%= no_of_records %>&obf=Country&order=desc&page=1"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=Country&order=asc&page=1"><input type="button" value="&darr;"></a></th>
+                <th>Age <a href="/?rows=<%= no_of_records %>&obf=Age&order=desc&page=1"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=Age&order=asc&page=1"><input type="button" value="&darr;"></a></th>
+                <th>Mobiel No <a href="/?rows=<%= no_of_records %>&obf=Mobile_No&order=desc&page=1"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=Mobile_No&order=asc&page=1"><input type="button" value="&darr;"></a></th>
+                <th>Time Stamp <a href="/?rows=<%= no_of_records %>&obf=Time_Stamp&order=desc&page=1"><input type="button" value="&uarr;"></a><a href="/?rows=<%= no_of_records %>&obf=Time_Stamp&order=asc&page=1"><input type="button" value="&darr;"></a></th>
+            </tr>
+
+            <% students.forEach( (items) => { %>
+                <tr>
+                    <td><%= items.Student_ID %></td>
+                    <td><%= items.First_Name %></td>
+                    <td><%= items.Father_Name %></td>
+                    <td><%= items.Last_Name %></td>
+                    <td><%= items.Gender %></td>
+                    <td><%= items.City %></td>
+                    <td><%= items.State %></td>
+                    <td><%= items.Country %></td>
+                    <td><%= items.Age %></td>
+                    <td><%= items.Mobile_No %></td>
+                    <td><%= items.Time_Stamp %></td>
+                </tr>
+
+           <% } ) %>
+        </table>
+       <%-  include('../components/paging_controls'); %>
+    </main>
+    <footer>
+        <%- include('../components/footer') %>
+    </footer>
+
+</body>
+</html>

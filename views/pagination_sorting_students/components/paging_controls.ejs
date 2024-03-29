@@ -1,0 +1,27 @@
+<div class="pdiv" style="display: flex; justify-content:center ;">
+    <a href="/tasks/pagi_sort_students/?rows=<%= no_of_records %>&obf=<%=obf%>&order=<%=order%>&page=1" <% if(currunt==1){ %> style="pointer-events: none" <% } %> > <input class="endbtn pbtn " type="button" value="&larrb;" <% if(currunt==1){ %> disabled= 'true' <% } %> ></a>
+    <a href="/tasks/pagi_sort_students/?rows=<%= no_of_records %>&obf=<%=obf%>&order=<%=order%>&page=<%= currunt-1 %>" <% if(currunt==1){ %> style="pointer-events: none" <% } %> > <input class="stepbtn pbtn" type="button" value="&larr;" <% if(currunt==1){ %> disabled= 'true' <% } %>></a>
+     <input class="ctext" id="pageNo" type="text" value= "<%= currunt %>" onchange="changePage(value)">
+    <a href="/tasks/pagi_sort_students/?rows=<%= no_of_records %>&obf=<%=obf%>&order=<%=order%>&page=<%= no_of_records-(no_of_records-currunt-1) %>" <% if(currunt==250){ %> style="pointer-events: none" <% } %> > <input class="stepbtn pbtn" type="button" value="&rarr;" <% if(currunt==parseInt(total_data/no_of_records)){ %> disabled= 'true' <% } %>></a>
+    <a href="/tasks/pagi_sort_students/?rows=<%= no_of_records %>&obf=<%=obf%>&order=<%=order%>&page=<%= parseInt(total_data/no_of_records)%>" <% if(currunt==250){ %> style="pointer-events: none" <% } %> > <input  class="endbtn pbtn" type="button" value="&rarrb;" <% if(currunt==parseInt(total_data/no_of_records)){ %> disabled= 'true' <% } %>></a>
+    <label for="no_of_records">No of Records:</label>
+    <input class="ctext" type="text" value="<%= no_of_records %>" onchange="changeRows(value)">
+    Sorted By : <%=obf%>  <%=order%>
+
+</div>
+
+<script>
+    function changePage(value){
+        window.location.href ='/tasks/pagi_sort_students/?rows=<%= no_of_records %>&page='+value;
+        // fetch('/?page='+value);
+    }
+
+    function changeRows(value){
+        window.location.href =`/tasks/pagi_sort_students/?rows=${value}&page=<%= currunt %>`;
+        // fetch('/?page='+value);
+    }
+
+    let headers = document.getElementsByTagName('th');
+    
+
+</script>
