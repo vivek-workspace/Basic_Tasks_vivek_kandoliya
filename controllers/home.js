@@ -23,6 +23,7 @@ const jwt_secreat = process.env.jwt_secreat;
 
 
 /////////////////////////////////////////////////
+
 router.get('/register', async (req, res) => {
     res.render('login/pages/register', { fresh: true });
 })
@@ -73,7 +74,6 @@ router.get('/activate', async (req, res) => {
 
     const user = await getUser(mail);
     const validatedToken = await validateToken(user[0], token)
-    console.log('abc',validatedToken);
     if (validatedToken == 1) {
 
         const sqlquery = `update users set account_status = true where email = '${mail}'`
@@ -107,7 +107,7 @@ router.get('/fgtpwd',async (req, res) => {
         const activation_token = generateToken();
         const promisedQuery = util.promisify(con.query).bind(con);
         const current_time = new Date();
-        console.log(current_time);
+       
         const sqlquery = `update users set activation_token = '${activation_token}', regi_time = CURRENT_TIMESTAMP()  where email = '${email}'`;
         const result = await promisedQuery(sqlquery);
         res.render('login/pages/fogpwd', { status: true, email, token: activation_token });
@@ -159,12 +159,11 @@ router.post('/signin', async (req, res) => {
 
     if(checkIfUserExist) {
         const user = await getUser(email);
-        console.log(user)
+       
         if (user[0].account_status == 1) {
-            console.log('pwd sdfsd data', pwd)
+           
             const passwordstr = pwd + user[0].salt;
-            console.log('pwd data', user[0].pwd)
-            console.log('pwd in', md5(passwordstr))
+          
             if (user[0].pwd == md5(passwordstr)) {
                 
                 const data = {
@@ -255,12 +254,12 @@ async function checkExistance(email) {
     let flag = true;
 
     const result = await promisedQuery(sqlquery, [email]);
-    console.log(result[0])
+   
     if (result[0].count == 0) {
         flag = false;
-        console.log(flag)
+       
     }
-    console.log(flag)
+  
     return flag;
 
 }

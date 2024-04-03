@@ -1,3 +1,11 @@
+/*
+Program : verifyUser
+Type: Middleware
+Description: this middleware is used for verifying jwt token at the all endpoints where login in required.
+Auther: Vivek Kandoliya
+*/
+
+//- - - Node Modules
 
 const jwt = require('jsonwebtoken');
 
@@ -5,7 +13,6 @@ const jwt_secreat = process.env.jwt_secreat;
 
 const varifyUser = (req, res, next) => {
     // getting the user from jwt token
-    // console.log(req.headers);
     if(!req.headers.cookie){
         res.status(401).send({error: 'no auth-token found'});
     }

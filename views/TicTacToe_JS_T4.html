@@ -8,8 +8,8 @@
     <style>
     
         td {
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             background-color: rgb(31, 84, 129);
             color: white;
             border: 1px solid black;
@@ -64,12 +64,10 @@
             <td></td>
         </tr>
     </table>
-    <span align="center" style="border: 1px solid black;">
-        abcd
-    </span>
+   
     <br>
-
-    <input type="button" id="btn" value="Reset" onclick="resetGame()"><span>abc</span>
+    
+    <input type="button" id="btn" value="Reset" onclick="resetGame()">
 
     <script>
         let turn = true;
@@ -96,7 +94,7 @@
                 cells[2].innerText=="X" && cells[4].innerText=="X" && cells[6].innerText=="X"
             )
             {
-                alert("player 1 Won the game");
+                document.getElementById('turn').innerHTML = 'Player 1 Won the game.'
                 game = false;
             }
             else if(
@@ -110,12 +108,12 @@
                 cells[2].innerText=="O" && cells[4].innerText=="O" && cells[6].innerText=="O"
             )
             {
-                alert("player 2 Won the game");
+                document.getElementById('turn').innerHTML = 'Player 2 Won the game.'
                 game  = false;
             }
             else{
                 if(count == 9)
-                    alert("Match Tied");
+                document.getElementById('turn').innerHTML = 'Game tied'
             }
             
         }

@@ -44,7 +44,7 @@
         </div>
 
         
-        <option value="absdf">asdfas</option>
+    
         <select name="city" id="city" onchange="setLocalTime(value)">
             <%result.forEach(item=> { %>
                 <option value='<%= item.zone_name %>' <%if(item.zone_name=='Asia/Kolkata' ){%> selected <%}%> ><%=
@@ -70,7 +70,7 @@
             const formData = document.querySelectorAll('.inp');
 
             if (validateForm(formData)) {
-                console.log('sdfsdf',pastDate)
+                
                 pastDate.setFullYear(document.getElementById('year').value);
                 // console.log(document.getElementById('year').value)
                 pastDate.setMonth(document.getElementById('month').value-1);
@@ -82,7 +82,7 @@
                 pastDate.setMinutes(document.getElementById('minute').value);
                 // console.log(pastDate)
                 pastDate.setSeconds(document.getElementById('second').value);
-                console.log(pastDate)
+              
             }
 
         }

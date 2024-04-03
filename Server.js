@@ -9,23 +9,23 @@ require('dotenv').config();
 
 //--------------- Importing local modules
 
-const home = require('./Routes/home');
-const on_events = require('./Routes/on_events');
-const dynamic_table = require('./Routes/dynamic_table');
-const kuku_cube = require('./Routes/kuku_cube');
-const tic_tac_toe = require('./Routes/tic_tac_toe');
-const job_app_ajax = require('./Routes/job_app_ajax');
-const job_app_simple = require('./Routes/job_app_simple');
-const component_generator = require('./Routes/component_generator');
-const delimited_search = require('./Routes/delimited');
-const dynamic_output = require('./Routes/dynamic_output');
-const fetch_json_placeholder = require('./Routes/fetch_json_placeholder');
-const student_registration_file = require('./Routes/create_read_on_file/form_server');
-const pagi_sort_students = require('./Routes/pagi_sort_students');
-const attendence_result = require('./Routes/attendence_result');
-const simple_search = require('./Routes/simple_search');
-const city_state  = require('./Routes/city_state');
-const world_clock = require('./Routes/world_clock');
+const home = require('./controllers/home');
+const on_events = require('./controllers/on_events');
+const dynamic_table = require('./controllers/dynamic_table');
+const kuku_cube = require('./controllers/kuku_cube');
+const tic_tac_toe = require('./controllers/tic_tac_toe');
+const job_app_ajax = require('./controllers/job_app_ajax');
+const job_app_simple = require('./controllers/job_app_simple');
+const component_generator = require('./controllers/component_generator');
+const delimited_search = require('./controllers/delimited');
+const dynamic_output = require('./controllers/dynamic_output');
+const fetch_json_placeholder = require('./controllers/fetch_json_placeholder');
+const student_registration_file = require('./controllers/create_read_on_file/form_server');
+const pagi_sort_students = require('./controllers/pagi_sort_students');
+const attendence_result = require('./controllers/attendence_result');
+const simple_search = require('./controllers/simple_search');
+const city_state  = require('./controllers/city_state');
+const world_clock = require('./controllers/world_clock');
 require('./db');
 
 //-------------------Configs and Middlewares

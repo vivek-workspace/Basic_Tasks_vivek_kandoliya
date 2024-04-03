@@ -1,0 +1,38 @@
+
+
+
+
+.header{
+    display: flex;
+    justify-content:space-around;
+    border-bottom: 1px solid black;
+}
+
+.heading{
+    font-size: 40px;
+    margin-bottom   : 0px;
+}
+
+.centered_table{
+   margin: 10px auto;
+   border: 1px solid rgb(185, 185, 185);
+   border-radius: 5px;
+    background-color: rgb(153, 153, 153);
+    td, th{
+    border: 1px solid rgb(87, 87, 87);
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+   }
+   input[type='button']{
+        width: 100px;
+        height: 25px;
+        border: 1px solid rgb(24, 238, 77);
+        border-radius: 5px;
+   }
+
+   input[type='button']:hover{
+    background-color: rgb(255, 229, 199);
+    border: 1px solid rgb(238, 138, 24);
+   }
+}
