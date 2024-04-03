@@ -1,5 +1,5 @@
 /*
-Program: Attendence Result server
+Program: Attendence Result router
 Description: controls all requests belongs to attendene_result task
 Called-by: server.js
 @uther: Vivek Kandoliya
@@ -8,7 +8,6 @@ Called-by: server.js
 
 // =====  Importing Node Modules =====
 const express = require('express');
-const path = require('path');
 
 // =====  Importing Local Modules  =====
 const varifyUser = require('../middlewares/varifyUser');

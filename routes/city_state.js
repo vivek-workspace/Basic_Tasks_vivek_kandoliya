@@ -1,38 +1,30 @@
+/*
+Program: City State router
+Description: controls all requests belongs to attendene_result task
+Called-by: server.js
+@uther: Vivek Kandoliya
+*/
 
 
-
-
-//--------------- Importing Node Modules
+// =====  Importing Node Modules =====
 const express = require('express');
 
-//------------------Configs
-const router = express.Router();
-const path = require('path');
+
+// =====  Importing Local Modules  =====
 const varifyUser = require('../middlewares/varifyUser');
-const con = require('../db');
+const controller = require('../controllers/city_state/cs_controller');
 
-//----------------End Points (Login Required)
+// ===== Setting Variables  =====
+const router = express.Router();
 
+// ========== Endpoint Section (Login Required in All) (/tasks/city_state/) ==========
 
-router.get('/',varifyUser, (req,res) => {
+// End-point 1 : /tasks/city_state/ (login required)
+//Desc: returns home page
+router.get('/',varifyUser, controller.home_page)
 
-    const sqlquery = 'select id, name from states;'
-
-    con.query(sqlquery, (err, result) =>{
-        if (err) throw err;
-        res.render('city_state/pages/home',{states: result , cities: []})
-    })   
-})
-
-router.post('/cities',varifyUser, (req, res) => {
-
-    const state = req.body.state;
-    const sqlquery = `select id, city, state_id from cities where state_id = '${state}';`
-
-    con.query(sqlquery, (err, result) =>{
-        if (err) throw err;
-        res.json(result);
-    })   
-})
+// End-point 2 : /tasks/city_state/cities (login required)
+//Desc: returns object of cities in json format
+router.post('/cities',varifyUser, controller.cities) 
 
 module.exports = router;
