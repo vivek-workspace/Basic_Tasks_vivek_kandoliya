@@ -1,3 +1,9 @@
+/*
+Program: Delimited Search router
+Description: controls all requests belongs to Delimited Search task
+Called-by: server.js
+@uther: Vivek Kandoliya
+*/
 
 //--------------- Importing Node Modules
 const express = require('express');
@@ -42,14 +48,7 @@ function ProcessRaw(str) {
             indexArray.push(i);
         }
     }
-    // indexArray.push(parseInt(str.indexOf('-')));
-    // indexArray.push(parseInt(str.indexOf('_')));
-    // indexArray.push(parseInt(str.indexOf('^')));
-    // indexArray.push(parseInt(str.indexOf('$')));
-    // indexArray.push(parseInt(str.indexOf('{')));
-    // indexArray.push(parseInt(str.indexOf('}')));
-    // indexArray.push(parseInt(str.indexOf(':')));
-    // indexArray.push(parseInt(str.indexOf('*')));
+    
 
     let SearchObject = {
         Student_ID: [],

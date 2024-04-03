@@ -23,13 +23,9 @@ const router = express.Router();
 //Desc: student registration form
 router.get('/', varifyUser, controller.attendence);
 
-
-//==========================   Exam =============================================//
 // End-point 2 : /tasks/attendence_result/exam (login required)
 //Desc: student registration form
 router.get('/exam', varifyUser, controller.exam);
-
-// //==========================   Exam =============================================//
 
 // // End-point 3 : /tasks/attendence_result/result (login required)
 // //Desc: student full result

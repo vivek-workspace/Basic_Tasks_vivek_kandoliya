@@ -44,7 +44,7 @@ const generate = (req, res) => {
         return;
       }
       // res.send(result)
-      console.log(result);
+  
       res.render('component_generator/pages/combo', { result: result });
     })
   }

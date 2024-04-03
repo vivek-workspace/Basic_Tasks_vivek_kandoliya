@@ -62,15 +62,15 @@ router.post('/submit',varifyUser, async (req, res) => {
 
     const formData = req.body;
     console.log(formData)
-    // const id = await insertBasicDetails(formData);
-    // await insertEducationalDetails(formData, id);
-    // await insertWorkexperienceDetails(formData, id);
-    // await insertReferanceContact(formData, id);
-    // await insertLanguages(formData, id);
-    // await insertTechnologies(formData, id)
+    const id = await insertBasicDetails(formData);
+    await insertEducationalDetails(formData, id);
+    await insertWorkexperienceDetails(formData, id);
+    await insertReferanceContact(formData, id);
+    await insertLanguages(formData, id);
+    await insertTechnologies(formData, id);
 
-    // res.json({ id });
-    res.send('ok')
+    res.json({ id });
+    // res.send('ok')
 })
 
 router.post('/update',varifyUser, async (req, res) => {
@@ -78,8 +78,6 @@ router.post('/update',varifyUser, async (req, res) => {
     const formData = req.body;
     console.log(formData)
     
-
-
     const id = await updateBasicDetails(formData);
     await updateEducationalDetails(formData);
     await updateLanguageDetails(formData);
@@ -99,7 +97,7 @@ async function insertBasicDetails(formData) {
 
     const values_array = ['first_name', 'last_name', 'designation', 'zip_code', 'address_1', 'address_2', 'city', 'state', 'email', 'phone', 'gender', 'relationship', 'dob', 'prefered_location', 'notice_period', 'department', 'expacted_ctc', 'currunt_ctc']
 
-    const values = [];
+    let values = [];
     values_array.forEach(item => {
         if ((item == 'expacted_ctc' || item == 'notice_period' || item == 'currunt_ctc') && formData[item] != '') {
             values.push(parseInt(formData[item]))
@@ -111,9 +109,9 @@ async function insertBasicDetails(formData) {
 
     let sqlquery = `insert into applicants (`;
     sqlquery += generateQuery(fields, values);
-    console.log(sqlquery);
+    values = removeEmpty(values);
 
-    let result = await promisedQuery(sqlquery);
+    let result = await promisedQuery(sqlquery,values);
 
     return result.insertId;
 
@@ -150,7 +148,8 @@ async function insertEducationalDetails(formData, id) {
         sqlquery += generateQuery(fields, values);
         console.log(sqlquery);
         try {
-            let result = await promisedQuery(sqlquery);
+            values = removeEmpty(values)
+            let result = await promisedQuery(sqlquery,values);
             console.log(result)
         }
         catch (err) {
@@ -183,7 +182,8 @@ async function insertWorkexperienceDetails(formData, id) {
         sqlquery += generateQuery(fields, values);
         console.log(sqlquery);
         try {
-            let result = await promisedQuery(sqlquery);
+            values = removeEmpty(values)
+            let result = await promisedQuery(sqlquery, values);
             console.log(result)
         }
         catch (err) {
@@ -231,12 +231,13 @@ async function insertLanguages(formData, id){
         sqlquery += generateQuery(fields, values);
         console.log(sqlquery);
         try {
-            let result = await promisedQuery(sqlquery);
+            values = removeEmpty(values)
+            let result = await promisedQuery(sqlquery, values);
             console.log(result)
         }
         catch (err) {
             console.log(err);
-        }
+        }"${values[i]}"
     }
 }
 
@@ -271,7 +272,8 @@ async function insertTechnologies(formData, id){
         sqlquery += generateQuery(fields, values);
         console.log(sqlquery);
         try {
-            let result = await promisedQuery(sqlquery);
+            values = removeEmpty(values)
+            let result = await promisedQuery(sqlquery, values);
             console.log(result)
         }
         catch (err) {
@@ -306,7 +308,8 @@ async function insertReferanceContact(formData, id){
         sqlquery += generateQuery(fields, values);
         console.log(sqlquery);
         try {
-            let result = await promisedQuery(sqlquery);
+            values = removeEmpty(values)
+            let result = await promisedQuery(sqlquery, values);
             console.log(result)
         }
         catch (err) {
@@ -323,7 +326,7 @@ async function updateBasicDetails(formData){
 
     const fields = ['first_name', 'last_name', 'designation', 'zipcode' , 'address_1', 'address_2','city', 'state', 'email', 'phone_no', 'gender', 'relationship_status','date_of_birth', 'prefered_location', 'notice_period', 'department', 'expacted_ctc', 'currunt_ctc'];
     const formFields = ['first_name', 'last_name', 'designation', 'zip_code', 'address_1', 'address_2', 'city', 'state', 'email', 'phone', 'gender', 'relationship', 'dob', 'prefered_location', 'notice_period', 'department', 'expacted_ctc', 'currunt_ctc']
-    const values = [];
+    let values = [];
 
     formFields.forEach(item => {
         if ((item == 'expacted_ctc' || item == 'notice_period' || item == 'currunt_ctc') && formData[item] != '') {
@@ -339,10 +342,12 @@ async function updateBasicDetails(formData){
     let sqlquery = `update applicants set `;
 
     sqlquery += generateUpdateQuery(fields, values);
+    values = removeEmpty(values);
+    console.log("abcd",values)
 
     sqlquery += ` where applicant_id = ${formData.update_applicant_id}`
     // console.log(sqlquery);
-    const result = await promisedQuery(sqlquery);
+    const result = await promisedQuery(sqlquery, values);
     
     return result.affectedRows;
 }
@@ -379,7 +384,8 @@ async function updateEducationalDetails(formData){
             sqlquery += generateUpdateQuery(fields, values);
         }
         sqlquery += ` where id = ${ids[i]}`
-        const result = await promisedQuery(sqlquery);
+        values = removeEmpty(values);
+        const result = await promisedQuery(sqlquery, values);
         // console.log(result);
     }
   
@@ -389,7 +395,8 @@ async function updateEducationalDetails(formData){
         let values = [user_id, degree[3], course[3], board_uni[3], passing_year[3], parseInt(percentage[3])];
         let sqlquery = `insert into education_details (`
         sqlquery += generateQuery(fields, values);
-        const result = await promisedQuery(sqlquery);
+        values = removeEmpty(values);
+        const result = await promisedQuery(sqlquery, values);
         // console.log("insertion",result);
     }
 
@@ -484,6 +491,22 @@ function filterRows(data) {
     return data;
 }
 
+// ======================= Function Remove Empty ===================================================//
+
+function removeEmpty(array){
+    let newArray = []
+    array.forEach(item => {
+        if(item !==undefined && item !== ''){
+            newArray.push(item);
+            console.log("sdfasd",item);
+        }
+        else{
+            console.log(item);
+        }
+    })
+    return newArray;
+}
+
 // ======================= Function Generate Query ===================================================//
 
 function generateQuery(fields, values) {
@@ -494,12 +517,13 @@ function generateQuery(fields, values) {
     for (let i = 0; i < values.length; i++) {
         if (values[i] !== '') {
             fields_part += `,${fields[i]} `;
-            if (typeof values[i] == 'string') {
-                values_part += `,"${values[i]}" `;
-            }
-            else {
-                values_part += `,${values[i]} `;
-            }
+            values_part += `,? `;
+            // if (typeof values[i] == 'string') {
+            //     values_part += `,"${values[i]}" `;
+            // }
+            // else {
+            //     values_part += `,? `;
+            // }
         }
     }
     fields_part = fields_part.slice(1);
@@ -521,12 +545,13 @@ function generateUpdateQuery(fields, values){
     for(let i=0; i<length; i++){
 
         if(values[i] != undefined){
-            if (typeof values[i] == 'string') {
-                sqlquery += `,${fields[i]} = "${values[i]}" `
-            }
-            else {
-                sqlquery += `,${fields[i]} = ${values[i]} `
-            }
+            sqlquery += `,${fields[i]} = ? `
+            // if (typeof values[i] == 'string') {
+            //     sqlquery += `,${fields[i]} = "${values[i]}" `
+            // }
+            // else {
+            //     sqlquery += `,${fields[i]} = ${values[i]} `
+            // }
         }
         else{
             console.log(i,fields[i], values[i], 'is undefined');

@@ -1,6 +1,6 @@
 /*
 Program: City State router
-Description: controls all requests belongs to attendene_result task
+Description: controls all requests belongs to city state task
 Called-by: server.js
 @uther: Vivek Kandoliya
 */
