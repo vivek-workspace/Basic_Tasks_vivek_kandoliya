@@ -1,7 +1,7 @@
 /*
 Program: Personal Details
 Description: this module returns the details of specific person
-Called-by: form_server.js
+Called-by: cr_controller.js
 @uther: Vivek Kandoliya
 */
 
