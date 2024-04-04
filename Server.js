@@ -9,6 +9,7 @@ require('dotenv').config();
 
 //--------------- Importing local modules
 
+const auth = require('./routes/auth');
 const home = require('./routes/home');
 const on_events = require('./routes/on_events');
 const dynamic_table = require('./routes/dynamic_table');
@@ -51,7 +52,8 @@ app.listen(port, (err) => {
 
 //--------------- Distributing Routes
 
-app.use('/', home);
+app.use('/', auth);
+app.use('/dashboard', home);
 app.use('/tasks/on_events', on_events);
 app.use('/tasks/dynamic_table', dynamic_table);
 app.use('/tasks/kuku_cube', kuku_cube);
