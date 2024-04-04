@@ -48,7 +48,7 @@ const attendence = (req, res) => {
       //retriving list from database
       con.query(`select Student_Attendence.Student_ID, Student_Master.First_Name, count(Student_Attendence.Attendence) as Attendence_Count from Student_Attendence join Student_Master where Student_Attendence.Student_ID=Student_Master.Student_ID and Attendence="p" and month(Attendence_date)=? group by Student_Attendence.Student_ID limit ?,?;`, [month, currunt_page, no_of_records], function (err, data) {
           if (err) {
-              console.log('touched : Routes/attendence_result -> router.get("/") -> con.query()')
+              console.log('touched : attendence_result/as_controller -> attendence')
               console.log(err);
               return res.render('error_page');
           }
@@ -56,7 +56,7 @@ const attendence = (req, res) => {
       })
   }
   catch (err) {
-      console.log('touched : Routes/attendence_result -> router.get("/")')
+      console.log('touched : attendence_result/as_controller -> attendence')
       console.log(err);
   }
 
@@ -104,7 +104,7 @@ const exam = async(req, res) => {
 
         con.query(`${terminal} ${prelims} ${final}`, [currunt_page, no_of_records, currunt_page, no_of_records, currunt_page, no_of_records], function (error, result) {
             if (error) {
-                console.log('touched : Routes/attendence_result -> router.get("/exam") -> con.query()')
+                console.log('touched : attendence_result/as_controller -> exam')
                 console.log(error);
                 return res.render('error_page');
             }
@@ -113,7 +113,7 @@ const exam = async(req, res) => {
 
     }
     catch (err) {
-        console.log('touched : Routes/attendence_result -> router.get("/exam")')
+        console.log('touched : attendence_result/as_controller -> exam')
         console.log(err);
         res.render('error_page');
     }
@@ -128,13 +128,13 @@ const result = (req, res) => {
         else { //applying query for gettig attendence and results
             con.query(`SELECT Exam_Master.Student_ID, concat(Student_Master.First_Name, ' ', Student_Master.Last_Name) as Student_Name, Exam_Master.Subject_ID, Exam_Master.Exam_Type, Exam_Master.Attendence, Exam_Master.Practicle, Exam_Master.Theory FROM Exam_Master join Student_Master where Student_Master.Student_ID=Exam_Master.Student_ID and Exam_Master.Student_ID = ${sid};`, function (err, result) {
                 if (err) {
-                    console.log('touched : Routes/attendence_result -> router.get("/result") -> req.query()')
+                    console.log('touched : attendence_result/as_controller -> result')
                     console.log(err);
                     return res.render('error_page');
                 }
                 con.query(`select Student_Attendence.Student_ID, Student_Master.First_Name, count(Student_Attendence.Attendence) as Attendence_Count from Student_Attendence join Student_Master where Student_Attendence.Student_ID=Student_Master.Student_ID and Attendence="p" and Student_Attendence.Student_ID = ${sid} group by Student_Attendence.Student_ID ;`, function (err, attendence) {
                     if (err) {
-                        console.log('touched : Routes/attendence_result -> router.get("/result") -> req.query()')
+                        console.log('touched : attendence_result/as_controller -> result')
                         console.log(err);
                         return res.render('error_page');
                     }
@@ -145,7 +145,7 @@ const result = (req, res) => {
         }
     }
     catch (error) {
-        console.log('touched : Routes/attendence_result -> router.get("/result")')
+        console.log('touched : attendence_result/as_controller -> result')
         console.log(error);
         res.render('error_page');
     }
