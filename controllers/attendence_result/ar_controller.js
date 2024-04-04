@@ -6,8 +6,6 @@ Called-by: attendence_result.js
 */
 
 
-// =====  Importing Node Modules =====
-
 // =====  Importing Lcoal Modules =====
 const con = require('../../db');
 

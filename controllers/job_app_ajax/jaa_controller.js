@@ -20,7 +20,7 @@ const list = async (req, res) => {
   const sqlquery = 'select applicant_id, first_name, last_name from applicants;'
 
   const result= await promisedQuery(sqlquery);
-  console.log(result);
+  // console.log(result);
   res.render('jwt_app_ajax/pages/list', {result, length: result.length});
 
 }
@@ -52,7 +52,7 @@ const form_page = async (req, res) => {
 const submit = async (req, res) => {
     
   const formData = req.body;
-  console.log(formData)
+  // console.log(formData)
   const id = await insertBasicDetails(formData);
   await insertEducationalDetails(formData, id);
   await insertWorkexperienceDetails(formData, id);
@@ -98,7 +98,7 @@ const get_user = async (req, res) => {
 const update_user = async (req, res) => {
     
   const formData = req.body;
-  console.log(formData)
+  // console.log(formData)
   
   const id = await updateBasicDetails(formData);
   await updateEducationalDetails(formData);

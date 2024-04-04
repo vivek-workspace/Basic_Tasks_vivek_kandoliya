@@ -19,7 +19,7 @@ const list = async (req, res) => {
   const sqlquery = 'select applicant_id, first_name, last_name from applicants;'
 
   const result= await promisedQuery(sqlquery);
-  console.log(result);
+  // console.log(result);
   res.render('job_app_simple/pages/list', {result, length: result.length});
 
 }
@@ -46,7 +46,7 @@ const form_page = async (req, res) => {
       let fetchTech = await promisedQuery(fetchTechnologies);
       let fetchWE = await promisedQuery(fetchworkexperience);
       let fetchRC = await promisedQuery(fetchReference);
-      console.log(fetchUsr);
+      // console.log(fetchUsr);
       res.render('job_app_simple/pages/form', { result: result, update: true, user: fetchUsr,education_data: fetchEdu, language_data: fetchLan, technology_data: fetchTech, work_exp: fetchWE, con_list: fetchRC});
   }
 
@@ -56,7 +56,7 @@ const form_page = async (req, res) => {
 const submit = async (req, res) => {
 
   const formData = req.body;
-  console.log(formData)
+  // console.log(formData)
   const id = await insertBasicDetails(formData);
   await insertEducationalDetails(formData, id);
   await insertWorkexperienceDetails(formData, id);
@@ -72,7 +72,7 @@ const submit = async (req, res) => {
 const update_user = async (req, res) => {
 
   const formData = req.body;
-  console.log(formData)
+  // console.log(formData)
   
   const id = await updateBasicDetails(formData);
   await updateEducationalDetails(formData);
