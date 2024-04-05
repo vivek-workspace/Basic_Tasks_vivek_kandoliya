@@ -64,9 +64,11 @@ const post_query = (req, res) => {
         if (err) {
             console.log(err);
             return res.render('dynamic_out/pages/home', { result: true, err: true, data: err, query: finalsqlquery });
-        } else {
-
+        }else if(result[0].length > 0){
             return res.render('dynamic_out/pages/home', { result: true, err: false, query: finalsqlquery, data: result[0], columns: Object.keys(result[0][0]), page: 1, no_of_records: 20, total_data: result[1].length });
+        }
+        else {
+            return res.render('dynamic_out/pages/home', { result: false, err: false});
         }
     })
 

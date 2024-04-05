@@ -27,6 +27,7 @@ const attendence_result = require('./routes/attendence_result');
 const simple_search = require('./routes/simple_search');
 const city_state  = require('./routes/city_state');
 const world_clock = require('./routes/world_clock');
+const invalidURL = require('./routes/invalid_url');
 require('./db');
 
 //-------------------Configs and Middlewares
@@ -70,6 +71,7 @@ app.use('/tasks/pagi_sort_students', pagi_sort_students);
 app.use('/tasks/attendence_result',attendence_result);
 app.use('/tasks/city_state',city_state);
 app.use('/tasks/world_clock',world_clock);
+app.use('*',invalidURL);
 
 
 
