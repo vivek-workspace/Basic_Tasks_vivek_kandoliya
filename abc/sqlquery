@@ -1,1 +1,1 @@
-select * from Student_Master
+select * from users

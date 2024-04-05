@@ -60,14 +60,13 @@ const post_query = (req, res) => {
     }
 
     con.query(`${finalsqlquery}; ${sqlquery}`, function (err, result) {
-        console.log(result)
+        console.log('adfasd',finalsqlquery,'kmnljik', sqlquery)
         if (err) {
             console.log(err);
-
-            res.render('dynamic_out/pages/home', { result: true, err: true, data: err, query: finalsqlquery });
+            return res.render('dynamic_out/pages/home', { result: true, err: true, data: err, query: finalsqlquery });
         } else {
 
-            res.render('dynamic_out/pages/home', { result: true, err: false, query: finalsqlquery, data: result[0], columns: Object.keys(result[0][0]), page: 1, no_of_records: 20, total_data: result[1].length });
+            return res.render('dynamic_out/pages/home', { result: true, err: false, query: finalsqlquery, data: result[0], columns: Object.keys(result[0][0]), page: 1, no_of_records: 20, total_data: result[1].length });
         }
     })
 
@@ -76,40 +75,53 @@ const post_query = (req, res) => {
 
 //Function return get_query : returns output data of next pages (other pages)
 const get_query = (req, res) => {
-    let page = req.query.page;
-    if (page == undefined || isNaN(page)) page = 1;
-    let sqlquery = localstorage.getItem('sqlquery');
-    let start = (page * 20) - 20;
-    let limited = localstorage.getItem('limited');
-    let finalsqlquery = sqlquery
-
-    if (!sqlquery.includes('limit')) {
-        finalsqlquery = `${sqlquery} limit ${start},20`;
+    try{
+        let page = req.query.page;
+        if (page == undefined || isNaN(page)) page = 1;
+        let sqlquery = localstorage.getItem('sqlquery');
+        let start = (page * 20) - 20;
+        let limited = localstorage.getItem('limited');
+        let finalsqlquery = sqlquery
+    
+        if (!sqlquery.includes('limit')) {
+            finalsqlquery = `${sqlquery} limit ${start},20;`;
+        }
+        else if (sqlquery.length != 0) {
+            destructured = finalsqlquery.split('limit');
+            limited = parseInt(destructured[1]);
+            console.log(limited);
+            console.log(start);
+            console.log(start + 20)
+            if (limited < start + 20 && limited > 0) {
+                finalsqlquery = `${destructured[0]} limit ${start},${limited - start};`;
+            }
+            else {
+                finalsqlquery = `${destructured[0]} limit ${start},20;`;
+            }
+        }
+    
+    
+        con.query(`${finalsqlquery} ${sqlquery}`, function (err, result) {
+            try{
+                if (err) {
+                    res.render('dynamic_out/pages/home', { result: true, err: true, data: err, query: finalsqlquery });
+                } else if(result[0].length > 0){
+                    
+                    res.render('dynamic_out/pages/home', { result: true, err: false, query: finalsqlquery, data: result[0], columns: Object.keys(result[0][0]), page: page, no_of_records: 20, total_data: result[1].length });
+                }
+                else{
+                    res.render('dynamic_out/pages/home', { result: false, err: false});
+                }
+            }
+            catch(error){
+                console.log(error);
+            }
+        })
     }
-    else if (sqlquery.length != 0) {
-        destructured = finalsqlquery.split('limit');
-        limited = parseInt(destructured[1]);
-        console.log(limited);
-        console.log(start);
-        console.log(start + 20)
-        if (limited < start + 20 && limited > 0) {
-            finalsqlquery = `${destructured[0]} limit ${start},${limited - start}`;
-        }
-        else {
-            finalsqlquery = `${destructured[0]} limit ${start},20`;
-        }
+    catch(error){
+        console.log(error);
     }
-
-    console.log(finalsqlquery);
-
-    con.query(`${finalsqlquery}; ${sqlquery}`, function (err, result) {
-        if (err) {
-            res.render('dynamic_out/pages/home', { result: true, err: true, data: err, query: finalsqlquery });
-        } else {
-
-            res.render('dynamic_out/pages/home', { result: true, err: false, query: finalsqlquery, data: result[0], columns: Object.keys(result[0][0]), page: page, no_of_records: 20, total_data: result[1].length });
-        }
-    })
+   
 
 
 }
