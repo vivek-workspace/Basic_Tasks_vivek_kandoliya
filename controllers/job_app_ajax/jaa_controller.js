@@ -16,12 +16,20 @@ const util = require("util")
 
 //Function list: returns appliation list
 const list = async (req, res) => {
-  let promisedQuery = util.promisify(con.query).bind(con);
-  const sqlquery = 'select applicant_id, first_name, last_name from applicants;'
-
-  const result= await promisedQuery(sqlquery);
-  // console.log(result);
-  res.render('jwt_app_ajax/pages/list', {result, length: result.length});
+  try{
+    let promisedQuery = util.promisify(con.query).bind(con);
+    const sqlquery = 'select applicant_id, first_name, last_name from applicants;'
+  
+    const result= await promisedQuery(sqlquery);
+    // console.log(result);
+    res.render('jwt_app_ajax/pages/list', {result, length: result.length});
+  }
+  catch(error){
+    console.log('touched : controller/job_app_ajax -> list')
+    console.log(error);
+    res.render('error_page');
+  }
+  
 
 }
 
@@ -50,62 +58,85 @@ const form_page = async (req, res) => {
 
 //Function submit : handles submit form job app form
 const submit = async (req, res) => {
-    
-  const formData = req.body;
-  // console.log(formData)
-  const id = await insertBasicDetails(formData);
-  await insertEducationalDetails(formData, id);
-  await insertWorkexperienceDetails(formData, id);
-  await insertReferanceContact(formData, id);
-  await insertLanguages(formData, id);
-  await insertTechnologies(formData, id)
   
-  res.json({ id });
+  try{
+    const formData = req.body;
+    // console.log(formData)
+    const id = await insertBasicDetails(formData);
+    await insertEducationalDetails(formData, id);
+    await insertWorkexperienceDetails(formData, id);
+    await insertReferanceContact(formData, id);
+    await insertLanguages(formData, id);
+    await insertTechnologies(formData, id)
+    
+    res.json({ id });
+  }
+  catch(error){
+    console.log('touched : controllers/job_app_ajax/jaa_controller -> submit')
+    console.log(error);
+    return res.render('error_page');
+  }
+  
   // res.send('ok')
 }
 
 
 //Function get_user : returns all details of the user
 const get_user = async (req, res) => {
-  let promisedQuery = util.promisify(con.query).bind(con);
+  try{
+    let promisedQuery = util.promisify(con.query).bind(con);
   
-  const fetchUsrQuery = `select * from applicants where applicant_id = ${parseInt(req.query.id)}`
-  const fetchEducationDetails = `select id, degree,course,university_or_board,passing_year,percentage from education_details where applicant_id = ${parseInt(req.query.id)}`
-  const fetchLanguagenDetails = `select language, lread,lwrite,speak from languages_known where applicant_id = ${parseInt(req.query.id)}`
-  const fetchTechnologies = `select technology, expertise from technologies_known where applicant_id = ${parseInt(req.query.id)}`
-  const fetchworkexperience = `select applicant_id, company, designation, DATE_FORMAT(joining, '%Y-%m-%d'), DATE_FORMAT(leaving, '%Y-%m-%d') from work_experience where applicant_id = ${parseInt(req.query.id)}`
-  const fetchReference = `select applicant_id, reference_name, reference_mobile_no, relation from reference_contact where applicant_id = ${parseInt(req.query.id)}`
-  let fetchUsr = await promisedQuery(fetchUsrQuery);
-  let fetchEdu = await promisedQuery(fetchEducationDetails);
-  let fetchLan = await promisedQuery(fetchLanguagenDetails);
-  let fetchTech = await promisedQuery(fetchTechnologies);
-  let fetchWE = await promisedQuery(fetchworkexperience);
-  let fetchRC = await promisedQuery(fetchReference);
-  
-  const userData = {
-      basic: fetchUsr,
-      edication: fetchEdu,
-      language: fetchLan,
-      technology: fetchTech,
-      workexperience: fetchWE,
-      referencecontact: fetchRC
+    const fetchUsrQuery = `select * from applicants where applicant_id = ${parseInt(req.query.id)}`
+    const fetchEducationDetails = `select id, degree,course,university_or_board,passing_year,percentage from education_details where applicant_id = ${parseInt(req.query.id)}`
+    const fetchLanguagenDetails = `select language, lread,lwrite,speak from languages_known where applicant_id = ${parseInt(req.query.id)}`
+    const fetchTechnologies = `select technology, expertise from technologies_known where applicant_id = ${parseInt(req.query.id)}`
+    const fetchworkexperience = `select applicant_id, company, designation, DATE_FORMAT(joining, '%Y-%m-%d'), DATE_FORMAT(leaving, '%Y-%m-%d') from work_experience where applicant_id = ${parseInt(req.query.id)}`
+    const fetchReference = `select applicant_id, reference_name, reference_mobile_no, relation from reference_contact where applicant_id = ${parseInt(req.query.id)}`
+    let fetchUsr = await promisedQuery(fetchUsrQuery);
+    let fetchEdu = await promisedQuery(fetchEducationDetails);
+    let fetchLan = await promisedQuery(fetchLanguagenDetails);
+    let fetchTech = await promisedQuery(fetchTechnologies);
+    let fetchWE = await promisedQuery(fetchworkexperience);
+    let fetchRC = await promisedQuery(fetchReference);
+    
+    const userData = {
+        basic: fetchUsr,
+        edication: fetchEdu,
+        language: fetchLan,
+        technology: fetchTech,
+        workexperience: fetchWE,
+        referencecontact: fetchRC
+    }
+    
+    res.json(userData);
   }
-  
-  res.json(userData);
+  catch(error){
+    console.log('touched : controllers/job_app_ajax/jaa_controller -> get_user')
+    console.log(error);
+    return res.render('error_page');
+  }
 }
 
 //Function update : updates user details in the db.
 const update_user = async (req, res) => {
-    
-  const formData = req.body;
-  // console.log(formData)
   
-  const id = await updateBasicDetails(formData);
-  await updateEducationalDetails(formData);
-  await updateLanguageDetails(formData);
-  await updateTechnologyDetails(formData);
-  await updateWorkExperience(formData, id);
-  await updateReferenceContacts(formData, id)
+  try{
+    const formData = req.body;
+    // console.log(formData)
+    
+    const id = await updateBasicDetails(formData);
+    await updateEducationalDetails(formData);
+    await updateLanguageDetails(formData);
+    await updateTechnologyDetails(formData);
+    await updateWorkExperience(formData, id);
+    await updateReferenceContacts(formData, id)
+  }
+  catch(error){
+    console.log('touched : controllers/job_app_ajax/jaa_controller -> update_user')
+    console.log(error);
+    return res.render('error_page');
+  }
+
   
   res.status(200).send('updated');
 }
