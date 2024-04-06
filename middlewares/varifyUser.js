@@ -8,13 +8,14 @@ Auther: Vivek Kandoliya
 //- - - Node Modules
 
 const jwt = require('jsonwebtoken');
+const url = require('url');
 
 const jwt_secreat = process.env.jwt_secreat;
 
 const varifyUser = (req, res, next) => {
     // getting the user from jwt token
     if(!req.headers.cookie){
-        res.status(401).send({error: 'no auth-token found'});
+        res.redirect('/auth');
     }
     const token  = req.headers.cookie.split('=')[1];
 
@@ -26,7 +27,8 @@ const varifyUser = (req, res, next) => {
     catch(error){
         console.log("error in fetch-user catch: ");
         console.log(error)
-        res.status(401).send({ error: "authenticate using valid token" });
+        //res.status(401).send({ error: "authenticate using valid token" });
+        res.redirect('/auth');
     }
 }
 

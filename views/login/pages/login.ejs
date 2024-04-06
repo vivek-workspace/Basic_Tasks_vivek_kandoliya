@@ -13,7 +13,7 @@
 
 
     <main>
-        <form action="/signin" method="POST" onsubmit="return validateForm()">
+        <form action="auth/signin" method="POST" onsubmit="return validateForm()">
             <div id="email_field" class="row">
                 <label for="email">Email Id:</label>
                 <div>
@@ -93,7 +93,7 @@
             }
 
             if(flag){
-                window.location.href = `/fgtpwd?id=${email.value}`;
+                window.location.href = `auth/fgtpwd?id=${email.value}`;
             }
         }
 

@@ -52,9 +52,9 @@ app.listen(port, (err) => {
 
 
 //--------------- Distributing Routes
-
-app.use('/', auth);
+app.get('/',(req,res) => {res.redirect('/dashboard')})
 app.use('/dashboard', home);
+app.use('/auth', auth);
 app.use('/tasks/on_events', on_events);
 app.use('/tasks/dynamic_table', dynamic_table);
 app.use('/tasks/kuku_cube', kuku_cube);

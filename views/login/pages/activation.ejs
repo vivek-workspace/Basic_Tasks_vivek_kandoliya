@@ -15,7 +15,7 @@
         <div class = 'center'>
             <%if(status == true){%>
                <p>Your account is registered Successfully, click on below link to activate your account </p>
-              <a href="/activate?id=<%=email%>&token=<%=token%>"><%= token %></a>
+              <a href="/auth/activate?id=<%=email%>&token=<%=token%>"><%= token %></a>
             <%}%>
           </div>
     </main>

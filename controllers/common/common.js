@@ -176,7 +176,7 @@ async function insertWorkexperienceDetails(formData, id) {
 
   try{
     let promisedQuery = util.promisify(con.query).bind(con);
-
+     console.log(formData);
     const { company, old_designation, from, to } = formData;
     const fields = ['applicant_id', 'company', 'designation', 'joining', 'leaving'];
     
@@ -573,8 +573,8 @@ function filterRows(data) {
         if (!flag) {
             for (let j = 0; j < data.length; j++) {
                 data[j].splice(i,1);
-                
             }
+            i--;
         }
     }
    

@@ -108,9 +108,17 @@ function validateForm() {
     let alertContent = [];
 
     setMendetory();
+    const lan_cbox_group = document.querySelectorAll('.lanbox');
+    const cbox_group = document.querySelectorAll('.techbox');
 
     const allFilled = checkAllFields(alertContent, inpText);
     if (!allFilled) flag = false;
+
+    const isTechOneChecked = validateCheckBoxGroup(alertContent, cbox_group);
+    if (!isTechOneChecked) flag = false;
+
+    const isLanOneChecked = validateCheckBoxGroup(alertContent, lan_cbox_group);
+    if (!isLanOneChecked) flag = false;
 
     const isValidZip = valdiateZipcode(alertContent);
     if (!isValidZip) flag = false;
@@ -203,6 +211,61 @@ function checkAllFields(alertContent, inpText) {
     }
     if (!flag) {
         alertContent.push(' Hilighted Fields can not be Empty ');
+    }
+    return flag;
+}
+
+function validateRadioGroup(alertContent, radio_grp, field_name) {
+
+    let flag = false;
+
+    // const radio_grp = document.getElementsByName('gender');
+
+    radio_grp.forEach(item => {
+        if (item.checked) {
+            flag = true;
+        }
+    })
+
+    if (!flag) {
+        alertContent.push(`Please Check anyone from ${field_name}`);
+        radio_grp.forEach(item => { item.parentNode.style.border = '2px solid red' })
+    }
+    else {
+        radio_grp.forEach(item => { item.parentNode.style.border = 'none' })
+    }
+    return flag;
+}
+///======   Validate Checkbox
+function validateCheckBoxGroup(alertContent, cbox_group) {
+
+    let flag = false;
+    // const cbox_group = document.querySelectorAll('.inpcheckbox');
+    // const ability_boxes =  document.querySelectorAll('hac');
+
+    let subflag = true;
+
+    cbox_group.forEach(item => {
+        if (item.checked) {
+            flag = true;
+
+            const ability_boxes = document.querySelectorAll(`.${item.value}_cbox`);
+            if (!validateRadioGroup(alertContent, ability_boxes, item.value)) {
+                subflag = false;
+            }
+        }
+    })
+
+    if (!subflag) {
+        flag = false;
+    }
+
+    if (!flag) {
+        alertContent.push(' Select Checkbox Field ');
+        cbox_group.forEach(item => { item.parentNode.style.border = '2px solid red' })
+    }
+    else {
+        cbox_group.forEach(item => { item.parentNode.style.border = 'none' })
     }
     return flag;
 }
@@ -393,9 +456,9 @@ else {
     const education_data = JSON.parse(document.getElementById('eduText').value);
     const language_data = JSON.parse(document.getElementById('lanText').value);
     const technology_data = JSON.parse(document.getElementById('techText').value);
-    const work_experience =  JSON.parse(document.getElementById('weText').value);
-    const reference_contact =  JSON.parse(document.getElementById('clText').value);
- 
+    const work_experience = JSON.parse(document.getElementById('weText').value);
+    const reference_contact = JSON.parse(document.getElementById('clText').value);
+
     const user_id = document.createElement('input');
     user_id.style.display = 'none';
     user_id.name = 'update_applicant_id';
@@ -481,7 +544,7 @@ else {
     // lan_fields.push(document.getElementById('g_read'));
     // lan_fields.push(document.getElementById('g_write'));
     // lan_fields.push(document.getElementById('g_speak'));
-    
+
 
 
 
@@ -530,22 +593,22 @@ else {
     setRadioFor(mysqlradios, technology_data);
     setRadioFor(laravelradios, technology_data);
 
-    let k=0;
+    let k = 0;
     // console.log(work_experience)
     work_experience.forEach(item => {
         console.log(Object.keys(item));
-        mapFieldValues(wefields.slice(k, k+4), item, Object.keys(item));
-        k+=5;
-    })   
-    
-    k=0;
+        mapFieldValues(wefields.slice(k, k + 4), item, Object.keys(item));
+        k += 5;
+    })
+
+    k = 0;
     console.log(reference_contact)
     reference_contact.forEach(item => {
         console.log(Object.keys(item));
         console.log(ref_fields)
-        mapFieldValues(ref_fields.slice(k, k+3), item, Object.keys(item));
-        k+=4;
-    })   
+        mapFieldValues(ref_fields.slice(k, k + 3), item, Object.keys(item));
+        k += 4;
+    })
 
     // i = 0;
 
@@ -578,7 +641,7 @@ else {
 
 function setCheckFor(ele, language_data) {
     let value = ele.value;
-   
+
     for (let i = 0; i < language_data.length; i++) {
         if (language_data[i].language == value) {
             ele.disabled = false;
@@ -604,11 +667,11 @@ function setCheckFor(ele, language_data) {
     }
 }
 
-function setRadioFor(ele, technology_data){
-    
+function setRadioFor(ele, technology_data) {
+
     let value = ele.value;
     for (let i = 0; i < technology_data.length; i++) {
-       
+
         if (technology_data[i].technology == value) {
             ele.disabled = false;
             ele.checked = true;
@@ -617,7 +680,7 @@ function setRadioFor(ele, technology_data){
 
             radios.forEach(item => {
                 item.disabled = false;
-                if(item.value == technology_data[i].expertise)
+                if (item.value == technology_data[i].expertise)
                     item.checked = true;
             })
         }

@@ -13,7 +13,7 @@
 
 
     <main>
-        <form action="/changepwd" method="POST" onsubmit="return validateForm()">
+        <form action="/auth/changepwd" method="POST" onsubmit="return validateForm()">
             <input type="text" name="email" id="email" value="<%= email%>" hidden>
             <input type="text" name="token" id="token" value="<%= token%>" hidden>
             <label for="emailshow">email : <%= email%></label>

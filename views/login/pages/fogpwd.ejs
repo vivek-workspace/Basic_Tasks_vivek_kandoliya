@@ -16,7 +16,7 @@
 
             <%if(status == true){%>
                <p>You have applied for change the password, click below link to set new password </p>
-              <a href="/setpwd?id=<%=email%>&token=<%=token%>"><%= token %></a>
+              <a href="/auth/setpwd?id=<%=email%>&token=<%=token%>"><%= token %></a>
             <%}%>
         </div>
     </main>
