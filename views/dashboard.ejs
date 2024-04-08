@@ -4,127 +4,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
+    <!-- <link rel="stylesheet" href="/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
     <title>Union of Tasks</title>
 </head>
 
 <body>
-
-    <header>
-        <div class='header'>
-            <p class="heading">Union of Tasks</p>
-            <div>
-                <p>Employee Id: 24DEV062</p>
-                <p>Name: Vivek Kandoliya</p>
+    <div class="container">
+        <header class="navbar">
+            <div class='header'>
+                <p class="heading h3">Union of Tasks</p>
+                <div>
+                    <p>Employee Id: 24DEV062</p>
+                    <p>Name: Vivek Kandoliya</p>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
+    </div>
 
-    <main>
-        <table class = 'centered_table'>
-            <tr>
-                <th>Sr.</th>
-                <th>Task Name</th>
-                <th>Task Description</th>
-                <th>Check it Out</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>On Events</td>
-                <td>Java-Script basic envents</td>
-                <td><a href="/tasks/on_events"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Dynamic Table</td>
-                <td>Table Dimentions can be incresed and decreased by clicking on button</td>
-                <td><a href="/tasks/dynamic_table"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Kuku Cube</td>
-                <td>Eye Testing Game</td>
-                <td><a href="/tasks/kuku_cube"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Tic Tac Toe</td>
-                <td>well known Classic Game</td>
-                <td><a href="/tasks/tic_tac_toe"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Job Application Ajax</td>
-                <td>Job Application Form using section and Ajax(using fetch)</td>
-                <td><a href="/tasks/job_app_ajax"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Job Application Simple</td>
-                <td>Job Application form in single page (no ajax)</td>
-                <td><a href="/tasks/job_app_simple"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Component Generator</td>
-                <td> functoins for Component desining using database</td>
-                <td><a href="/tasks/component_generator"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Simple Search</td>
-                <td>Simple search including diffrent fields and 'and or'</td>
-                <td><a href="/tasks/simple_search"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Delimited Search</td>
-                <td>Search items using delimited characters</td>
-                <td><a href="/tasks/delimited_search"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Dynamic Output</td>
-                <td>Dynamic listing for diffrent sql queries</td>
-                <td><a href="/tasks/dynamic_output"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>Fetching Json Placeholder APIs</td>
-                <td>listing, searching and Pagination using only frontend, (fetch used)</td>
-                <td><a href="/tasks/fetch_json_placeholder/posts"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>12</td>
-                <td>Student Registration(file)</td>
-                <td>Creation and Listing, text file used for data storing.</td>
-                <td><a href="/tasks/student_registration_file"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>13</td>
-                <td>Pagination and Sorting on Students List</td>
-                <td>Pagination and Sorting for large databse</td>
-                <td><a href="/tasks/pagi_sort_students"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>14</td>
-                <td>Attendence and Result of Students</td>
-                <td>Attendence list and Result display of students</td>
-                <td><a href="/tasks/attendence_result"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td>City State</td>
-                <td>City State Ajax Logic</td>
-                <td><a href="/tasks/city_state"><input type="button" value="View"></a></td>
-            </tr>
-            <tr>
-                <td>16</td>
-                <td>World Clock</td>
-                <td>World Clock and UTC time Converter</td>
-                <td><a href="/tasks/world_clock"><input type="button" value="View"></a></td>
-            </tr>
-            
+    <main class="container">
+        <table class='table md-5'>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Sr.</th>
+                    <th scope="col">Task Name</th>
+                    <th scope="col">Task Description</th>
+                    <th scope="col">Check it Out</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="col">1</td>
+                    <td>On Events</td>
+                    <td>Java-Script basic envents</td>
+                    <td><a href="/tasks/on_events"><input class="btn btn-info" type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Dynamic Table</td>
+                    <td>Table Dimentions can be incresed and decreased by clicking on button</td>
+                    <td><a href="/tasks/dynamic_table"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Kuku Cube</td>
+                    <td>Eye Testing Game</td>
+                    <td><a href="/tasks/kuku_cube"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Tic Tac Toe</td>
+                    <td>well known Classic Game</td>
+                    <td><a href="/tasks/tic_tac_toe"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Job Application Ajax</td>
+                    <td>Job Application Form using section and Ajax(using fetch)</td>
+                    <td><a href="/tasks/job_app_ajax"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Job Application Simple</td>
+                    <td>Job Application form in single page (no ajax)</td>
+                    <td><a href="/tasks/job_app_simple"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Component Generator</td>
+                    <td> functoins for Component desining using database</td>
+                    <td><a href="/tasks/component_generator"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Simple Search</td>
+                    <td>Simple search including diffrent fields and 'and or'</td>
+                    <td><a href="/tasks/simple_search"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Delimited Search</td>
+                    <td>Search items using delimited characters</td>
+                    <td><a href="/tasks/delimited_search"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Dynamic Output</td>
+                    <td>Dynamic listing for diffrent sql queries</td>
+                    <td><a href="/tasks/dynamic_output"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Fetching Json Placeholder APIs</td>
+                    <td>listing, searching and Pagination using only frontend, (fetch used)</td>
+                    <td><a href="/tasks/fetch_json_placeholder/posts"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Student Registration(file)</td>
+                    <td>Creation and Listing, text file used for data storing.</td>
+                    <td><a href="/tasks/student_registration_file"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Pagination and Sorting on Students List</td>
+                    <td>Pagination and Sorting for large databse</td>
+                    <td><a href="/tasks/pagi_sort_students"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Attendence and Result of Students</td>
+                    <td>Attendence list and Result display of students</td>
+                    <td><a href="/tasks/attendence_result"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>City State</td>
+                    <td>City State Ajax Logic</td>
+                    <td><a href="/tasks/city_state"><input type="button" value="View"></a></td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>World Clock</td>
+                    <td>World Clock and UTC time Converter</td>
+                    <td><a href="/tasks/world_clock"><input type="button" value="View"></a></td>
+                </tr>
+            </tbody>
+
         </table>
     </main>
 

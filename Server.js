@@ -37,6 +37,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname + '/views')));
+app.use("/css",express.static("./node_modules/bootstrap/dist/css"));
 
 app.set('view engine','ejs');
 
