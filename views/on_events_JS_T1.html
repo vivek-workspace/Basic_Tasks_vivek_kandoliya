@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
     <style>
         table,
         th,
@@ -28,6 +29,15 @@
 onload="e_on_load()" 
 onunload="e_on_unload()"
 ononline="e_on_online()">
+    <div class="container">
+        <div class='header my-2 align-items-center border-bottom border-4 d-flex justify-content-between'>
+            <p class="heading h1">Union of Tasks</p>
+            <div>
+              <p>Employee Id: 24DEV062</p>
+              <p>Name: Vivek Kandoliya</p>
+            </div>
+            <a href="/dashboard"><input class="btn btn-warning" type="button" value="Dashboard"></a>
+          </div>
 
     <form action="#" onsubmit="e_on_submit()">
     <table border="1">
@@ -72,6 +82,7 @@ ononline="e_on_online()">
     </table>
 
 </form>
+</div>
 
     <script>
         function e_on_click() { alert("onclick() event fired."); }
