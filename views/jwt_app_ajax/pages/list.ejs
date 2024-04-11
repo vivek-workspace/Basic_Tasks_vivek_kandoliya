@@ -10,14 +10,15 @@
 
 <body>
 
-    <header>
-        <%- include('../components/header')%>
-        <div  class="list_header">
-            <h4> Applicants List </h4>
-            <a href="/tasks/job_app_ajax/form"><input type="button" name="addnew" id="addnew" value="New Form"></a>
-        </div>
+    <header class="container">
+        <%- include('../../components/header')%>
     </header>
-   
+    
+    <div  class="list_header">
+        <h4> Applicants List </h4>
+        <a href="/tasks/job_app_ajax/form"><input type="button" name="addnew" id="addnew" value="New Form"></a>
+    </div>
+    
     <div class="responseBody">
         <%if(length == 0){%>
             <p>No Job Application Yet..&#128528; </p>

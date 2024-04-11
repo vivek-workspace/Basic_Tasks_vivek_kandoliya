@@ -21,7 +21,7 @@ const path = require('path');
 //Desc: sending html file
 router.get('/', varifyUser, (req,res) => { 
     try{
-        res.sendFile(path.join(__dirname, '../views/Color_Game_JS_T3.html'));
+        res.render('Color_Game_Js_T3');
     }catch(error){
         console.log('touched : routes/kukucube -> router.get(/)')
         console.log(error);

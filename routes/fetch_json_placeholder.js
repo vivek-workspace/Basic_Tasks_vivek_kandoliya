@@ -23,7 +23,7 @@ const router = express.Router();
 //Desc: sends file which fetchs list of all posts from frontend
 router.get('/posts',varifyUser, (req, res) => {
     try{
-        res.sendFile(path.join(__dirname,'../views/alluser.html'));
+        res.render('alluser');
     }
     catch(error){
         console.log('touched : Routes/fetch_json_placeholder -> router.get("/posts")')
@@ -36,7 +36,7 @@ router.get('/posts',varifyUser, (req, res) => {
 //Desc: sends file which fetchs perticuler post and its comments from frontend
 router.get('/post/:id',varifyUser, (req, res) => {
     try{
-        res.sendFile(path.join(__dirname,'../views/post.html'));
+        res.render('post')
     }
     catch(error){
         console.log('touched : Routes/fetch_json_placeholder -> router.get("/post:id")')

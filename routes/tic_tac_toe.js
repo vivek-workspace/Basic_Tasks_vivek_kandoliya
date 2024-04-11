@@ -21,7 +21,7 @@ const router = express.Router();
 //Desc: renders page of the task
 router.get('/', varifyUser, (req,res) => { 
     try{
-        res.sendFile(path.join(__dirname, '../views/TicTacToe_JS_T4.html'));
+        res.render('TicTacToe_JS_T4')
     }
     catch(error){
         console.log('touched : routers/tic_tac_toe -> router.get(/')

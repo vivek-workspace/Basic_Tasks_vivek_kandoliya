@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
     <style>
     
         td {
@@ -41,8 +41,10 @@
 
 <body>
 
-    <h1 align="center">Vivek Kandoliya | EmployeeID: 24DEV062 | 3 February 2024</h1>
-    <hr>
+    <header class="container">
+        <%- include('./components/header') %>
+    </header>
+    
     <h1 align="center"> Tic Tac Toe</h2>
 
     <p id="turn" align="center">Turn: Player 1</p>

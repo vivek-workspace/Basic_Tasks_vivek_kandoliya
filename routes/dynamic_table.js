@@ -21,7 +21,7 @@ const router = express.Router();
 //Desc: returns html file of the dynamic table task
 router.get('/', varifyUser, (req,res) => { 
     try{
-        res.sendFile(path.join(__dirname, '../views/Dynamic_Table_JS_T2.html'));
+        res.render('Dynamic_Table_Js_T2');
     }
     catch(error){
         console.log('touched : Routes/dynamic_table -> router.get("/")')
