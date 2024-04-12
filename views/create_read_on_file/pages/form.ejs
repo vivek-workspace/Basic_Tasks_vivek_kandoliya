@@ -11,10 +11,14 @@
 
 <body>
 
-    <header>
-        <%- include('../partials/header') %>
-
+    <header class="container">
+        <%- include('../../components/header') %>
     </header>
+
+    <div>
+        <%- include('../partials/header') %>
+    </div>
+
     <main>
         <form action="/tasks/student_registration_file/form" method="post" onsubmit="return validateForm()">
 

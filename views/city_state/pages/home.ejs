@@ -8,12 +8,14 @@
 <body>
 
    
-
-    <%- include('../components/header') %>
+    <header class="container">
+        <%- include('../../components/header') %>
+        <%- include('../components/header') %>
+    </header>
 
 
     <main style="width:800px; margin:  0px auto; display: flex; justify-content: center;">
-        <select onchange="fetchCities()" name="states" id="states">
+        <select onchange="fetchCities()" class="form-select-lg" name="states" id="states">
             <option value="">-- Select State --</option>
             <%states.forEach(item=> {%>
                 <option value="<%= item.id %>">
@@ -22,8 +24,8 @@
                 <%}) %>
         </select>
     
-        <select name="cities" id="cities">
-        <option value="">--select city--</option>
+        <select class="form-select-lg" name="cities" id="cities">
+        <option value="">--Select City--</option>
         </select>
     </main>
 

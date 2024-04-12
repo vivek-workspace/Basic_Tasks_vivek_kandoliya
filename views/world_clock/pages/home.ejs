@@ -6,56 +6,58 @@
 </head>
 
 <body>
-    <header>
+    <header class="container">
+        <%- include('../../components/header') %>
         <%- include('../components/header') %>
     </header>
 
     <main>
-        <div class="container1">
-            <form action="" id="form">
-                <div class="row">
-                    <label for="date">Date</label>
-                    <input type="text" name="date" id="date" class="inp">
-                </div>
-                <div class="row">
-                    <label for="month">Month</label>
-                    <input type="text" name="month" id="month" class="inp">
-                </div>
-                <div class="row">
-                    <label for="year">Year</label>
-                    <input type="text" name="year" id="year" class="inp">
-                </div>
-                <div class="row">
-                    <label for="hour">Hour</label>
-                    <input type="text" name="hour" id="hour" class="inp">
-                </div>
-                <div class="row">
-                    <label for="minute">Minute</label>
-                    <input type="text" name="minute" id="minute" class="inp">
-                </div>
-                <div class="row">
-                    <label for="second">Second</label>
-                    <input type="text" name="second" id="second" class="inp">
-                </div>
-                <div class="row">
-                    <input type="button" name="go" id="go" value="Go" onclick="setInp()">
-                </div>
-            </form>
-        </div>
-
+        <div class="container d-flex">
+            <div class="container1 col-3 mr-3">
+                <form action="" id="form">
+                    <div class="row">
+                        <label for="date">Date</label>
+                        <input class="form-control" type="text" name="date" id="date" class="inp ">
+                    </div>
+                    <div class="row">
+                        <label for="month">Month</label>
+                        <input class="form-control" type="text" name="month" id="month" class="inp">
+                    </div>
+                    <div class="row">
+                        <label for="year">Year</label>
+                        <input class="form-control" type="text" name="year" id="year" class="inp">
+                    </div>
+                    <div class="row">
+                        <label for="hour">Hour</label>
+                        <input class="form-control" type="text" name="hour" id="hour" class="inp">
+                    </div>
+                    <div class="row">
+                        <label for="minute">Minute</label>
+                        <input class="form-control" type="text" name="minute" id="minute" class="inp">
+                    </div>
+                    <div class="row">
+                        <label for="second">Second</label>
+                        <input class="form-control" type="text" name="second" id="second" class="inp">
+                    </div>
+                    <div class="row mt-4">
+                        <input  class="form-control btn btn-primary" type="button" name="go" id="go" value="Go" onclick="setInp()">
+                    </div>
+                </form>
+            </div>
+            <div class="col-9 m-5">
+                <select class="form-select mx-4  w-25" name="city" id="city" onchange="setLocalTime(value)">
+                    <%result.forEach(item=> { %>
+                        <option value='<%= item.zone_name %>' <%if(item.zone_name=='Asia/Kolkata' ){%> selected <%}%> ><%=
+                                    item.zone_name %>
+                        </option>
+                        <% })%>
+                </select>
         
-    
-        <select name="city" id="city" onchange="setLocalTime(value)">
-            <%result.forEach(item=> { %>
-                <option value='<%= item.zone_name %>' <%if(item.zone_name=='Asia/Kolkata' ){%> selected <%}%> ><%=
-                            item.zone_name %>
-                </option>
-                <% })%>
-        </select>
-
-        <h3 id="city_name" style="font-size: 50px;  margin: 50px 20px;"></h3>
-        <p id="date_name" style="font-size: 30px; margin: 10px 20px;"></p>
-        <p id="time" style="font-size: 200px; margin: 10px auto;"></p>
+                <h3 id="city_name" class="display-3 px-4"></h3>
+                <p id="date_name" class="display-1 px-4"></p>
+                <p id="time" class="display-4 px-4"></p>
+            </div>
+        </div>
     </main>
 
     <script>

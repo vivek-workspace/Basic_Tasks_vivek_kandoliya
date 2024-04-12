@@ -4,9 +4,13 @@
    <%- include('../components/head') %>
 </head>
 <body>
-    <header>
-         <%- include('../components/header') %>
+
+    <header class="container">
+         <%- include('../../components/header') %>
     </header>
+    <div>
+        <%- include('../components/header') %>
+    </div>
     <main>
         <%-  include('../components/paging_controls'); %>
         <table style="border: 1px solid black">

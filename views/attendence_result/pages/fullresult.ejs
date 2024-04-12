@@ -4,9 +4,12 @@
     <%- include('../components/head');%>
 </head>
 <body>
-    <header>
-        <%- include('../components/header');%>
+    <header class="container">
+        <%- include('../../components/header');%>
     </header>
+    <div>
+        <%- include('../components/header');%>
+    </div>
     <main>
         <div class="pageheader">
             <h3><%= result[0].Student_Name %>Annual Result</h3>

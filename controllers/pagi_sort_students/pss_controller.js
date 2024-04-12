@@ -46,7 +46,7 @@ const home_page = (req, res) => {
   let currunt_page = (page*no_of_records)-no_of_records;
  
 
-  con.query(`select * from School5_26feb.Student_Master order by ? ? limit ?,? `,[field, order, currunt_page, parseInt(no_of_records)] , function (err , result){
+  con.query(`select * from Student_Master order by ? ? limit ?,? `,[field, order, currunt_page, parseInt(no_of_records)] , function (err , result){
      if(err) {
       console.log('touched : pagi_sort_students/pass_controller -> hone_page')
       console.log(err);
